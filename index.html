@@ -92,17 +92,18 @@
     .gradient-bg { background: linear-gradient(135deg, var(--violet-500), var(--fuchsia-500)); }
     
     /* Background */
-    .bg-gradient {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-    }
-    .bg-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-    }
+.bg-gradient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+}
     .bg-blob-1 {
       top: 0; left: 25%;
       width: 300px; height: 300px;
@@ -113,10 +114,10 @@
       width: 250px; height: 250px;
       background: rgba(217, 70, 239, 0.15);
     }
-    @media (min-width: 640px) {
-      .bg-blob-1 { width: 600px; height: 600px; filter: blur(128px); }
-      .bg-blob-2 { width: 500px; height: 500px; filter: blur(128px); }
-    }
+@media (min-width: 640px) {
+  .bg-blob-1 { width: 600px; height: 600px; }
+  .bg-blob-2 { width: 500px; height: 500px; }
+}
     
     /* Navigation */
     .nav {

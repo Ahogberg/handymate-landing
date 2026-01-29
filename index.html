@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Handymate — AI-assistenten för hantverkare</title>
+  <title>Handymate — AI-telefonassistent för hantverkare</title>
+  <meta name="description" content="Lisa svarar på kundsamtal, bokar tider och skickar bekräftelser — helt automatiskt. Du fokuserar på jobbet, vi sköter admin.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { font-family: 'Space Grotesk', system-ui, sans-serif; }
-    .mono { font-family: 'JetBrains Mono', monospace; }
     html { scroll-behavior: smooth; }
     
     @keyframes float { 
@@ -33,16 +34,10 @@
       0%, 100% { transform: scaleY(1); }
       50% { transform: scaleY(0.5); }
     }
-    @keyframes fade-in-up {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
     
     .animate-float { animation: float 6s ease-in-out infinite; }
     .animate-float-delay { animation: float-delay 7s ease-in-out infinite; }
     .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-    .animate-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
-    .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
     
     .wave-bar { animation: wave 1.2s ease-in-out infinite; }
     .wave-bar:nth-child(2) { animation-delay: 0.1s; }
@@ -59,9 +54,9 @@
     }
     
     .glass {
-      background: rgba(24, 24, 27, 0.7);
+      background: rgba(24, 24, 27, 0.8);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(63, 63, 70, 0.5);
+      border-bottom: 1px solid rgba(63, 63, 70, 0.5);
     }
     
     .card-hover {
@@ -71,27 +66,33 @@
       transform: translateY(-8px);
       box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
     }
+    
+    @media (max-width: 640px) {
+      .card-hover:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body class="bg-[#09090b] text-white overflow-x-hidden">
   <!-- Background gradients -->
   <div class="fixed inset-0 pointer-events-none">
-    <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-violet-500/20 rounded-full blur-[128px]"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-fuchsia-500/15 rounded-full blur-[128px]"></div>
+    <div class="absolute top-0 left-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-violet-500/20 rounded-full blur-[100px] sm:blur-[128px]"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] bg-fuchsia-500/15 rounded-full blur-[100px] sm:blur-[128px]"></div>
   </div>
   
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-40 glass">
-    <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center animate-pulse-glow">
-            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <a href="/" class="flex items-center gap-2 sm:gap-3">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center animate-pulse-glow">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <span class="text-xl font-bold">Handymate</span>
-        </div>
+          <span class="text-lg sm:text-xl font-bold">Handymate</span>
+        </a>
         
         <div class="hidden md:flex items-center gap-8">
           <a href="#features" class="text-zinc-400 hover:text-white transition-colors">Funktioner</a>
@@ -99,65 +100,82 @@
           <a href="#pricing" class="text-zinc-400 hover:text-white transition-colors">Priser</a>
         </div>
         
-        <div class="flex items-center gap-4">
-          <a href="https://handymate-dashboard.vercel.app/dashboard" class="text-zinc-400 hover:text-white transition-colors">Logga in</a>
-          <a href="https://handymate-dashboard.vercel.app/signup" class="px-5 py-2.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl font-medium hover:from-violet-600 hover:to-fuchsia-600 transition-all shadow-lg shadow-violet-500/25">
+        <div class="flex items-center gap-2 sm:gap-4">
+          <a href="https://handymate-dashboard.vercel.app/login" class="hidden sm:block text-zinc-400 hover:text-white transition-colors text-sm">Logga in</a>
+          <a href="https://handymate-dashboard.vercel.app/signup" class="px-3 py-2 sm:px-5 sm:py-2.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-lg sm:rounded-xl text-sm font-medium hover:opacity-90 transition-all shadow-lg shadow-violet-500/25">
             Kom igång
           </a>
+          
+          <!-- Mobile menu button -->
+          <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="md:hidden p-2 text-zinc-400 hover:text-white">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-zinc-800 pt-4">
+        <div class="flex flex-col gap-4">
+          <a href="#features" onclick="document.getElementById('mobileMenu').classList.add('hidden')" class="text-zinc-400 hover:text-white transition-colors">Funktioner</a>
+          <a href="#how-it-works" onclick="document.getElementById('mobileMenu').classList.add('hidden')" class="text-zinc-400 hover:text-white transition-colors">Så funkar det</a>
+          <a href="#pricing" onclick="document.getElementById('mobileMenu').classList.add('hidden')" class="text-zinc-400 hover:text-white transition-colors">Priser</a>
+          <a href="https://handymate-dashboard.vercel.app/login" class="text-zinc-400 hover:text-white transition-colors">Logga in</a>
         </div>
       </div>
     </div>
   </nav>
   
   <!-- Hero -->
-  <section class="relative min-h-screen flex items-center pt-20">
-    <div class="max-w-7xl mx-auto px-6 py-20">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-full mb-6">
+  <section class="relative min-h-screen flex items-center pt-16 sm:pt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-20">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div class="text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-zinc-900/50 border border-zinc-800 rounded-full mb-4 sm:mb-6">
             <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-            <span class="text-sm text-zinc-400">Nu i beta — begränsat antal platser</span>
+            <span class="text-xs sm:text-sm text-zinc-400">Nu i beta — begränsat antal platser</span>
           </div>
           
-          <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4 sm:mb-6">
             Din AI-assistent som <span class="gradient-text">aldrig missar</span> ett samtal
           </h1>
           
-          <p class="text-xl text-zinc-400 mb-8 leading-relaxed">
+          <p class="text-base sm:text-lg lg:text-xl text-zinc-400 mb-6 sm:mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
             Lisa svarar på kundsamtal, bokar tider i din kalender och skickar bekräftelser — 
-            <span class="text-white">helt automatiskt</span>. Du fokuserar på jobbet, vi sköter admin.
+            <span class="text-white">helt automatiskt</span>.
           </p>
           
-          <div class="flex flex-col sm:flex-row gap-4 mb-12">
-            <a href="https://handymate-dashboard.vercel.app/signup" class="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl font-semibold text-lg hover:from-violet-600 hover:to-fuchsia-600 transition-all shadow-lg shadow-violet-500/25 text-center">
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12 max-w-md mx-auto lg:mx-0">
+            <a href="https://handymate-dashboard.vercel.app/signup" class="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg hover:opacity-90 transition-all shadow-lg shadow-violet-500/25 text-center">
               Prova gratis i 14 dagar
             </a>
-            <a href="#how-it-works" class="px-8 py-4 bg-zinc-900 border border-zinc-800 rounded-2xl font-semibold text-lg hover:bg-zinc-800 transition-all text-center flex items-center justify-center gap-2">
+            <a href="#how-it-works" class="px-6 py-3 sm:px-8 sm:py-4 bg-zinc-900 border border-zinc-800 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg hover:bg-zinc-800 transition-all text-center flex items-center justify-center gap-2">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               Se hur det funkar
             </a>
           </div>
           
-          <div class="flex items-center gap-8">
-            <div>
-              <p class="text-3xl font-bold text-white">24/7</p>
-              <p class="text-sm text-zinc-500">tillgänglig</p>
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 lg:gap-8">
+            <div class="text-center px-2">
+              <p class="text-xl sm:text-2xl lg:text-3xl font-bold text-white">24/7</p>
+              <p class="text-xs sm:text-sm text-zinc-500">Alltid tillgänglig</p>
             </div>
-            <div class="w-px h-12 bg-zinc-800"></div>
-            <div>
-              <p class="text-3xl font-bold text-white">Svenska</p>
-              <p class="text-sm text-zinc-500">AI-röst</p>
+            <div class="w-px h-8 sm:h-12 bg-zinc-800"></div>
+            <div class="text-center px-2">
+              <p class="text-xl sm:text-2xl lg:text-3xl font-bold text-white">Svenska</p>
+              <p class="text-xs sm:text-sm text-zinc-500">Naturlig AI-röst</p>
             </div>
-            <div class="w-px h-12 bg-zinc-800"></div>
-            <div>
-              <p class="text-3xl font-bold text-white">14 dagar</p>
-              <p class="text-sm text-zinc-500">gratis test</p>
+            <div class="w-px h-8 sm:h-12 bg-zinc-800"></div>
+            <div class="text-center px-2">
+              <p class="text-xl sm:text-2xl lg:text-3xl font-bold text-white">2 min</p>
+              <p class="text-xs sm:text-sm text-zinc-500">Att komma igång</p>
             </div>
           </div>
         </div>
         
-        <!-- Hero illustration -->
-        <div class="relative">
+        <!-- Hero illustration - Hidden on mobile/tablet -->
+        <div class="relative hidden lg:block">
           <div class="relative mx-auto w-72 animate-float">
             <div class="bg-zinc-900 rounded-[3rem] p-3 border border-zinc-800 shadow-2xl">
               <div class="bg-zinc-950 rounded-[2.5rem] overflow-hidden">
@@ -237,246 +255,343 @@
     </div>
   </section>
   
-  <!-- Logos -->
-  <section class="relative py-16 border-y border-zinc-900">
-    <div class="max-w-7xl mx-auto px-6">
-      <p class="text-center text-zinc-600 mb-8">Byggs för hantverkare över hela Sverige</p>
-      <div class="flex items-center justify-center gap-12 opacity-40">
-        <span class="text-2xl font-bold text-zinc-500">Elektriker</span>
-        <span class="text-2xl font-bold text-zinc-500">Rörmokare</span>
-        <span class="text-2xl font-bold text-zinc-500">VVS</span>
-        <span class="text-2xl font-bold text-zinc-500">Målare</span>
-      </div>
+  <!-- Problem/Solution -->
+  <section class="relative py-12 sm:py-16 lg:py-24 border-y border-zinc-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
+        Trött på att missa samtal när du jobbar?
+      </h2>
+      <p class="text-base sm:text-lg lg:text-xl text-zinc-400 leading-relaxed">
+        Som hantverkare är du ofta upptagen med händerna — och varje missat samtal kan vara en förlorad kund. 
+        <span class="text-white">Handymate löser det.</span> Vår AI-assistent Lisa svarar professionellt, 
+        tar reda på vad kunden behöver, och bokar in jobbet direkt i din kalender.
+      </p>
     </div>
   </section>
   
   <!-- Features -->
-  <section id="features" class="relative py-32">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <span class="text-violet-400 font-medium mb-4 block">Funktioner</span>
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6">Allt du behöver för att slippa admin</h2>
-        <p class="text-xl text-zinc-400 max-w-2xl mx-auto">
+  <section id="features" class="relative py-12 sm:py-20 lg:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-8 sm:mb-12 lg:mb-16">
+        <span class="text-violet-400 font-medium mb-2 sm:mb-4 block text-sm sm:text-base">Funktioner</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-6">Allt du behöver för att slippa admin</h2>
+        <p class="text-base sm:text-lg lg:text-xl text-zinc-400 max-w-2xl mx-auto">
           Handymate tar hand om hela kundresan — från första samtalet till bokad tid.
         </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 card-hover">
-          <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 card-hover">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-3">AI-driven telefonsvarare</h3>
-          <p class="text-zinc-400">Lisa svarar på alla samtal, ställer rätt frågor och förstår vad kunden behöver — på riktig svenska.</p>
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">AI-telefonsvarare</h3>
+          <p class="text-sm sm:text-base text-zinc-400">Lisa svarar på alla samtal, ställer rätt frågor och förstår vad kunden behöver — på naturlig svenska.</p>
         </div>
         
-        <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 card-hover">
-          <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 card-hover">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-3">Automatisk bokning</h3>
-          <p class="text-zinc-400">Kopplar direkt till din Google Calendar och bokar tider som faktiskt fungerar för dig.</p>
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">Automatisk bokning</h3>
+          <p class="text-sm sm:text-base text-zinc-400">Kopplar till din Google Calendar och bokar tider som faktiskt fungerar för dig.</p>
         </div>
         
-        <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 card-hover">
-          <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 card-hover">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-3">SMS-bekräftelser</h3>
-          <p class="text-zinc-400">Automatiska bekräftelser och påminnelser skickas till kunderna med ditt företagsnamn.</p>
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">SMS-bekräftelser</h3>
+          <p class="text-sm sm:text-base text-zinc-400">Automatiska bekräftelser och påminnelser skickas till kunderna med ditt företagsnamn.</p>
         </div>
         
-        <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 card-hover">
-          <div class="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 card-hover">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-3">Samtalsinspelning</h3>
-          <p class="text-zinc-400">Alla samtal spelas in, transkriberas och analyseras av AI — så du aldrig missar viktig info.</p>
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">Samtalsinspelning</h3>
+          <p class="text-sm sm:text-base text-zinc-400">Alla samtal spelas in och transkriberas — så du aldrig missar viktig information.</p>
         </div>
         
-        <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 card-hover">
-          <div class="w-14 h-14 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 card-hover">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-3">Smart dashboard</h3>
-          <p class="text-zinc-400">Se alla ärenden, bokningar och kundsentiment i realtid. AI flaggar det som behöver din uppmärksamhet.</p>
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">Smart dashboard</h3>
+          <p class="text-sm sm:text-base text-zinc-400">Se alla ärenden, bokningar och kunder i realtid. AI flaggar det som behöver uppmärksamhet.</p>
         </div>
         
-        <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 card-hover">
-          <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6">
-            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 card-hover">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-3">Kundregister</h3>
-          <p class="text-zinc-400">Automatiskt CRM som känner igen återkommande kunder och kommer ihåg deras historik.</p>
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">Kundregister</h3>
+          <p class="text-sm sm:text-base text-zinc-400">Automatiskt CRM som känner igen återkommande kunder och sparar deras historik.</p>
         </div>
       </div>
     </div>
   </section>
   
   <!-- How it works -->
-  <section id="how-it-works" class="relative py-32 bg-zinc-950/50">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <span class="text-violet-400 font-medium mb-4 block">Så funkar det</span>
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6">Tre steg till frihet från admin</h2>
+  <section id="how-it-works" class="relative py-12 sm:py-20 lg:py-32 bg-zinc-950/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-8 sm:mb-12 lg:mb-16">
+        <span class="text-violet-400 font-medium mb-2 sm:mb-4 block text-sm sm:text-base">Så funkar det</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-6">Igång på tre steg</h2>
       </div>
       
-      <div class="grid lg:grid-cols-3 gap-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         <div class="relative">
-          <div class="text-8xl font-bold text-zinc-900 absolute -top-8 -left-4">1</div>
-          <div class="relative bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 pt-16">
-            <h3 class="text-xl font-semibold text-white mb-3">Koppla din kalender</h3>
-            <p class="text-zinc-400">Anslut Google Calendar på 30 sekunder. Vi ser dina lediga tider automatiskt.</p>
+          <div class="text-6xl sm:text-7xl lg:text-8xl font-bold text-zinc-900 absolute -top-4 sm:-top-6 lg:-top-8 -left-2 sm:-left-4">1</div>
+          <div class="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 pt-10 sm:pt-12 lg:pt-16">
+            <h3 class="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">Skapa konto</h3>
+            <p class="text-sm sm:text-base text-zinc-400">Registrera dig på 2 minuter. Fyll i företagsinfo och vilka tjänster du erbjuder.</p>
           </div>
         </div>
         
         <div class="relative">
-          <div class="text-8xl font-bold text-zinc-900 absolute -top-8 -left-4">2</div>
-          <div class="relative bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 pt-16">
-            <h3 class="text-xl font-semibold text-white mb-3">Få ditt telefonnummer</h3>
-            <p class="text-zinc-400">Du får ett nytt 010-nummer eller flyttar ditt befintliga. Lisa svarar direkt.</p>
+          <div class="text-6xl sm:text-7xl lg:text-8xl font-bold text-zinc-900 absolute -top-4 sm:-top-6 lg:-top-8 -left-2 sm:-left-4">2</div>
+          <div class="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 pt-10 sm:pt-12 lg:pt-16">
+            <h3 class="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">Koppla kalendern</h3>
+            <p class="text-sm sm:text-base text-zinc-400">Anslut Google Calendar så Lisa ser dina lediga tider automatiskt.</p>
           </div>
         </div>
         
-        <div class="relative">
-          <div class="text-8xl font-bold text-zinc-900 absolute -top-8 -left-4">3</div>
-          <div class="relative bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 pt-16">
-            <h3 class="text-xl font-semibold text-white mb-3">Fokusera på jobbet</h3>
-            <p class="text-zinc-400">Lisa tar hand om samtal, bokningar och SMS. Du ser allt i din dashboard.</p>
+        <div class="relative sm:col-span-2 lg:col-span-1">
+          <div class="text-6xl sm:text-7xl lg:text-8xl font-bold text-zinc-900 absolute -top-4 sm:-top-6 lg:-top-8 -left-2 sm:-left-4">3</div>
+          <div class="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 pt-10 sm:pt-12 lg:pt-16">
+            <h3 class="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">Börja ta emot samtal</h3>
+            <p class="text-sm sm:text-base text-zinc-400">Lisa svarar, bokar och skickar SMS. Du ser allt i din dashboard.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ -->
+  <section class="relative py-12 sm:py-20 lg:py-32">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-8 sm:mb-12 lg:mb-16">
+        <span class="text-violet-400 font-medium mb-2 sm:mb-4 block text-sm sm:text-base">FAQ</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold">Vanliga frågor</h2>
+      </div>
+      
+      <div class="space-y-3 sm:space-y-4">
+        <details class="group bg-zinc-900/50 border border-zinc-800 rounded-xl sm:rounded-2xl">
+          <summary class="flex items-center justify-between p-4 sm:p-6 cursor-pointer">
+            <span class="font-medium text-white text-sm sm:text-base pr-4">Hur bra är AI:n på svenska?</span>
+            <svg class="w-5 h-5 text-zinc-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-zinc-400">
+            Riktigt bra! Vi använder Azure:s senaste svenska röst (Sofie) som låter naturlig och professionell. Lisa förstår dialekter och kan hantera vardagssvenska.
+          </div>
+        </details>
+        
+        <details class="group bg-zinc-900/50 border border-zinc-800 rounded-xl sm:rounded-2xl">
+          <summary class="flex items-center justify-between p-4 sm:p-6 cursor-pointer">
+            <span class="font-medium text-white text-sm sm:text-base pr-4">Vad händer om AI:n inte förstår kunden?</span>
+            <svg class="w-5 h-5 text-zinc-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-zinc-400">
+            Lisa ber artigt om förtydligande. Om det fortfarande är oklart, erbjuder hon att koppla kunden till dig direkt eller tar ett meddelande så du kan ringa tillbaka.
+          </div>
+        </details>
+        
+        <details class="group bg-zinc-900/50 border border-zinc-800 rounded-xl sm:rounded-2xl">
+          <summary class="flex items-center justify-between p-4 sm:p-6 cursor-pointer">
+            <span class="font-medium text-white text-sm sm:text-base pr-4">Kan jag anpassa vad Lisa säger?</span>
+            <svg class="w-5 h-5 text-zinc-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-zinc-400">
+            Absolut! Du kan skriva din egen hälsningsfras, ange vilka tjänster du erbjuder, dina öppettider och tjänsteområde. Lisa anpassar sig efter din info.
+          </div>
+        </details>
+        
+        <details class="group bg-zinc-900/50 border border-zinc-800 rounded-xl sm:rounded-2xl">
+          <summary class="flex items-center justify-between p-4 sm:p-6 cursor-pointer">
+            <span class="font-medium text-white text-sm sm:text-base pr-4">Måste jag byta telefonnummer?</span>
+            <svg class="w-5 h-5 text-zinc-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-zinc-400">
+            Nej! Du kan antingen få ett nytt 010-nummer från oss, eller vidarekoppla ditt befintliga nummer till Handymate när du inte kan svara.
+          </div>
+        </details>
+        
+        <details class="group bg-zinc-900/50 border border-zinc-800 rounded-xl sm:rounded-2xl">
+          <summary class="flex items-center justify-between p-4 sm:p-6 cursor-pointer">
+            <span class="font-medium text-white text-sm sm:text-base pr-4">Finns det bindningstid?</span>
+            <svg class="w-5 h-5 text-zinc-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-zinc-400">
+            Nej, ingen bindningstid. Du kan avsluta när som helst. Börja med 14 dagars gratis provperiod — inget kort krävs.
+          </div>
+        </details>
       </div>
     </div>
   </section>
   
   <!-- Pricing -->
-  <section id="pricing" class="relative py-32">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <span class="text-violet-400 font-medium mb-4 block">Priser</span>
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6">Enkel prissättning, inga dolda avgifter</h2>
-        <p class="text-xl text-zinc-400">Prova gratis i 14 dagar. Ingen bindningstid.</p>
+  <section id="pricing" class="relative py-12 sm:py-20 lg:py-32 bg-zinc-950/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-8 sm:mb-12 lg:mb-16">
+        <span class="text-violet-400 font-medium mb-2 sm:mb-4 block text-sm sm:text-base">Priser</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-6">Enkel prissättning</h2>
+        <p class="text-base sm:text-lg lg:text-xl text-zinc-400">14 dagar gratis. Ingen bindningstid.</p>
       </div>
       
-      <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8">
-          <h3 class="text-xl font-semibold text-white mb-2">Starter</h3>
-          <p class="text-zinc-500 mb-6">För enskilda hantverkare</p>
-          <div class="mb-2">
-            <span class="text-5xl font-bold text-white">1 995</span>
-            <span class="text-zinc-500"> kr/mån</span>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+        <!-- Starter -->
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8">
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-1 sm:mb-2">Starter</h3>
+          <p class="text-zinc-500 text-sm sm:text-base mb-4 sm:mb-6">För enskilda hantverkare</p>
+          <div class="mb-4 sm:mb-6">
+            <span class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">1 995</span>
+            <span class="text-zinc-500 text-sm sm:text-base"> kr/mån</span>
           </div>
-          <p class="text-sm text-zinc-500 mb-6">Upp till 75 samtal/mån</p>
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-center gap-3 text-zinc-300">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <ul class="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-sm">
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              75 samtal/månad
+            </li>
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               AI-assistent 24/7
             </li>
-            <li class="flex items-center gap-3 text-zinc-300">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Google Calendar
             </li>
-            <li class="flex items-center gap-3 text-zinc-300">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               SMS-bekräftelser
             </li>
           </ul>
-          <a href="https://handymate-dashboard.vercel.app/signup" class="block w-full py-4 bg-zinc-800 hover:bg-zinc-700 rounded-xl font-semibold text-center transition-colors">Kom igång</a>
+          <a href="https://handymate-dashboard.vercel.app/signup" class="block w-full py-3 sm:py-4 bg-zinc-800 hover:bg-zinc-700 rounded-xl font-semibold text-center transition-colors text-sm sm:text-base">
+            Kom igång
+          </a>
         </div>
         
-        <div class="bg-gradient-to-br from-violet-500/10 to-fuchsia-500/10 border border-violet-500/30 rounded-3xl p-8 relative scale-105">
-          <div class="absolute top-4 right-4 px-3 py-1 bg-violet-500 rounded-full text-xs font-medium">Populärast</div>
-          <h3 class="text-xl font-semibold text-white mb-2">Professional</h3>
-          <p class="text-zinc-400 mb-6">För små team, 3–10 anställda</p>
-          <div class="mb-2">
-            <span class="text-5xl font-bold text-white">4 995</span>
-            <span class="text-zinc-400"> kr/mån</span>
+        <!-- Professional -->
+        <div class="bg-gradient-to-br from-violet-500/10 to-fuchsia-500/10 border border-violet-500/30 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 relative sm:scale-105 sm:col-span-2 lg:col-span-1">
+          <div class="absolute top-3 right-3 sm:top-4 sm:right-4 px-2 sm:px-3 py-1 bg-violet-500 rounded-full text-xs font-medium">
+            Populärast
           </div>
-          <p class="text-sm text-zinc-400 mb-6">Upp till 300 samtal/mån</p>
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-center gap-3 text-zinc-300">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-1 sm:mb-2">Professional</h3>
+          <p class="text-zinc-400 text-sm sm:text-base mb-4 sm:mb-6">För små team</p>
+          <div class="mb-4 sm:mb-6">
+            <span class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">4 995</span>
+            <span class="text-zinc-400 text-sm sm:text-base"> kr/mån</span>
+          </div>
+          <ul class="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-sm">
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              300 samtal/månad
+            </li>
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Allt i Starter
             </li>
-            <li class="flex items-center gap-3 text-zinc-300">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Flera kalendrar
             </li>
-            <li class="flex items-center gap-3 text-zinc-300">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Samtalsinspelning
             </li>
           </ul>
-          <a href="https://handymate-dashboard.vercel.app/signup" class="block w-full py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl font-semibold text-center shadow-lg shadow-violet-500/25">Kom igång</a>
+          <a href="https://handymate-dashboard.vercel.app/signup" class="block w-full py-3 sm:py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl font-semibold text-center shadow-lg shadow-violet-500/25 text-sm sm:text-base">
+            Kom igång
+          </a>
         </div>
         
-        <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8">
-          <h3 class="text-xl font-semibold text-white mb-2">Business</h3>
-          <p class="text-zinc-500 mb-6">För större företag, 10–30 anställda</p>
-          <div class="mb-2">
-            <span class="text-5xl font-bold text-white">9 995</span>
-            <span class="text-zinc-500"> kr/mån</span>
+        <!-- Business -->
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 sm:col-span-2 lg:col-span-1">
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-1 sm:mb-2">Business</h3>
+          <p class="text-zinc-500 text-sm sm:text-base mb-4 sm:mb-6">För större företag</p>
+          <div class="mb-4 sm:mb-6">
+            <span class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">9 995</span>
+            <span class="text-zinc-500 text-sm sm:text-base"> kr/mån</span>
           </div>
-          <p class="text-sm text-zinc-500 mb-6">Upp till 1000 samtal/mån</p>
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-center gap-3 text-zinc-300">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <ul class="space-y-2 sm:space-y-3 mb-6 sm:mb-8 text-sm">
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              1000 samtal/månad
+            </li>
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Allt i Professional
             </li>
-            <li class="flex items-center gap-3 text-zinc-300">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Anpassad AI-röst
             </li>
-            <li class="flex items-center gap-3 text-zinc-300">
-              <svg class="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-2 sm:gap-3 text-zinc-300">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Dedikerad support
             </li>
           </ul>
-          <a href="https://handymate-dashboard.vercel.app/signup" class="block w-full py-4 bg-zinc-800 hover:bg-zinc-700 rounded-xl font-semibold text-center transition-colors">Kom igång</a>
+          <a href="https://handymate-dashboard.vercel.app/signup" class="block w-full py-3 sm:py-4 bg-zinc-800 hover:bg-zinc-700 rounded-xl font-semibold text-center transition-colors text-sm sm:text-base">
+            Kom igång
+          </a>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- CTA -->
-  <section class="relative py-32">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-4xl lg:text-6xl font-bold mb-6">Redo att slippa missa samtal?</h2>
-      <p class="text-xl text-zinc-400 mb-8">Prova Handymate gratis i 14 dagar. Ingen kortuppgift krävs.</p>
-      <a href="https://handymate-dashboard.vercel.app/signup" class="inline-block px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl font-semibold text-lg shadow-lg shadow-violet-500/25">
-        Kom igång gratis
+  <!-- Final CTA -->
+  <section class="relative py-12 sm:py-20 lg:py-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6">
+        Redo att aldrig missa ett samtal igen?
+      </h2>
+      <p class="text-base sm:text-lg lg:text-xl text-zinc-400 mb-6 sm:mb-8">
+        Kom igång på 2 minuter. 14 dagar gratis. Inget kort krävs.
+      </p>
+      <a href="https://handymate-dashboard.vercel.app/signup" class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg shadow-lg shadow-violet-500/25 hover:opacity-90 transition-all">
+        Skapa konto gratis
       </a>
     </div>
   </section>
   
   <!-- Footer -->
-  <footer class="relative py-16 border-t border-zinc-900">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center">
-            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <footer class="relative py-8 sm:py-12 border-t border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg sm:rounded-xl flex items-center justify-center">
+            <svg class="w-4 h-4 sm:w-6 sm:h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <span class="text-xl font-bold">Handymate</span>
+          <span class="text-lg sm:text-xl font-bold">Handymate</span>
         </div>
-        <div class="flex items-center gap-8 text-sm text-zinc-500">
+        <div class="flex items-center gap-4 sm:gap-8 text-xs sm:text-sm text-zinc-500">
           <a href="mailto:hej@handymate.se" class="hover:text-white transition-colors">hej@handymate.se</a>
         </div>
-        <p class="text-sm text-zinc-600">© 2025 Handymate</p>
+        <p class="text-xs sm:text-sm text-zinc-600">© 2025 Handymate</p>
       </div>
     </div>
   </footer>

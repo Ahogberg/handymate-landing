@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handymate vs Easoft vs Bygglet — Jämförelse 2026</title>
+  <meta name="description" content="Jämför Handymate, Easoft och Bygglet. Se vilken plattform som passar ditt hantverksföretag bäst — funktioner, priser och AI-automation.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: #FAFBFC;
+      font-family: 'Outfit', 'DM Sans', system-ui, sans-serif;
+      color: #0F172A;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .fade-up { animation: fadeUp 0.6s ease forwards; }
+    .fade-up-1 { animation-delay: 0.1s; opacity: 0; }
+    .fade-up-2 { animation-delay: 0.2s; opacity: 0; }
+    .fade-up-3 { animation-delay: 0.3s; opacity: 0; }
+    .cta-pulse:hover { animation: pulse 0.4s ease; }
+    .feature-row:hover { background: #F0FDFA !important; }
+    .highlight-row { background: #F0FDFA; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0F2A35 0%, #134E4A 40%, #0F766E 100%);
+      padding: 48px 24px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-circle-1 {
+      position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+      border-radius: 50%; background: rgba(20, 184, 166, 0.08);
+    }
+    .hero-circle-2 {
+      position: absolute; bottom: -80px; left: -60px; width: 300px; height: 300px;
+      border-radius: 50%; background: rgba(14, 165, 233, 0.06);
+    }
+    .hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block; padding: 6px 16px; border-radius: 20px;
+      background: rgba(20, 184, 166, 0.2); border: 1px solid rgba(20, 184, 166, 0.3);
+      color: #5EEAD4; font-size: 13px; font-weight: 600; letter-spacing: 0.03em;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px); font-weight: 800; color: white;
+      line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.02em;
+    }
+    .hero p {
+      font-size: clamp(16px, 2.5vw, 20px); color: #94A3B8; line-height: 1.6;
+      max-width: 600px; margin: 0 auto 32px;
+    }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 14px 32px; border-radius: 12px; background: #0D9488;
+      color: white; font-weight: 700; font-size: 16px; border: none; cursor: pointer;
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-secondary {
+      padding: 14px 32px; border-radius: 12px; background: transparent;
+      color: #94A3B8; font-weight: 600; font-size: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.3); cursor: pointer; display: inline-block;
+    }
+
+    /* Differentiator banner */
+    .diff-banner { background: #0F766E; padding: 20px 24px; text-align: center; }
+    .diff-banner p { color: white; font-size: 16px; font-weight: 600; max-width: 700px; margin: 0 auto; }
+    .diff-banner span { color: #5EEAD4; }
+
+    /* Pricing */
+    .pricing-section { max-width: 1000px; margin: 0 auto; padding: 48px 24px 32px; }
+    .pricing-section h2 { text-align: center; font-size: 28px; font-weight: 700; color: #0F172A; margin-bottom: 8px; }
+    .pricing-section > p { text-align: center; color: #64748B; margin-bottom: 36px; font-size: 15px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .pricing-card {
+      border-radius: 16px; padding: 28px 24px; position: relative; overflow: hidden;
+    }
+    .pricing-card.featured { transform: scale(1.02); box-shadow: 0 8px 30px rgba(15, 118, 110, 0.12); }
+    .pricing-card .ribbon {
+      position: absolute; top: 16px; right: -32px; background: #0D9488;
+      color: white; font-size: 11px; font-weight: 700; padding: 4px 40px;
+      transform: rotate(45deg); letter-spacing: 0.05em;
+    }
+    .pricing-card .tagline { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .pricing-card .name { font-size: 22px; font-weight: 800; color: #0F172A; margin-bottom: 4px; }
+    .pricing-card .price-value { font-size: 32px; font-weight: 800; }
+    .pricing-card .price-unit { font-size: 14px; color: #94A3B8; }
+    .pricing-card .price-range { font-size: 12px; color: #94A3B8; margin-bottom: 16px; margin-top: 4px; }
+    .perk { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .perk-icon {
+      width: 18px; height: 18px; border-radius: 9px; display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .perk span { font-size: 14px; color: #334155; }
+
+    /* Comparison table */
+    .comparison-section { max-width: 1000px; margin: 0 auto; padding: 32px 24px 48px; }
+    .comparison-section h2 { text-align: center; font-size: 28px; font-weight: 700; color: #0F172A; margin-bottom: 8px; }
+    .comparison-section > p { text-align: center; color: #64748B; margin-bottom: 12px; font-size: 15px; }
+    .legend { display: flex; justify-content: center; gap: 16px; margin-bottom: 32px; font-size: 13px; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+
+    .table-wrapper { background: white; border-radius: 16px; border: 1px solid #E2E8F0; overflow: hidden; }
+    .table-header {
+      display: grid; grid-template-columns: 1fr 100px 100px 100px;
+      padding: 16px 24px; border-bottom: 2px solid #E2E8F0;
+      background: #F8FAFC; position: sticky; top: 0; z-index: 10;
+    }
+    .table-header .col-label { font-size: 13px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em; }
+    .table-header .col-handymate { text-align: center; font-size: 13px; font-weight: 700; color: #0F766E; }
+    .table-header .col-other { text-align: center; font-size: 13px; font-weight: 600; color: #64748B; }
+
+    .category-header {
+      padding: 12px 24px; background: #F1F5F9;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 14px; font-weight: 700; color: #334155;
+    }
+    .category-header:not(:first-child) { border-top: 1px solid #E2E8F0; }
+
+    .feature-row {
+      display: grid; grid-template-columns: 1fr 100px 100px 100px;
+      padding: 12px 24px; border-bottom: 1px solid #F1F5F9;
+      align-items: center; transition: background 0.15s;
+    }
+    .feature-name { font-size: 14px; color: #334155; display: flex; align-items: center; gap: 8px; }
+    .feature-name.bold { font-weight: 600; }
+    .unique-badge {
+      font-size: 10px; font-weight: 700; color: #0F766E;
+      background: #CCFBF1; padding: 2px 6px; border-radius: 4px;
+      letter-spacing: 0.03em;
+    }
+    .feature-cell { display: flex; justify-content: center; }
+
+    .status-icon { width: 24px; height: 24px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+    .status-full { background: #059669; }
+    .status-partial { background: #D97706; }
+    .status-planned { background: #0369A1; font-size: 11px; color: white; font-weight: 700; }
+    .status-none { background: #F1F5F9; }
+
+    .show-more-btn {
+      padding: 12px 28px; border-radius: 10px; background: white;
+      border: 1px solid #E2E8F0; color: #334155; font-weight: 600;
+      font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: inherit;
+    }
+    .show-more-btn:hover { background: #F8FAFC; }
+
+    /* Why section */
+    .why-section { background: #0F2A35; padding: 56px 24px; }
+    .why-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .why-inner h2 { font-size: 28px; font-weight: 700; color: white; margin-bottom: 12px; }
+    .why-inner > p { color: #94A3B8; font-size: 16px; margin-bottom: 40px; line-height: 1.6; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; text-align: left; }
+    .why-card {
+      background: rgba(255,255,255,0.04); border-radius: 14px; padding: 24px 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .why-card .icon { font-size: 28px; margin-bottom: 12px; }
+    .why-card .title { font-size: 16px; font-weight: 700; color: white; margin-bottom: 6px; }
+    .why-card .desc { font-size: 13px; color: #94A3B8; line-height: 1.6; }
+
+    /* FAQ */
+    .faq-section { max-width: 700px; margin: 0 auto; padding: 56px 24px; }
+    .faq-section h2 { text-align: center; font-size: 28px; font-weight: 700; color: #0F172A; margin-bottom: 32px; }
+    .faq-item { margin-bottom: 16px; background: white; border-radius: 12px; border: 1px solid #E2E8F0; overflow: hidden; }
+    .faq-question {
+      width: 100%; padding: 18px 24px; background: none; border: none;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; font-size: 15px; font-weight: 600; color: #0F172A;
+      text-align: left; font-family: inherit;
+    }
+    .faq-question .toggle { color: #94A3B8; font-size: 20px; transition: transform 0.2s; }
+    .faq-question .toggle.open { transform: rotate(45deg); }
+    .faq-answer { padding: 0 24px 18px; font-size: 14px; color: #64748B; line-height: 1.7; display: none; }
+    .faq-answer.open { display: block; }
+
+    /* Final CTA */
+    .final-cta {
+      background: linear-gradient(135deg, #0F766E, #0D9488);
+      padding: 56px 24px; text-align: center;
+    }
+    .final-cta h2 { font-size: 28px; font-weight: 800; color: white; margin-bottom: 12px; }
+    .final-cta .subtitle { color: #B2DFDB; font-size: 16px; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .final-cta .btn-white {
+      display: inline-block; padding: 16px 40px; border-radius: 12px;
+      background: white; color: #0F766E; font-weight: 700; font-size: 17px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: all 0.2s;
+    }
+    .final-cta .phone { color: #B2DFDB; font-size: 13px; margin-top: 16px; }
+
+    .footer { padding: 24px; text-align: center; color: #94A3B8; font-size: 12px; }
+
+    @media (max-width: 640px) {
+      .table-header, .feature-row {
+        grid-template-columns: 1fr 70px 70px 70px;
+        padding: 12px 12px;
+      }
+      .category-header { padding: 12px; }
+      .table-header .col-handymate, .table-header .col-other { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-circle-1"></div>
+    <div class="hero-circle-2"></div>
+    <div class="hero-inner">
+      <div class="fade-up hero-badge">JÄMFÖRELSE 2026</div>
+      <h1 class="fade-up fade-up-1">Handymate vs Easoft vs Bygglet</h1>
+      <p class="fade-up fade-up-2">Vilket system passar ditt hantverksföretag bäst? Vi jämför funktioner, priser och — framför allt — vad som faktiskt sparar dig tid.</p>
+      <div class="fade-up fade-up-3 hero-buttons">
+        <a href="https://handymate.se" class="btn-primary cta-pulse">Testa Handymate gratis →</a>
+        <a href="#jamforelse" class="btn-secondary">Se jämförelsen</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Differentiator banner -->
+  <div class="diff-banner">
+    <p>💡 Handymate är det enda systemet med en <span>AI-assistent som faktiskt utför uppgifter</span> — inte bara organiserar dem</p>
+  </div>
+
+  <!-- Pricing -->
+  <div class="pricing-section">
+    <h2>Prisöversikt</h2>
+    <p>Månadspriser exkl. moms. Alla plattformar erbjuder tester.</p>
+    <div class="pricing-grid">
+      <!-- Handymate -->
+      <div class="pricing-card featured" style="background: #F0FDFA; border: 2px solid #99F6E4;">
+        <div class="ribbon">SMART VAL</div>
+        <div class="tagline" style="color: #0F766E;">AI back office</div>
+        <div class="name">Handymate</div>
+        <div><span class="price-value" style="color: #0F766E;">2 495</span><span class="price-unit"> kr/mån</span></div>
+        <div class="price-range">Prisintervall: 2 495 — 11 995 kr/mån</div>
+        <div class="perk"><div class="perk-icon" style="background: #0F766E18;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5L4 7.5L8 3" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>AI-assistent som svarar & agerar</span></div>
+        <div class="perk"><div class="perk-icon" style="background: #0F766E18;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5L4 7.5L8 3" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Offert på minuter, inte dagar</span></div>
+        <div class="perk"><div class="perk-icon" style="background: #0F766E18;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5L4 7.5L8 3" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Alla planer inkl. AI</span></div>
+      </div>
+      <!-- Bygglet -->
+      <div class="pricing-card" style="background: #F8FAFC; border: 2px solid #E2E8F0;">
+        <div class="tagline" style="color: #64748B;">Projektverktyg</div>
+        <div class="name">Bygglet</div>
+        <div><span class="price-value" style="color: #64748B;">1 089</span><span class="price-unit"> kr/mån</span></div>
+        <div class="price-range">Prisintervall: 1 089 — 2 289 kr/mån</div>
+        <div class="perk"><div class="perk-icon" style="background: #64748B18;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5L4 7.5L8 3" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Bra projekthantering</span></div>
+        <div class="perk"><div class="perk-icon" style="background: #64748B18;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5L4 7.5L8 3" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Enkel tidrapportering</span></div>
+        <div class="perk"><div class="perk-icon" style="background: #64748B18;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5L4 7.5L8 3" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Fokuserat på bygg</span></div>
+      </div>
+      <!-- Easoft -->
+      <div class="pricing-card" style="background: #F8FAFC; border: 2px solid #E2E8F0;">
+        <div class="tagline" style="color: #64748B;">Enterprise ERP</div>
+        <div class="name">Easoft</div>
+        <div><span class="price-value" style="color: #64748B;">~3 500</span><span class="price-unit"> kr/mån</span></div>
+        <div class="price-range">Prisintervall: Kontakta för pris</div>
+        <div class="perk"><div class="perk-icon" style="background: #64748B18;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5L4 7.5L8 3" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Komplett ERP-system</span></div>
+        <div class="perk"><div class="perk-icon" style="background: #64748B18;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5L4 7.5L8 3" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Fortnox-integration</span></div>
+        <div class="perk"><div class="perk-icon" style="background: #64748B18;"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5L4 7.5L8 3" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Stort för stora team</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature comparison table -->
+  <div id="jamforelse" class="comparison-section">
+    <h2>Funktionsjämförelse</h2>
+    <p>Detaljerad jämförelse av alla funktioner</p>
+
+    <div class="legend">
+      <span class="legend-item"><span class="status-icon status-full"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5L5.5 10L11 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Ingår</span>
+      <span class="legend-item"><span class="status-icon status-partial"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></span> Delvis</span>
+      <span class="legend-item"><span class="status-icon status-planned">Q3</span> Kommer</span>
+      <span class="legend-item"><span class="status-icon status-none"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 3L9 9M9 3L3 9" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/></svg></span> Saknas</span>
+    </div>
+
+    <div class="table-wrapper">
+      <div class="table-header">
+        <div class="col-label">Funktion</div>
+        <div class="col-handymate">Handymate</div>
+        <div class="col-other">Easoft</div>
+        <div class="col-other">Bygglet</div>
+      </div>
+      <div id="feature-table"></div>
+    </div>
+
+    <div id="show-more-container" style="text-align: center; margin-top: 20px;">
+      <button class="show-more-btn" id="show-more-btn" onclick="showAllFeatures()">Visa alla kategorier ↓</button>
+    </div>
+  </div>
+
+  <!-- Why Handymate -->
+  <div class="why-section">
+    <div class="why-inner">
+      <h2>Varför hantverkare väljer Handymate</h2>
+      <p>Bygglet och Easoft är bra verktyg för projekthantering. Men de kräver att du gör allt jobb själv — skapa offerter, svara på samtal, följa upp kunder. Handymate gör det åt dig.</p>
+      <div class="why-grid">
+        <div class="why-card"><div class="icon">📞</div><div class="title">Missa aldrig ett samtal</div><div class="desc">AI:n svarar när du inte kan. Kvalificerar kunden, skapar lead, föreslår tid.</div></div>
+        <div class="why-card"><div class="icon">📋</div><div class="title">Offert på minuter</div><div class="desc">Från samtal till skickad offert med digital signering — utan att du lyfter ett finger.</div></div>
+        <div class="why-card"><div class="icon">🔄</div><div class="title">Automatisk uppföljning</div><div class="desc">Ingen offert glöms bort. Agenten följer upp efter 72h och påminner om förfallna fakturor.</div></div>
+        <div class="why-card"><div class="icon">☀️</div><div class="title">Morgonrapport</div><div class="desc">Vakna till en sammanfattning: dagens bokningar, heta leads, vad som behöver uppmärksamhet.</div></div>
+        <div class="why-card"><div class="icon">🌐</div><div class="title">Egen hemsida</div><div class="desc">Professionell hemsida med kontaktformulär som matar din lead-pipeline automatiskt.</div></div>
+        <div class="why-card"><div class="icon">📱</div><div class="title">Byggt för fältet</div><div class="desc">Ljust tema, stora knappar, svenska. Designat för att användas med smutsiga händer på bygget.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Vanliga frågor</h2>
+    <div id="faq-container"></div>
+  </div>
+
+  <!-- Final CTA -->
+  <div class="final-cta">
+    <h2>Redo att sluta jaga pappersarbete?</h2>
+    <p class="subtitle">14 dagars gratis test. Ingen bindningstid. Vi hjälper dig igång på 15 minuter.</p>
+    <a href="https://handymate.se" class="btn-white cta-pulse">Testa Handymate gratis →</a>
+    <p class="phone">Eller ring oss: +46 708 379 552</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">© 2026 Handymate. Jämförelsen baseras på offentligt tillgänglig information per mars 2026.</div>
+
+  <script>
+    // Feature data
+    var features = [
+      {
+        category: "AI & Automation",
+        items: [
+          { name: "AI-assistent som svarar på samtal", handymate: "full", easoft: "none", bygglet: "none", highlight: true },
+          { name: "Automatisk SMS-svar till kunder", handymate: "full", easoft: "none", bygglet: "none", highlight: true },
+          { name: "AI-kvalificering av leads", handymate: "full", easoft: "none", bygglet: "none", highlight: true },
+          { name: "Proaktiv offertuppföljning", handymate: "full", easoft: "none", bygglet: "none", highlight: true },
+          { name: "Morgonrapport med dagöversikt", handymate: "full", easoft: "none", bygglet: "none", highlight: true },
+          { name: "Automatisk fakturapåminnelse", handymate: "full", easoft: "partial", bygglet: "partial" }
+        ]
+      },
+      {
+        category: "Offert & Faktura",
+        items: [
+          { name: "Skapa offerter", handymate: "full", easoft: "full", bygglet: "full" },
+          { name: "Digital signering", handymate: "full", easoft: "full", bygglet: "full" },
+          { name: "ROT/RUT-avdrag automatiskt", handymate: "full", easoft: "full", bygglet: "full" },
+          { name: "Swish QR-kod på faktura", handymate: "full", easoft: "none", bygglet: "none", highlight: true },
+          { name: "Betalningsplan med delfakturor", handymate: "full", easoft: "full", bygglet: "partial" },
+          { name: "AI skapar offert från samtal", handymate: "full", easoft: "none", bygglet: "none", highlight: true }
+        ]
+      },
+      {
+        category: "Projekthantering",
+        items: [
+          { name: "Projektöversikt", handymate: "full", easoft: "full", bygglet: "full" },
+          { name: "Tidrapportering (GPS)", handymate: "full", easoft: "full", bygglet: "full" },
+          { name: "Arbetsorder", handymate: "full", easoft: "full", bygglet: "full" },
+          { name: "Resursplanering / schema", handymate: "partial", easoft: "full", bygglet: "full" },
+          { name: "Lönsamhetsuppföljning per projekt", handymate: "partial", easoft: "full", bygglet: "full" }
+        ]
+      },
+      {
+        category: "Kundhantering",
+        items: [
+          { name: "CRM / kundregister", handymate: "full", easoft: "full", bygglet: "full" },
+          { name: "Kundtidslinje (all historik)", handymate: "full", easoft: "partial", bygglet: "none", highlight: true },
+          { name: "Lead-pipeline med scoring", handymate: "full", easoft: "none", bygglet: "none", highlight: true },
+          { name: "Automatisk kunduppföljning", handymate: "full", easoft: "none", bygglet: "none", highlight: true }
+        ]
+      },
+      {
+        category: "Integrationer",
+        items: [
+          { name: "Google Calendar", handymate: "full", easoft: "partial", bygglet: "partial" },
+          { name: "Gmail", handymate: "full", easoft: "none", bygglet: "none" },
+          { name: "Fortnox", handymate: "planned", easoft: "full", bygglet: "full" },
+          { name: "Egen hemsida med SEO", handymate: "full", easoft: "none", bygglet: "none", highlight: true }
+        ]
+      },
+      {
+        category: "Användarvänlighet",
+        items: [
+          { name: "Mobilanpassad app", handymate: "full", easoft: "full", bygglet: "full" },
+          { name: "Onboarding på 15 minuter", handymate: "full", easoft: "none", bygglet: "partial" },
+          { name: "AI-chatbot för support", handymate: "full", easoft: "none", bygglet: "none" },
+          { name: "Allt på svenska", handymate: "full", easoft: "full", bygglet: "full" }
+        ]
+      }
+    ];
+
+    function statusIconHTML(status) {
+      if (status === "full") return '<span class="status-icon status-full"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5L5.5 10L11 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+      if (status === "partial") return '<span class="status-icon status-partial"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></span>';
+      if (status === "planned") return '<span class="status-icon status-planned">Q3</span>';
+      return '<span class="status-icon status-none"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 3L9 9M9 3L3 9" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/></svg></span>';
+    }
+
+    var showAll = false;
+
+    function renderFeatures() {
+      var display = showAll ? features : features.slice(0, 3);
+      var html = "";
+      for (var ci = 0; ci < display.length; ci++) {
+        var cat = display[ci];
+        html += '<div class="category-header">' + cat.category + '</div>';
+        for (var fi = 0; fi < cat.items.length; fi++) {
+          var item = cat.items[fi];
+          var rowClass = "feature-row" + (item.highlight ? " highlight-row" : "");
+          var nameClass = "feature-name" + (item.highlight ? " bold" : "");
+          html += '<div class="' + rowClass + '">';
+          html += '<div class="' + nameClass + '">' + item.name + (item.highlight ? ' <span class="unique-badge">UNIKT</span>' : '') + '</div>';
+          html += '<div class="feature-cell">' + statusIconHTML(item.handymate) + '</div>';
+          html += '<div class="feature-cell">' + statusIconHTML(item.easoft) + '</div>';
+          html += '<div class="feature-cell">' + statusIconHTML(item.bygglet) + '</div>';
+          html += '</div>';
+        }
+      }
+      document.getElementById("feature-table").innerHTML = html;
+
+      var btn = document.getElementById("show-more-container");
+      if (showAll) {
+        btn.style.display = "none";
+      } else {
+        btn.style.display = "block";
+        document.getElementById("show-more-btn").textContent = "Visa alla " + features.length + " kategorier \u2193";
+      }
+    }
+
+    function showAllFeatures() {
+      showAll = true;
+      renderFeatures();
+    }
+
+    renderFeatures();
+
+    // FAQ
+    var faqs = [
+      { q: "Är Handymate dyrare än Bygglet?", a: "Handymates startpris (2 495 kr/mån) är högre än Bygglets billigaste paket (1 089 kr/mån). Men Handymate inkluderar AI-assistent, automatisk offerthantering, och lead-pipeline — funktioner som varken Bygglet eller Easoft erbjuder. Den tid du sparar betalar sig redan första veckan." },
+      { q: "Kan jag byta från Easoft till Handymate?", a: "Ja! Vi hjälper dig migrera kunder, offerter och projektdata. De flesta är igång inom 24 timmar. Kontakta oss för en kostnadsfri migrering." },
+      { q: "Har Handymate Fortnox-integration?", a: "Fortnox-integration lanseras Q3 2026. Tills dess kan du exportera fakturor och bokföringsunderlag manuellt." },
+      { q: "Funkar det för stora team?", a: "Ja. Handymate Enterprise stödjer obegränsat antal användare med rollbaserad åtkomst, godkännandeflöden och löneexport." },
+      { q: "Vad händer om AI:n gör fel?", a: "Du har full kontroll. I AI-inställningarna bestämmer du exakt vad agenten får göra automatiskt och vad som kräver ditt godkännande. Varje åtgärd loggas och syns i dashboarden." }
+    ];
+
+    var faqContainer = document.getElementById("faq-container");
+    var openFaq = null;
+
+    function renderFAQs() {
+      var html = "";
+      for (var i = 0; i < faqs.length; i++) {
+        html += '<div class="faq-item">';
+        html += '<button class="faq-question" onclick="toggleFaq(' + i + ')" id="faq-btn-' + i + '">' + faqs[i].q + '<span class="toggle" id="faq-toggle-' + i + '">+</span></button>';
+        html += '<div class="faq-answer" id="faq-answer-' + i + '">' + faqs[i].a + '</div>';
+        html += '</div>';
+      }
+      faqContainer.innerHTML = html;
+    }
+
+    function toggleFaq(index) {
+      if (openFaq !== null && openFaq !== index) {
+        document.getElementById("faq-answer-" + openFaq).classList.remove("open");
+        document.getElementById("faq-toggle-" + openFaq).classList.remove("open");
+      }
+      var answer = document.getElementById("faq-answer-" + index);
+      var toggle = document.getElementById("faq-toggle-" + index);
+      if (openFaq === index) {
+        answer.classList.remove("open");
+        toggle.classList.remove("open");
+        openFaq = null;
+      } else {
+        answer.classList.add("open");
+        toggle.classList.add("open");
+        openFaq = index;
+      }
+    }
+
+    renderFAQs();
+  </script>
+</body>
+</html>

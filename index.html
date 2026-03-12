@@ -277,6 +277,7 @@
       display: flex;
       align-items: center;
       padding-top: 64px;
+      background: linear-gradient(160deg, #E6FFFA 0%, #F0FDF9 30%, #F8FAFC 70%);
     }
     @media (min-width: 640px) { .hero { padding-top: 80px; } }
     
@@ -787,8 +788,8 @@
     @media (min-width: 1024px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); } }
     
     .pricing-card {
-      background: white;
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
       padding: 20px;
     }
@@ -820,6 +821,7 @@
     .pricing-name {
       font-size: 18px;
       font-weight: 600;
+      color: white;
       margin-bottom: 4px;
     }
     @media (min-width: 640px) { .pricing-name { font-size: 20px; margin-bottom: 8px; } }
@@ -839,6 +841,7 @@
     .pricing-amount {
       font-size: 30px;
       font-weight: 700;
+      color: white;
     }
     @media (min-width: 640px) { .pricing-amount { font-size: 36px; } }
     @media (min-width: 1024px) { .pricing-amount { font-size: 48px; } }
@@ -880,6 +883,15 @@
       font-size: 14px;
     }
     @media (min-width: 640px) { .pricing-btn { padding: 16px; font-size: 16px; } }
+    /* Override btn-secondary inside dark pricing section */
+    .section-dark .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .section-dark .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
     
     /* CTA */
     .cta {
@@ -1364,7 +1376,7 @@
           <h3 class="pricing-name">Professional</h3>
           <p class="pricing-desc">För små team</p>
           <div class="pricing-price">
-            <span class="pricing-amount">4 995</span>
+            <span class="pricing-amount">5 995</span>
             <span class="pricing-period"> kr/mån</span>
           </div>
           <ul class="pricing-features">

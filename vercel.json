@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/partners",
+      "dest": "/partners.html"
+    },
+    {
       "src": "/jamfor",
       "dest": "/jamfor.html"
     },

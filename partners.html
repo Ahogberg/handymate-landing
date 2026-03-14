@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bli partner — Handymate</title>
-  <meta name="description" content="Tjäna pengar genom att hänvisa hantverkare till Handymate. 20% löpande provision i 12 månader per kund du hänvisar.">
+  <meta name="description" content="Hjälp hantverkare du känner att slippa admin — och få provision för varje kund du hänvisar till Handymate.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -414,31 +414,49 @@
       margin-left: 8px;
     }
 
-    /* Earnings highlight */
-    .earnings-highlight {
-      max-width: 700px;
-      margin: 32px auto 0;
-      padding: 24px;
-      background: linear-gradient(135deg, rgba(13, 148, 136, 0.08), rgba(20, 184, 166, 0.04));
-      border: 1px solid rgba(13, 148, 136, 0.2);
+    /* Benefits Grid */
+    .benefits-grid {
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 640px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+    @media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .benefit-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 16px;
-      text-align: center;
+      padding: 24px;
     }
-    @media (min-width: 640px) { .earnings-highlight { padding: 32px; margin-top: 40px; } }
+    @media (min-width: 640px) { .benefit-card { border-radius: 24px; padding: 32px; } }
 
-    .earnings-highlight .big-number {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--teal-700);
-      margin-bottom: 4px;
+    .benefit-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
     }
-    @media (min-width: 640px) { .earnings-highlight .big-number { font-size: 40px; } }
+    @media (min-width: 640px) { .benefit-icon { width: 56px; height: 56px; border-radius: 16px; margin-bottom: 24px; } }
 
-    .earnings-highlight .label {
+    .benefit-icon svg { width: 24px; height: 24px; color: #fff; }
+    @media (min-width: 640px) { .benefit-icon svg { width: 28px; height: 28px; } }
+
+    .benefit-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+    }
+    @media (min-width: 640px) { .benefit-title { font-size: 20px; margin-bottom: 12px; } }
+
+    .benefit-text {
       font-size: 14px;
-      color: var(--slate-500);
+      color: rgba(255, 255, 255, 0.6);
     }
-    @media (min-width: 640px) { .earnings-highlight .label { font-size: 16px; } }
+    @media (min-width: 640px) { .benefit-text { font-size: 16px; } }
 
     /* FAQ */
     .faq-list { max-width: 768px; margin: 0 auto; }
@@ -535,9 +553,8 @@
 
     /* Footer */
     .footer {
-      border-top: 1px solid var(--slate-200);
       padding: 32px 0;
-      background: white;
+      background: var(--teal-950);
     }
     @media (min-width: 640px) { .footer { padding: 48px 0; } }
 
@@ -560,7 +577,7 @@
 
     .footer-logo-icon {
       width: 32px; height: 32px;
-      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      background: linear-gradient(135deg, var(--teal-600), var(--teal-400));
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -570,10 +587,10 @@
       .footer-logo-icon { width: 40px; height: 40px; border-radius: 12px; }
     }
 
-    .footer-logo-icon svg { width: 16px; height: 16px; }
+    .footer-logo-icon svg { width: 16px; height: 16px; color: white; }
     @media (min-width: 640px) { .footer-logo-icon svg { width: 24px; height: 24px; } }
 
-    .footer-logo-text { font-size: 18px; font-weight: 700; }
+    .footer-logo-text { font-size: 18px; font-weight: 700; color: white; }
     @media (min-width: 640px) { .footer-logo-text { font-size: 20px; } }
 
     .footer-links {
@@ -587,15 +604,15 @@
 
     .footer-links a {
       font-size: 12px;
-      color: var(--slate-400);
+      color: rgba(255, 255, 255, 0.6);
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--teal-600); }
+    .footer-links a:hover { color: var(--teal-400); }
     @media (min-width: 640px) { .footer-links a { font-size: 14px; } }
 
     .footer-copy {
       font-size: 12px;
-      color: var(--slate-400);
+      color: rgba(255, 255, 255, 0.4);
     }
     @media (min-width: 640px) { .footer-copy { font-size: 14px; } }
   </style>
@@ -650,11 +667,11 @@
         </div>
 
         <h1 class="hero-title">
-          Tjäna pengar genom att hänvisa hantverkare till <span class="gradient-text">Handymate</span>
+          Hjälp hantverkare du känner att <span class="gradient-text">slippa admin</span>
         </h1>
 
         <p class="hero-text">
-          <strong style="color: var(--slate-900);">20% löpande provision i 12 månader</strong> per kund du hänvisar. Gratis att bli partner — ingen risk, bara intäkter.
+          Handymate ger hantverkare en AI-administratör som svarar på samtal, skriver offerter och följer upp kunder. Hänvisa någon du tror har nytta av det — och få 20% löpande provision.
         </p>
 
         <div class="hero-buttons">
@@ -670,7 +687,7 @@
     <div class="container">
       <div class="section-header">
         <div class="section-label">Hur det fungerar</div>
-        <h2 class="section-title">Tre steg till löpande intäkter</h2>
+        <h2 class="section-title">Enkelt att komma igång</h2>
       </div>
 
       <div class="steps-grid">
@@ -688,8 +705,64 @@
 
         <div class="step-card">
           <div class="step-number">3</div>
-          <h3 class="step-title">Tjäna 20% i 12 månader</h3>
-          <p class="step-text">För varje kund som registrerar sig via din länk får du 20% av deras månadsbetalning — i 12 månader.</p>
+          <h3 class="step-title">Du får provision — de får hjälp</h3>
+          <p class="step-text">När de registrerar sig via din länk får du 20% av deras månadsbetalning i 12 månader. De får en AI-admin som sköter deras kontor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What they get -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" style="color: var(--teal-400);">Vad hantverkaren får</div>
+        <h2 class="section-title">En AI-administratör som sköter hela back office</h2>
+        <p class="section-subtitle" style="color: var(--slate-400);">Hantverkare du hänvisar får tillgång till allt detta — från dag ett.</p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+          </div>
+          <h3 class="benefit-title">AI-telefonsvarare 24/7</h3>
+          <p class="benefit-text">Svarar på samtal, kvalificerar kunden och skapar leads automatiskt — även kvällar och helger.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          </div>
+          <h3 class="benefit-title">Offert på minuter</h3>
+          <p class="benefit-text">AI:n skapar offerter direkt från samtalet med digital signering och ROT/RUT-avdrag.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+          </div>
+          <h3 class="benefit-title">Automatisk uppföljning</h3>
+          <p class="benefit-text">Inga leads glöms bort. AI:n följer upp efter 72h och påminner om förfallna fakturor.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m8-9h1M3 12H2m15.364-6.364l.707.707M5.636 18.364l-.707.707M18.364 18.364l.707-.707M5.636 5.636l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" /></svg>
+          </div>
+          <h3 class="benefit-title">Morgonrapport</h3>
+          <p class="benefit-text">En daglig sammanfattning med dagens bokningar, heta leads och vad som behöver uppmärksamhet.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+          </div>
+          <h3 class="benefit-title">Faktura & Swish QR</h3>
+          <p class="benefit-text">Automatiska påminnelser, Swish QR-kod på fakturan och delfakturor — pengarna kommer in.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h3 class="benefit-title">Igång på 15 minuter</h3>
+          <p class="benefit-text">Ingen lång onboarding. De fyller i sina tjänster och priser — sedan tar AI:n över direkt.</p>
         </div>
       </div>
     </div>
@@ -699,9 +772,9 @@
   <section class="section" style="background: white; border-top: 1px solid var(--slate-200); border-bottom: 1px solid var(--slate-200);">
     <div class="container">
       <div class="section-header">
-        <div class="section-label">Provision</div>
-        <h2 class="section-title">Vad du kan tjäna</h2>
-        <p class="section-subtitle">20% provision per kund — utbetalas månadsvis i efterskott.</p>
+        <div class="section-label">Provisionsmodell</div>
+        <h2 class="section-title">Du får 20% — i 12 månader</h2>
+        <p class="section-subtitle">Utbetalas månadsvis i efterskott. Gratis att gå med.</p>
       </div>
 
       <div class="table-wrapper">
@@ -735,11 +808,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="earnings-highlight">
-        <div class="big-number">11 990 kr/mån</div>
-        <div class="label">10 aktiva Professional-kunder = passiv inkomst varje månad</div>
       </div>
     </div>
   </section>
@@ -819,8 +887,8 @@
   <!-- CTA -->
   <section class="cta-section">
     <div class="container">
-      <h2>Redo att börja tjäna?</h2>
-      <p class="subtitle">Gratis att gå med. Godkänd inom 24h. Börja tjäna direkt.</p>
+      <h2>Känner du en hantverkare som drunknar i admin?</h2>
+      <p class="subtitle">Bli partner — hjälp dem få ordning, och få provision för tipset.</p>
       <a href="https://app.handymate.se/partners/register" class="btn btn-primary">Bli partner &rarr;</a>
     </div>
   </section>

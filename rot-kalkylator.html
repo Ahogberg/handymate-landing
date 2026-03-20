@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROT-avdrag kalkylator 2026 — Räkna ut ditt avdrag</title>
+  <meta name="description" content="Räkna ut ditt ROT-avdrag enkelt. Gratis kalkylator för renovering, el, VVS och mer. Uppdaterad för 2026.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-400: #2DD4BF;
+      --teal-500: #14B8A6;
+      --teal-600: #0D9488;
+      --teal-700: #0F766E;
+      --teal-800: #115E59;
+      --teal-900: #134E4A;
+      --teal-950: #0F2A35;
+      --slate-50: #F8FAFC;
+      --slate-100: #F1F5F9;
+      --slate-200: #E2E8F0;
+      --slate-300: #CBD5E1;
+      --slate-400: #94A3B8;
+      --slate-500: #64748B;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1E293B;
+      --slate-900: #0F172A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-900);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 640px) { .container { padding: 0 24px; } }
+
+    /* ── Animations ── */
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(13, 148, 136, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(13, 148, 136, 0.6); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+    .animate-pulse { animation: pulse 2s ease-in-out infinite; }
+
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #0D9488 0%, #14B8A6 50%, #0D9488 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 4s ease infinite;
+    }
+
+    /* ── Background blobs ── */
+    .bg-gradient { position: absolute; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+    .bg-blob { position: absolute; border-radius: 50%; opacity: 0.5; }
+    .bg-blob-1 { top: 0; left: 25%; width: 300px; height: 300px; background: rgba(13, 148, 136, 0.08); }
+    .bg-blob-2 { bottom: 25%; right: 25%; width: 250px; height: 250px; background: rgba(20, 184, 166, 0.06); }
+    @media (min-width: 640px) { .bg-blob-1 { width: 600px; height: 600px; } .bg-blob-2 { width: 500px; height: 500px; } }
+
+    /* ── Navigation ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+      background: rgba(248, 250, 252, 0.9); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+    @media (min-width: 640px) { .nav-inner { padding: 16px 0; } }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    @media (min-width: 640px) { .logo { gap: 12px; } }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--teal-600), var(--teal-400));
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    }
+    @media (min-width: 640px) { .logo-icon { width: 40px; height: 40px; } }
+    .logo-icon svg { width: 20px; height: 20px; }
+    @media (min-width: 640px) { .logo-icon svg { width: 24px; height: 24px; } }
+    .logo-text { font-size: 18px; font-weight: 700; }
+    @media (min-width: 640px) { .logo-text { font-size: 20px; } }
+    .nav-links { display: none; align-items: center; gap: 28px; }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+    .nav-links a { color: var(--slate-500); transition: color 0.2s; font-size: 15px; }
+    .nav-links a:hover { color: var(--slate-900); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    @media (min-width: 640px) { .nav-actions { gap: 16px; } }
+    .nav-login { display: none; color: var(--slate-500); font-size: 14px; transition: color 0.2s; }
+    .nav-login:hover { color: var(--slate-900); }
+    @media (min-width: 640px) { .nav-login { display: block; } }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 8px 12px; font-size: 14px; font-weight: 500; border-radius: 8px;
+      border: none; cursor: pointer; transition: all 0.2s; font-family: inherit;
+    }
+    @media (min-width: 640px) { .btn { padding: 10px 20px; border-radius: 12px; } }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: #fff; box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.25);
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-secondary { background: white; color: var(--slate-700); border: 1px solid var(--slate-200); }
+    .btn-secondary:hover { background: var(--slate-100); }
+    .btn-lg { padding: 12px 24px; font-size: 16px; font-weight: 600; border-radius: 12px; }
+    @media (min-width: 640px) { .btn-lg { padding: 16px 32px; font-size: 18px; border-radius: 16px; } }
+
+    .mobile-menu-btn { display: flex; padding: 8px; background: none; border: none; color: var(--slate-500); cursor: pointer; }
+    @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+    .mobile-menu { display: none; flex-direction: column; gap: 16px; padding: 16px 0; border-top: 1px solid var(--slate-200); margin-top: 16px; }
+    .mobile-menu.open { display: flex; }
+    @media (min-width: 768px) { .mobile-menu { display: none !important; } }
+    .mobile-menu a { color: var(--slate-500); transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--slate-900); }
+
+    /* ── Hero ── */
+    .hero {
+      padding-top: 100px; padding-bottom: 48px;
+      background: linear-gradient(160deg, #E6FFFA 0%, #F0FDF9 30%, #F8FAFC 70%);
+      text-align: center;
+    }
+    @media (min-width: 640px) { .hero { padding-top: 120px; padding-bottom: 64px; } }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px;
+      background: rgba(13, 148, 136, 0.08); border: 1px solid rgba(13, 148, 136, 0.2);
+      border-radius: 50px; margin-bottom: 16px; font-size: 12px;
+    }
+    @media (min-width: 640px) { .hero-badge { padding: 8px 16px; margin-bottom: 24px; font-size: 14px; } }
+    .hero-badge-dot { width: 8px; height: 8px; background: var(--teal-500); border-radius: 50%; }
+    .hero-badge-text { color: var(--teal-700); font-weight: 600; }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px); font-weight: 700; line-height: 1.15;
+      margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto;
+    }
+    .hero p {
+      font-size: clamp(16px, 2.5vw, 20px); color: var(--slate-500);
+      max-width: 600px; margin: 0 auto; line-height: 1.6;
+    }
+
+    /* ── Calculator Section ── */
+    .calc-section { padding: 48px 0 64px; }
+    @media (min-width: 640px) { .calc-section { padding: 64px 0 96px; } }
+
+    .calc-wrapper {
+      max-width: 820px; margin: 0 auto;
+      display: grid; gap: 32px;
+    }
+    @media (min-width: 768px) { .calc-wrapper { grid-template-columns: 1fr 1fr; gap: 40px; } }
+
+    .calc-card {
+      background: white; border: 1px solid var(--slate-200); border-radius: 20px;
+      padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    @media (min-width: 640px) { .calc-card { padding: 32px; border-radius: 24px; } }
+    .calc-card h2 { font-size: 18px; font-weight: 700; margin-bottom: 24px; }
+
+    /* Form fields */
+    .field { margin-bottom: 20px; }
+    .field:last-child { margin-bottom: 0; }
+    .field label { display: block; font-size: 14px; font-weight: 600; color: var(--slate-700); margin-bottom: 8px; }
+    .field-hint { font-size: 12px; color: var(--slate-400); font-weight: 400; }
+
+    .field input[type="number"],
+    .field select {
+      width: 100%; padding: 12px 16px; font-size: 16px; font-family: inherit;
+      border: 1px solid var(--slate-200); border-radius: 12px;
+      background: var(--slate-50); color: var(--slate-900);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -moz-appearance: textfield;
+    }
+    .field input[type="number"]::-webkit-inner-spin-button,
+    .field input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    .field input[type="number"]:focus,
+    .field select:focus {
+      outline: none; border-color: var(--teal-500);
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+    }
+    .field select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24' stroke='%2394A3B8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+
+    /* Slider */
+    .slider-row { display: flex; align-items: center; gap: 12px; }
+    .slider-row input[type="range"] { flex: 1; }
+    .slider-row input[type="number"] { width: 130px; flex: none; }
+
+    input[type="range"] {
+      -webkit-appearance: none; appearance: none;
+      height: 6px; border-radius: 3px;
+      background: var(--slate-200); outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-600), var(--teal-400));
+      cursor: pointer; border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-600), var(--teal-400));
+      cursor: pointer; border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
+    }
+
+    /* Person toggle */
+    .person-toggle { display: flex; gap: 8px; }
+    .person-toggle button {
+      flex: 1; padding: 10px 16px; font-size: 15px; font-weight: 600;
+      border: 2px solid var(--slate-200); border-radius: 12px;
+      background: white; cursor: pointer; transition: all 0.2s;
+      font-family: inherit; color: var(--slate-500);
+    }
+    .person-toggle button.active {
+      border-color: var(--teal-500); background: rgba(13, 148, 136, 0.06);
+      color: var(--teal-700);
+    }
+    .person-toggle button:hover:not(.active) { border-color: var(--slate-300); }
+
+    /* ── Result card ── */
+    .result-card {
+      background: linear-gradient(135deg, #F0FDFA, #E6FFFA);
+      border: 2px solid rgba(13, 148, 136, 0.15); border-radius: 20px;
+      padding: 24px; text-align: center;
+    }
+    @media (min-width: 640px) { .result-card { padding: 32px; border-radius: 24px; } }
+    .result-label { font-size: 14px; color: var(--teal-700); font-weight: 600; margin-bottom: 4px; }
+    .result-amount {
+      font-size: clamp(36px, 6vw, 52px); font-weight: 700; line-height: 1.2;
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 24px;
+    }
+
+    .result-breakdown { text-align: left; }
+    .result-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0; border-bottom: 1px solid rgba(13, 148, 136, 0.1);
+      font-size: 15px;
+    }
+    .result-row:last-child { border-bottom: none; }
+    .result-row-label { color: var(--slate-600); }
+    .result-row-value { font-weight: 600; color: var(--slate-900); }
+    .result-row-value.deduction { color: var(--teal-600); }
+    .result-row-value.total { font-size: 18px; color: var(--slate-900); }
+    .result-note {
+      margin-top: 16px; padding: 12px 16px; background: rgba(13, 148, 136, 0.06);
+      border-radius: 10px; font-size: 13px; color: var(--slate-500); text-align: left;
+    }
+
+    /* ── Rules info (collapsible) ── */
+    .rules-section { max-width: 820px; margin: 0 auto 48px; }
+    .rules-toggle {
+      width: 100%; padding: 16px 20px; font-size: 15px; font-weight: 600;
+      background: white; border: 1px solid var(--slate-200); border-radius: 16px;
+      cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.2s; font-family: inherit; color: var(--slate-700);
+    }
+    .rules-toggle:hover { background: var(--slate-50); }
+    .rules-toggle svg { width: 20px; height: 20px; color: var(--slate-400); transition: transform 0.3s; }
+    .rules-toggle.open svg { transform: rotate(180deg); }
+    .rules-content {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+      background: white; border: 1px solid var(--slate-200); border-top: none;
+      border-radius: 0 0 16px 16px; margin-top: -8px; padding-top: 8px;
+    }
+    .rules-content.open { max-height: 400px; }
+    .rules-list { padding: 16px 20px 20px; list-style: none; }
+    .rules-list li {
+      padding: 8px 0; font-size: 14px; color: var(--slate-600);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .rules-list li svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--teal-500); margin-top: 2px; }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      padding: 64px 0; background: var(--teal-950); text-align: center;
+    }
+    @media (min-width: 640px) { .cta-section { padding: 96px 0; } }
+    .cta-section h2 {
+      font-size: clamp(24px, 4vw, 36px); font-weight: 700; color: white;
+      margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;
+    }
+    .cta-benefits {
+      display: grid; gap: 20px; max-width: 540px; margin: 0 auto 40px; text-align: left;
+    }
+    @media (min-width: 640px) { .cta-benefits { gap: 24px; } }
+    .cta-benefit {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .cta-benefit-icon {
+      width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+      background: rgba(13, 148, 136, 0.15); display: flex; align-items: center; justify-content: center;
+    }
+    .cta-benefit-icon svg { width: 20px; height: 20px; color: var(--teal-400); }
+    .cta-benefit-text { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+    @media (min-width: 640px) { .cta-benefit-text { font-size: 17px; } }
+
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 36px; font-size: 18px; font-weight: 600;
+      background: linear-gradient(135deg, var(--teal-500), var(--teal-400));
+      color: white; border: none; border-radius: 16px; cursor: pointer;
+      box-shadow: 0 10px 30px rgba(13, 148, 136, 0.3);
+      transition: all 0.2s; font-family: inherit; text-decoration: none;
+    }
+    .cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* ── Footer ── */
+    .footer { padding: 48px 0 32px; background: var(--teal-950); }
+    @media (min-width: 640px) { .footer { padding: 64px 0 32px; } }
+    .footer-grid { display: grid; gap: 32px; margin-bottom: 40px; }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; } }
+    .footer-brand-text { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 12px; max-width: 260px; line-height: 1.6; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .footer-logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--teal-600), var(--teal-400)); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .footer-logo-icon svg { width: 20px; height: 20px; color: white; }
+    .footer-logo-text { font-size: 20px; font-weight: 700; color: white; }
+    .footer-col-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--teal-400); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact a { color: rgba(255,255,255,0.5); }
+    .footer-contact a:hover { color: var(--teal-400); }
+
+    /* ── Structured data (hidden) ── */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ROT-avdrag kalkylator 2026",
+    "description": "Räkna ut ditt ROT-avdrag enkelt. Gratis kalkylator för renovering, el, VVS och mer. Uppdaterad för 2026.",
+    "url": "https://handymate.se/rot-kalkylator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "SEK"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "Handymate",
+      "url": "https://handymate.se"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-gradient">
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+  </div>
+
+  <!-- ════ Nav ════ -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="logo">
+          <div class="logo-icon animate-pulse-glow">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          </div>
+          <span class="logo-text">Handymate</span>
+        </a>
+        <div class="nav-links">
+          <a href="/#features">Funktioner</a>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/partners">Partners</a>
+        </div>
+        <div class="nav-actions">
+          <a href="https://app.handymate.se/login" class="nav-login">Logga in</a>
+          <a href="https://app.handymate.se/signup" class="btn btn-primary">Kom igång</a>
+          <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="mobile-menu">
+        <a href="/#features">Funktioner</a>
+        <a href="/#pricing">Priser</a>
+        <a href="/jamfor">Jämför</a>
+        <a href="/partners">Partners</a>
+        <a href="https://app.handymate.se/login">Logga in</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════ Hero ════ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge reveal">
+        <span class="hero-badge-dot animate-pulse"></span>
+        <span class="hero-badge-text">Uppdaterad för 2026</span>
+      </div>
+      <h1 class="reveal">ROT-avdrag kalkylator <span class="gradient-text">2026</span></h1>
+      <p class="reveal reveal-d1">Räkna ut hur mycket du kan spara med ROT-avdrag. Ange arbetskostnad och se ditt avdrag direkt.</p>
+    </div>
+  </section>
+
+  <!-- ════ Calculator ════ -->
+  <section class="calc-section">
+    <div class="container">
+      <div class="calc-wrapper">
+
+        <!-- Input card -->
+        <div class="calc-card reveal">
+          <h2>Fyll i dina uppgifter</h2>
+
+          <div class="field">
+            <label>Arbetskostnad (kr) <span class="field-hint">— exklusive moms &amp; material</span></label>
+            <div class="slider-row">
+              <input type="range" id="costSlider" min="0" max="500000" step="1000" value="100000">
+              <input type="number" id="costInput" min="0" max="10000000" step="1000" value="100000" placeholder="100 000">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Antal personer som delar ROT</label>
+            <div class="person-toggle">
+              <button id="person1" class="active" onclick="setPersons(1)">1 person</button>
+              <button id="person2" onclick="setPersons(2)">2 personer</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Typ av jobb</label>
+            <select id="jobType">
+              <option value="bygg">Bygg / Renovering</option>
+              <option value="el">El-installation</option>
+              <option value="vvs">VVS / Rör</option>
+              <option value="malning">Målning</option>
+              <option value="golv">Golv</option>
+              <option value="tak">Tak</option>
+              <option value="fasad">Fasad</option>
+              <option value="annat">Annat</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Result card -->
+        <div class="calc-card reveal reveal-d1" style="display: flex; flex-direction: column; justify-content: center;">
+          <div class="result-card">
+            <div class="result-label">Du får</div>
+            <div class="result-amount" id="resultAmount">30 000 kr</div>
+            <div class="result-label" style="margin-bottom: 20px;">i ROT-avdrag</div>
+
+            <div class="result-breakdown">
+              <div class="result-row">
+                <span class="result-row-label">Arbetskostnad</span>
+                <span class="result-row-value" id="resultCost">100 000 kr</span>
+              </div>
+              <div class="result-row">
+                <span class="result-row-label">ROT-avdrag (−30%)</span>
+                <span class="result-row-value deduction" id="resultDeduction">−30 000 kr</span>
+              </div>
+              <div class="result-row">
+                <span class="result-row-label"><strong>Du betalar</strong></span>
+                <span class="result-row-value total" id="resultTotal"><strong>70 000 kr</strong></span>
+              </div>
+            </div>
+
+            <div class="result-note" id="resultNote">
+              💡 Moms tillkommer på materialkostnad. ROT-avdrag gäller enbart arbetskostnad.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules (collapsible) -->
+      <div class="rules-section reveal" style="margin-top: 32px;">
+        <button class="rules-toggle" onclick="toggleRules(this)">
+          <span>📋 Regler för ROT-avdrag 2026</span>
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="rules-content" id="rulesContent">
+          <ul class="rules-list">
+            <li>
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Avdraget är 30% av arbetskostnaden (inklusive moms på arbetet).</span>
+            </li>
+            <li>
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Maxavdrag per person och år är 50 000 kr.</span>
+            </li>
+            <li>
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Gäller bara arbetskostnad — inte material, resor eller utrustning.</span>
+            </li>
+            <li>
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Hantverkaren ansöker om avdraget direkt hos Skatteverket — du betalar bara din del.</span>
+            </li>
+            <li>
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Du måste äga bostaden där arbetet utförs (eller ha en bostadsrätt).</span>
+            </li>
+            <li>
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>ROT och RUT delar ett gemensamt maxbelopp på 75 000 kr per person.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ CTA ════ -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="reveal">Vill du skicka offerter med <span class="gradient-text">automatisk ROT-beräkning?</span></h2>
+
+      <div class="cta-benefits">
+        <div class="cta-benefit reveal reveal-d1">
+          <div class="cta-benefit-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </div>
+          <span class="cta-benefit-text">ROT räknas automatiskt på varje offert</span>
+        </div>
+        <div class="cta-benefit reveal reveal-d2">
+          <div class="cta-benefit-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </div>
+          <span class="cta-benefit-text">Kunden ser exakt vad de betalar</span>
+        </div>
+        <div class="cta-benefit reveal reveal-d3">
+          <div class="cta-benefit-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <span class="cta-benefit-text">Du ansöker om ROT-avdrag med ett klick</span>
+        </div>
+      </div>
+
+      <a href="https://app.handymate.se/signup" class="cta-btn reveal">
+        Prova Handymate gratis
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ════ Footer ════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+            <span class="footer-logo-text">Handymate</span>
+          </div>
+          <p class="footer-brand-text">AI-administratör för hantverkare. Svarar på samtal, skriver offerter, följer upp kunder — du fokuserar på hantverket.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Produkt</div>
+          <a href="/#features">Funktioner</a>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/rot-kalkylator">ROT-kalkylator</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Företag</div>
+          <a href="mailto:hej@handymate.se">Kontakt</a>
+          <a href="mailto:hej@handymate.se">hej@handymate.se</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Partners</div>
+          <a href="/partners">Bli partner</a>
+          <a href="https://app.handymate.se/partners/login">Partner-login</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2025 Handymate</div>
+        <div class="footer-contact">Frågor? <a href="mailto:hej@handymate.se">hej@handymate.se</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════ Scripts ════ -->
+  <script>
+    // ── State ──
+    var persons = 1;
+    var costSlider = document.getElementById('costSlider');
+    var costInput = document.getElementById('costInput');
+
+    // ── Sync slider ↔ input ──
+    costSlider.addEventListener('input', function() {
+      costInput.value = this.value;
+      calculate();
+    });
+    costInput.addEventListener('input', function() {
+      var val = parseInt(this.value) || 0;
+      if (val <= 500000) costSlider.value = val;
+      else costSlider.value = 500000;
+      calculate();
+    });
+
+    function setPersons(n) {
+      persons = n;
+      document.getElementById('person1').classList.toggle('active', n === 1);
+      document.getElementById('person2').classList.toggle('active', n === 2);
+      calculate();
+    }
+
+    function formatKr(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' kr';
+    }
+
+    function calculate() {
+      var cost = parseInt(costInput.value) || 0;
+      var maxPerPerson = 50000;
+      var maxTotal = maxPerPerson * persons;
+      var deduction = Math.min(Math.round(cost * 0.3), maxTotal);
+      var toPay = cost - deduction;
+
+      document.getElementById('resultAmount').textContent = formatKr(deduction);
+      document.getElementById('resultCost').textContent = formatKr(cost);
+      document.getElementById('resultDeduction').textContent = '−' + formatKr(deduction);
+      document.getElementById('resultTotal').innerHTML = '<strong>' + formatKr(toPay) + '</strong>';
+
+      // Show note if hitting max
+      var note = document.getElementById('resultNote');
+      if (deduction >= maxTotal && cost * 0.3 > maxTotal) {
+        note.innerHTML = '⚠️ Du har nått maxavdraget på ' + formatKr(maxTotal) + (persons === 2 ? ' (2 × 50 000 kr)' : ' per person') + '. Resterande arbetskostnad får du inte avdrag för.';
+      } else {
+        note.innerHTML = '💡 Moms tillkommer på materialkostnad. ROT-avdrag gäller enbart arbetskostnad.';
+      }
+    }
+
+    function toggleRules(btn) {
+      btn.classList.toggle('open');
+      document.getElementById('rulesContent').classList.toggle('open');
+    }
+
+    // ── Scroll reveal ──
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+    // Initial calculation
+    calculate();
+  </script>
+</body>
+</html>

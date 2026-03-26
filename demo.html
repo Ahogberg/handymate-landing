@@ -95,19 +95,33 @@
     .demo-h1 { font-size: 48px; font-weight: 700; color: #0f2e2a; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.025em; }
     .demo-sub { font-size: 18px; color: #64748B; line-height: 1.6; }
 
-    /* ── DEMO SECTION ── */
+    /* ── DEMO SECTION (SMS + Faktura side by side) ── */
     .demo-section { padding: 64px 24px 80px; background: #F8FAFC; }
-    .demo-inner { max-width: 1000px; margin: 0 auto; }
-
-    /* TABS */
-    .demo-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 36px; flex-wrap: wrap; }
-    .demo-tab { padding: 12px 24px; border-radius: 10px; border: 1.5px solid #E2E8F0; font-size: 15px; font-weight: 500; cursor: pointer; background: white; color: #475569; transition: all 0.2s; font-family: inherit; }
-    .demo-tab:hover { border-color: #0F766E; color: #0F766E; }
-    .demo-tab.active { background: #0F766E; color: white; border-color: #0F766E; }
+    .demo-inner { max-width: 1100px; margin: 0 auto; }
+    .demo-section-header { text-align: center; margin-bottom: 40px; }
+    .demo-section-h2 { font-size: 36px; font-weight: 700; color: #0f2e2a; line-height: 1.15; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .demo-section-sub { font-size: 16px; color: #64748B; }
+    .demo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
     /* SCENARIO */
     .scenario-intro { background: white; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; font-size: 14px; color: #475569; line-height: 1.6; }
     .scenario-intro strong { color: #0f2e2a; }
+
+    /* ── ROI SECTION ── */
+    .roi-section { padding: 80px 24px; background: #F8FAFC; }
+    .roi-inner { max-width: 1000px; margin: 0 auto; }
+    .roi-header { text-align: center; margin-bottom: 40px; }
+    .roi-h2 { font-size: 36px; font-weight: 700; color: #0f2e2a; line-height: 1.15; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .roi-header-sub { font-size: 16px; color: #64748B; }
+    .roi-intro { background: #F0FDF9; border-left: 3px solid #0F766E; border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 24px; }
+    .roi-intro-text { font-size: 14px; color: #475569; line-height: 1.7; margin: 0; }
+    .roi-intro-text strong { color: #0F766E; }
+    .roi-included { background: #F0FDF9; border: 1px solid #A7F3D0; border-radius: 12px; padding: 16px 18px; margin-top: 16px; }
+    .roi-included-title { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #0F766E; margin-bottom: 12px; }
+    .roi-inc-row { display: flex; justify-content: space-between; font-size: 13px; color: #475569; padding: 5px 0; border-bottom: 1px solid rgba(15,118,110,0.08); }
+    .roi-inc-row:last-child { border-bottom: none; }
+    .inc-tim { color: #0F766E; font-weight: 500; }
+    .roi-included-total { font-size: 13px; font-weight: 600; color: #0F766E; margin-top: 10px; text-align: right; }
     .demo-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .demo-panel { background: white; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px; }
     .panel-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #94A3B8; margin-bottom: 16px; }
@@ -250,8 +264,9 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .demo-split, .roi-layout { grid-template-columns: 1fr; }
+      .demo-split, .roi-layout, .demo-duo { grid-template-columns: 1fr; }
       .demo-h1 { font-size: 34px; }
+      .demo-section-h2, .roi-h2 { font-size: 28px; }
       .brief-h2 { font-size: 28px; }
       .demo-hero { padding: 80px 20px 48px; }
       .demo-cta h2 { font-size: 28px; }
@@ -303,40 +318,38 @@
     </div>
   </section>
 
-  <!-- ════ Interaktiva demos ════ -->
+  <!-- ════ SMS + Faktura side by side ════ -->
   <section class="demo-section">
     <div class="demo-inner">
 
-      <div class="demo-tabs">
-        <button class="demo-tab active" data-scenario="sms">SMS från kund</button>
-        <button class="demo-tab" data-scenario="invoice">Fakturapåminnelse</button>
-        <button class="demo-tab" data-scenario="roi">Sparad tid</button>
+      <div class="demo-section-header">
+        <h2 class="demo-section-h2">Se hur teamet hanterar vardagen</h2>
+        <p class="demo-section-sub">Riktiga AI-svar. Testa själv — skriv ett meddelande eller generera en påminnelse.</p>
       </div>
 
-      <!-- SMS -->
-      <div id="demo-sms" class="demo-scenario">
-        <div class="scenario-intro"><strong>Matte svarar automatiskt</strong> — kvalificerar ärendet och föreslår nästa steg. Du lyfter aldrig ett finger.</div>
-        <div class="demo-split">
-          <div class="demo-panel">
-            <div class="panel-label">Kunden skriver</div>
-            <div class="sms-phone">
-              <div class="sms-bubbles" id="sms-bubbles">
-                <div class="sms-bubble customer">Hej, kan ni komma och ge en offert på badrumsrenovering?</div>
-              </div>
-              <div class="sms-input-row">
-                <input id="sms-input" type="text" placeholder="Skriv som en kund..." maxlength="200"/>
-                <button id="sms-send">Skicka</button>
-              </div>
+      <div class="demo-duo">
+
+        <!-- SMS -->
+        <div class="demo-panel">
+          <div class="scenario-intro"><strong>Matte svarar automatiskt</strong> — kvalificerar ärendet och föreslår nästa steg.</div>
+          <div class="panel-label">Kunden skriver</div>
+          <div class="sms-phone">
+            <div class="sms-bubbles" id="sms-bubbles">
+              <div class="sms-bubble customer">Hej, kan ni komma och ge en offert på badrumsrenovering?</div>
             </div>
-            <div class="chips-label">Prova ett exempel:</div>
-            <div class="chips">
-              <span class="chip" data-text="Hej! Vattenläckage i badrummet, ganska bråttom. Kan ni komma idag?">Vattenläckage</span>
-              <span class="chip" data-text="Jag undrar om faktura F-2026-031, stämmer beloppet?">Fakturafråga</span>
-              <span class="chip" data-text="Kan vi boka om besöket på fredag till nästa vecka?">Ombokning</span>
-              <span class="chip" data-text="Hej, vill ha offert på att byta alla element i huset, 8 rum.">Offert</span>
+            <div class="sms-input-row">
+              <input id="sms-input" type="text" placeholder="Skriv som en kund..." maxlength="200"/>
+              <button id="sms-send">Skicka</button>
             </div>
           </div>
-          <div class="demo-panel">
+          <div class="chips-label">Prova ett exempel:</div>
+          <div class="chips">
+            <span class="chip" data-text="Hej! Vattenläckage i badrummet, ganska bråttom. Kan ni komma idag?">Vattenläckage</span>
+            <span class="chip" data-text="Jag undrar om faktura F-2026-031, stämmer beloppet?">Fakturafråga</span>
+            <span class="chip" data-text="Kan vi boka om besöket på fredag till nästa vecka?">Ombokning</span>
+            <span class="chip" data-text="Hej, vill ha offert på att byta alla element i huset, 8 rum.">Offert</span>
+          </div>
+          <div style="margin-top: 16px;">
             <div class="panel-label">Matte analyserar &amp; svarar</div>
             <div id="matte-area" class="agent-idle">
               <img src="https://pktagedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Matte.png" class="idle-photo" onerror="this.style.display='none'" alt="Matte"/>
@@ -349,32 +362,28 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Fakturapåminnelse -->
-      <div id="demo-invoice" class="demo-scenario" style="display:none">
-        <div class="scenario-intro"><strong>Karin skickar påminnelser automatiskt</strong> — du behöver aldrig jaga betalningar manuellt igen.</div>
-        <div class="demo-split">
-          <div class="demo-panel">
-            <div class="panel-label">Konfigurera påminnelsen</div>
-            <div class="inv-form">
-              <label>Kundnamn</label>
-              <input id="inv-customer" type="text" value="Erik Andersson"/>
-              <label>Fakturanummer</label>
-              <input id="inv-number" type="text" value="F-2026-031"/>
-              <label>Belopp (kr)</label>
-              <input id="inv-amount" type="number" value="12500"/>
-              <label>Förfallodatum</label>
-              <input id="inv-due" type="text" value="20 mars 2026"/>
-              <button id="inv-send">Generera påminnelse</button>
-            </div>
-            <div class="chips-label">Snabbval:</div>
-            <div class="chips">
-              <span class="chip inv-chip" data-customer="Svensson Bygg AB" data-number="F-2026-028" data-amount="45000" data-due="15 mars 2026">Stort företag</span>
-              <span class="chip inv-chip" data-customer="Anna Lindström" data-number="F-2026-033" data-amount="3200" data-due="22 mars 2026">Privatperson</span>
-            </div>
+        <!-- Fakturapåminnelse -->
+        <div class="demo-panel">
+          <div class="scenario-intro"><strong>Karin skickar påminnelser automatiskt</strong> — du behöver aldrig jaga betalningar.</div>
+          <div class="panel-label">Konfigurera påminnelsen</div>
+          <div class="inv-form">
+            <label>Kundnamn</label>
+            <input id="inv-customer" type="text" value="Erik Andersson"/>
+            <label>Fakturanummer</label>
+            <input id="inv-number" type="text" value="F-2026-031"/>
+            <label>Belopp (kr)</label>
+            <input id="inv-amount" type="number" value="12500"/>
+            <label>Förfallodatum</label>
+            <input id="inv-due" type="text" value="20 mars 2026"/>
+            <button id="inv-send">Generera påminnelse</button>
           </div>
-          <div class="demo-panel">
+          <div class="chips-label">Snabbval:</div>
+          <div class="chips">
+            <span class="chip inv-chip" data-customer="Svensson Bygg AB" data-number="F-2026-028" data-amount="45000" data-due="15 mars 2026">Stort företag</span>
+            <span class="chip inv-chip" data-customer="Anna Lindström" data-number="F-2026-033" data-amount="3200" data-due="22 mars 2026">Privatperson</span>
+          </div>
+          <div style="margin-top: 16px;">
             <div class="panel-label">Karin skriver påminnelsen</div>
             <div id="karin-area" class="agent-idle">
               <img src="https://pktagedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Karin.png" class="idle-photo" onerror="this.style.display='none'" alt="Karin"/>
@@ -382,37 +391,68 @@
             </div>
           </div>
         </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ ROI-kalkylator ════ -->
+  <section class="roi-section">
+    <div class="roi-inner">
+
+      <div class="roi-header">
+        <h2 class="roi-h2">Vad är din tid värd?</h2>
+        <p class="roi-header-sub">Justera efter din verksamhet och se den totala besparingen.</p>
       </div>
 
-      <!-- ROI -->
-      <div id="demo-roi" class="demo-scenario" style="display:none">
-        <div class="scenario-intro"><strong>Hur mycket tid sparar du?</strong> Justera efter din verksamhet och se vad Handymate är värt för dig.</div>
-        <div class="roi-layout">
-          <div class="roi-sliders demo-panel">
-            <div class="slider-group">
-              <div class="slider-header"><label>Offerter per månad</label><span class="roi-val" id="v-quotes">8</span></div>
-              <input type="range" id="s-quotes" min="1" max="30" value="8" step="1"/>
-            </div>
-            <div class="slider-group">
-              <div class="slider-header"><label>Fakturor per månad</label><span class="roi-val" id="v-invoices">12</span></div>
-              <input type="range" id="s-invoices" min="1" max="50" value="12" step="1"/>
-            </div>
-            <div class="slider-group">
-              <div class="slider-header"><label>Kundsamtal per vecka</label><span class="roi-val" id="v-calls">15</span></div>
-              <input type="range" id="s-calls" min="1" max="50" value="15" step="1"/>
-            </div>
+      <div class="roi-intro">
+        <p class="roi-intro-text">
+          För det genomsnittliga hantverksföretaget sparar Handymate
+          <strong>~9 timmar per månad</strong> på löpande kundkontakt,
+          lead-kvalificering, offertuppföljning och påminnelser —
+          utan att du gör ett enda manuellt inlägg.
+          Justera sliders för din verksamhet och se den totala besparingen.
+        </p>
+      </div>
+
+      <div class="roi-layout">
+        <div class="roi-sliders demo-panel">
+          <div class="slider-group">
+            <div class="slider-header"><label>Offerter per månad</label><span class="roi-val" id="v-quotes">8</span></div>
+            <input type="range" id="s-quotes" min="1" max="30" value="8" step="1"/>
           </div>
-          <div class="roi-result demo-panel">
-            <div class="roi-row"><span>Admin-tid idag</span><span id="r-now" class="rval">--</span></div>
-            <div class="roi-row"><span>Med Handymate</span><span id="r-after" class="rval teal">--</span></div>
-            <div class="roi-divider"></div>
-            <div class="roi-row big"><span>Sparad tid/mån</span><span id="r-hours" class="rval teal">--</span></div>
-            <div class="roi-row big"><span>Värde i kronor</span><span id="r-kr" class="rval teal">--</span></div>
-            <div class="roi-divider"></div>
-            <div class="roi-row"><span>Handymate Pro</span><span class="rval">5 995 kr/mån</span></div>
-            <div class="roi-row highlight"><span>Din nettovinst</span><span id="r-net" class="rval highlight">--</span></div>
-            <p class="roi-note">Baserat på 850 kr/tim och 75% tidsbesparning med AI.</p>
+          <div class="slider-group">
+            <div class="slider-header"><label>Fakturor per månad</label><span class="roi-val" id="v-invoices">12</span></div>
+            <input type="range" id="s-invoices" min="1" max="50" value="12" step="1"/>
           </div>
+          <div class="slider-group">
+            <div class="slider-header"><label>Kundsamtal per vecka</label><span class="roi-val" id="v-calls">15</span></div>
+            <input type="range" id="s-calls" min="1" max="50" value="15" step="1"/>
+          </div>
+
+          <div class="roi-included">
+            <div class="roi-included-title">Alltid inkluderat i Handymate</div>
+            <div class="roi-included-items">
+              <div class="roi-inc-row"><span>✓ Löpande kundkontakt via SMS</span><span class="inc-tim">~3 tim/mån</span></div>
+              <div class="roi-inc-row"><span>✓ Lead-kvalificering &amp; uppföljning</span><span class="inc-tim">~2 tim/mån</span></div>
+              <div class="roi-inc-row"><span>✓ Offertuppföljning automatisk</span><span class="inc-tim">~2 tim/mån</span></div>
+              <div class="roi-inc-row"><span>✓ Betalningspåminnelser</span><span class="inc-tim">~1 tim/mån</span></div>
+              <div class="roi-inc-row"><span>✓ Morgonbriefing &amp; insikter</span><span class="inc-tim">~1 tim/mån</span></div>
+            </div>
+            <div class="roi-included-total">+ ~9 tim/mån i fasta besparingar</div>
+          </div>
+        </div>
+        <div class="roi-result demo-panel">
+          <div class="roi-row"><span>Admin-tid idag</span><span id="r-now" class="rval">--</span></div>
+          <div class="roi-row"><span>Med Handymate</span><span id="r-after" class="rval teal">--</span></div>
+          <div class="roi-divider"></div>
+          <div class="roi-row big"><span>Sparad tid/mån</span><span id="r-hours" class="rval teal">--</span></div>
+          <div class="roi-row big"><span>Värde i kronor</span><span id="r-kr" class="rval teal">--</span></div>
+          <div class="roi-divider"></div>
+          <div class="roi-row"><span>Fasta besparingar</span><span id="r-fixed" class="rval teal">+9 tim</span></div>
+          <div class="roi-row"><span>Handymate Pro</span><span class="rval">5 995 kr/mån</span></div>
+          <div class="roi-row highlight"><span>Din nettovinst</span><span id="r-net" class="rval highlight">--</span></div>
+          <p class="roi-note">Baserat på 850 kr/tim och 75% tidsbesparning med AI. Fasta besparingar (+9 tim) ingår alltid.</p>
         </div>
       </div>
 
@@ -495,16 +535,6 @@
     var SB = 'https://pktagedooyzgvzwipslu.supabase.co'
     var AC = { karin:{bg:'#E6F1FB',c:'#185FA5',i:'K'}, daniel:{bg:'#FAEEDA',c:'#854F0B',i:'D'}, lars:{bg:'#EAF3DE',c:'#3B6D11',i:'L'}, hanna:{bg:'#FBEAF0',c:'#993556',i:'H'} }
 
-    // ── Tabs ──
-    document.querySelectorAll('.demo-tab').forEach(function(t) {
-      t.addEventListener('click', function() {
-        document.querySelectorAll('.demo-tab').forEach(function(x) { x.classList.remove('active') })
-        document.querySelectorAll('.demo-scenario').forEach(function(x) { x.style.display = 'none' })
-        t.classList.add('active')
-        document.getElementById('demo-' + t.dataset.scenario).style.display = 'block'
-      })
-    })
-
     // ── SMS ──
     function addBubble(text, type) {
       var b = document.getElementById('sms-bubbles')
@@ -583,6 +613,7 @@
     })
 
     // ── ROI ──
+    var FIXED_HOURS = 9
     function calcROI() {
       var q = parseInt(document.getElementById('s-quotes').value)
       var inv = parseInt(document.getElementById('s-invoices').value)
@@ -593,12 +624,13 @@
       var now = Math.round(q * 1.5 + inv * 0.5 + calls * 0.25)
       var after = Math.round(now * 0.25)
       var saved = now - after
-      var kr = saved * 850
-      var net = kr - 5995
+      var totalSaved = saved + FIXED_HOURS
+      var totalKr = totalSaved * 850
+      var net = totalKr - 5995
       document.getElementById('r-now').textContent = now + ' tim'
       document.getElementById('r-after').textContent = after + ' tim'
-      document.getElementById('r-hours').textContent = saved + ' tim'
-      document.getElementById('r-kr').textContent = kr.toLocaleString('sv-SE') + ' kr'
+      document.getElementById('r-hours').textContent = totalSaved + ' tim'
+      document.getElementById('r-kr').textContent = totalKr.toLocaleString('sv-SE') + ' kr'
       document.getElementById('r-net').textContent = (net > 0 ? '+' : '') + net.toLocaleString('sv-SE') + ' kr'
       document.getElementById('r-net').className = 'rval ' + (net > 0 ? 'highlight' : 'warn')
     }

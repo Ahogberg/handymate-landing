@@ -4,9 +4,21 @@
     {
       "src": "*.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/demo",
+      "dest": "/demo.html"
+    },
     {
       "src": "/rot-kalkylator",
       "dest": "/rot-kalkylator.html"

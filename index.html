@@ -534,6 +534,49 @@
     .footer-contact { font-size: 13px; color: rgba(255,255,255,0.3); }
     .footer-contact a { color: rgba(255,255,255,0.5); }
     .footer-contact a:hover { color: var(--teal-400); }
+
+    /* ── AI-TEAM SEKTION ── */
+    .ai-team-section { background: #134e48; padding: 96px 32px; overflow: hidden; }
+    .ai-team-inner { max-width: 1400px; margin: 0 auto; }
+    .ai-team-label { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #5eead4; text-align: center; margin-bottom: 14px; opacity: 0; animation: aiTeamFadeUp 0.6s 0.1s forwards; }
+    .ai-team-heading { font-size: 44px; font-weight: 700; color: #ffffff; text-align: center; line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.025em; opacity: 0; animation: aiTeamFadeUp 0.6s 0.2s forwards; }
+    .ai-team-sub { font-size: 17px; color: #99d4cd; text-align: center; max-width: 520px; margin: 0 auto 64px; line-height: 1.6; opacity: 0; animation: aiTeamFadeUp 0.6s 0.3s forwards; }
+    .ai-team-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+    .ai-team-card { background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 20px; padding: 36px 24px 30px; text-align: center; cursor: pointer; transition: background 0.3s, border-color 0.3s, transform 0.3s; opacity: 0; position: relative; overflow: hidden; }
+    .ai-team-card::before { content: ''; position: absolute; inset: 0; background: rgba(94, 234, 212, 0.08); opacity: 0; transition: opacity 0.3s; border-radius: 20px; pointer-events: none; }
+    .ai-team-card:hover::before { opacity: 1; }
+    .ai-team-card:hover { border-color: rgba(94, 234, 212, 0.5); transform: translateY(-6px); }
+    .ai-team-card:hover .ai-team-photo { transform: scale(1.05); }
+    .ai-team-card:hover .ai-team-glow { opacity: 1; }
+    .ai-team-card.visible { animation: aiTeamCardIn 0.5s forwards; }
+    .ai-team-photo-wrap { position: relative; width: 88px; height: 88px; margin: 0 auto 20px; }
+    .ai-team-photo { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 2.5px solid rgba(94, 234, 212, 0.5); transition: transform 0.3s; position: relative; z-index: 1; }
+    .ai-team-glow { position: absolute; inset: -8px; border-radius: 50%; background: rgba(94, 234, 212, 0.2); opacity: 0; transition: opacity 0.3s; filter: blur(12px); }
+    .ai-team-fallback { width: 88px; height: 88px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-weight: 700; font-size: 26px; border: 2.5px solid rgba(94, 234, 212, 0.5); color: white; background: rgba(255, 255, 255, 0.1); }
+    .ai-team-dot-wrap { position: absolute; bottom: 2px; right: 2px; z-index: 2; width: 20px; height: 20px; background: #134e48; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .ai-team-dot { width: 11px; height: 11px; border-radius: 50%; background: #4ade80; position: relative; }
+    .ai-team-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #4ade80; animation: aiTeamRipple 2s infinite; }
+    .ai-team-name { font-size: 17px; font-weight: 700; color: #ffffff; margin-bottom: 5px; letter-spacing: -0.01em; }
+    .ai-team-role { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #5eead4; margin-bottom: 16px; }
+    .ai-team-divider { width: 32px; height: 1px; background: rgba(94, 234, 212, 0.25); margin: 0 auto 16px; }
+    .ai-team-desc { font-size: 13px; color: #b2dbd7; line-height: 1.65; }
+    .ai-team-cta { text-align: center; margin-top: 56px; opacity: 0; animation: aiTeamFadeUp 0.6s 1.1s forwards; }
+    .ai-team-btn { display: inline-flex; align-items: center; gap: 12px; padding: 18px 44px; background: #ffffff; color: #0f4440; border-radius: 12px; font-size: 16px; font-weight: 700; text-decoration: none; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; letter-spacing: -0.01em; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2); }
+    .ai-team-btn:hover { background: #f0fdf9; transform: scale(1.03); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); }
+    .ai-team-arrow { font-size: 18px; transition: transform 0.2s; }
+    .ai-team-btn:hover .ai-team-arrow { transform: translateX(5px); }
+    @media (max-width: 1024px) {
+      .ai-team-row { grid-template-columns: repeat(3, 1fr); }
+      .ai-team-heading { font-size: 34px; }
+    }
+    @media (max-width: 640px) {
+      .ai-team-row { grid-template-columns: repeat(2, 1fr); }
+      .ai-team-heading { font-size: 28px; }
+      .ai-team-section { padding: 64px 20px; }
+    }
+    @keyframes aiTeamFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes aiTeamCardIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes aiTeamRipple { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(2.6); opacity: 0; } }
   </style>
 </head>
 <body>
@@ -643,6 +686,104 @@
             <div><div class="floating-card-title">Lead kvalificerat</div><div class="floating-card-subtitle">Uppföljning schemalagd</div></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ AI-Team ════ -->
+  <section class="ai-team-section">
+    <div class="ai-team-inner">
+      <div class="ai-team-label">Ditt AI-team</div>
+      <h2 class="ai-team-heading">Sex specialister.<br>Alltid på jobbet.</h2>
+      <p class="ai-team-sub">Inte ett verktyg du använder — ett team som jobbar åt dig. Dygnet runt, utan semester.</p>
+
+      <div class="ai-team-row">
+
+        <div class="ai-team-card" data-delay="0">
+          <div class="ai-team-photo-wrap">
+            <div class="ai-team-glow"></div>
+            <img class="ai-team-photo" src="https://pktagedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Matte.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Matte"/>
+            <div class="ai-team-fallback">M</div>
+            <div class="ai-team-dot-wrap"><div class="ai-team-dot"></div></div>
+          </div>
+          <div class="ai-team-name">Matte</div>
+          <div class="ai-team-role">Chefsassistent</div>
+          <div class="ai-team-divider"></div>
+          <div class="ai-team-desc">Koordinerar teamet och delegerar varje ärende till rätt specialist automatiskt.</div>
+        </div>
+
+        <div class="ai-team-card" data-delay="100">
+          <div class="ai-team-photo-wrap">
+            <div class="ai-team-glow"></div>
+            <img class="ai-team-photo" src="https://pktagedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Karin.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Karin"/>
+            <div class="ai-team-fallback">K</div>
+            <div class="ai-team-dot-wrap"><div class="ai-team-dot"></div></div>
+          </div>
+          <div class="ai-team-name">Karin</div>
+          <div class="ai-team-role">Ekonom</div>
+          <div class="ai-team-divider"></div>
+          <div class="ai-team-desc">Fakturor, påminnelser och kassaflöde. Flaggar risker innan de blir problem.</div>
+        </div>
+
+        <div class="ai-team-card" data-delay="200">
+          <div class="ai-team-photo-wrap">
+            <div class="ai-team-glow"></div>
+            <img class="ai-team-photo" src="https://pktagedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Daniel.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Daniel"/>
+            <div class="ai-team-fallback">D</div>
+            <div class="ai-team-dot-wrap"><div class="ai-team-dot"></div></div>
+          </div>
+          <div class="ai-team-name">Daniel</div>
+          <div class="ai-team-role">Säljare</div>
+          <div class="ai-team-divider"></div>
+          <div class="ai-team-desc">Kvalificerar leads och följer upp offerter. Ingen affär faller mellan stolarna.</div>
+        </div>
+
+        <div class="ai-team-card" data-delay="300">
+          <div class="ai-team-photo-wrap">
+            <div class="ai-team-glow"></div>
+            <img class="ai-team-photo" src="https://pktagedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Lars.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Lars"/>
+            <div class="ai-team-fallback">L</div>
+            <div class="ai-team-dot-wrap"><div class="ai-team-dot"></div></div>
+          </div>
+          <div class="ai-team-name">Lars</div>
+          <div class="ai-team-role">Projektledare</div>
+          <div class="ai-team-divider"></div>
+          <div class="ai-team-desc">Bokningar och projektuppföljning. Allt levereras i tid och inom budget.</div>
+        </div>
+
+        <div class="ai-team-card" data-delay="400">
+          <div class="ai-team-photo-wrap">
+            <div class="ai-team-glow"></div>
+            <img class="ai-team-photo" src="https://pktagedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Hanna.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Hanna"/>
+            <div class="ai-team-fallback">H</div>
+            <div class="ai-team-dot-wrap"><div class="ai-team-dot"></div></div>
+          </div>
+          <div class="ai-team-name">Hanna</div>
+          <div class="ai-team-role">Marknadschef</div>
+          <div class="ai-team-divider"></div>
+          <div class="ai-team-desc">Reaktiverar gamla kunder och kör grannkampanjer. Maximerar varje relation.</div>
+        </div>
+
+        <div class="ai-team-card" data-delay="500">
+          <div class="ai-team-photo-wrap">
+            <div class="ai-team-glow"></div>
+            <img class="ai-team-photo" src="https://pktagedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Lisa.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Lisa"/>
+            <div class="ai-team-fallback">Li</div>
+            <div class="ai-team-dot-wrap"><div class="ai-team-dot"></div></div>
+          </div>
+          <div class="ai-team-name">Lisa</div>
+          <div class="ai-team-role">Kundservice</div>
+          <div class="ai-team-divider"></div>
+          <div class="ai-team-desc">Svarar på samtal dygnet runt — även när du är uppe på ett tak i Bromma.</div>
+        </div>
+
+      </div>
+
+      <div class="ai-team-cta">
+        <a href="/onboarding" class="ai-team-btn">
+          Träffa ditt team — prova gratis i 14 dagar
+          <span class="ai-team-arrow">→</span>
+        </a>
       </div>
     </div>
   </section>
@@ -1113,6 +1254,12 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function(el) { observer.observe(el); });
+
+    // AI-team kort animeras in sekventiellt
+    document.querySelectorAll('.ai-team-card').forEach(function(card) {
+      var delay = parseInt(card.dataset.delay || 0) + 400;
+      setTimeout(function() { card.classList.add('visible'); }, delay);
+    });
   </script>
 </body>
 </html>

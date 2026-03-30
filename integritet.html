@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integritetspolicy & Villkor — Handymate</title>
+  <meta name="description" content="Handymates integritetspolicy och användarvillkor. Läs om hur vi hanterar dina personuppgifter och vilka villkor som gäller.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-400: #2DD4BF;
+      --teal-500: #14B8A6;
+      --teal-600: #0D9488;
+      --teal-700: #0F766E;
+      --teal-800: #115E59;
+      --teal-900: #134E4A;
+      --teal-950: #0F2A35;
+      --slate-50: #F8FAFC;
+      --slate-100: #F1F5F9;
+      --slate-200: #E2E8F0;
+      --slate-300: #CBD5E1;
+      --slate-400: #94A3B8;
+      --slate-500: #64748B;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1E293B;
+      --slate-900: #0F172A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-900);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 640px) { .container { padding: 0 24px; } }
+
+    /* ── Nav ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--teal-600), var(--teal-400)); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .nav-logo-icon svg { width: 20px; height: 20px; color: white; }
+    .nav-logo-text { font-size: 20px; font-weight: 700; color: white; }
+    .nav-links { display: none; align-items: center; gap: 28px; }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+    .nav-links a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--teal-400); }
+    .nav-cta { display: none; padding: 8px 20px; background: var(--teal-600); color: white; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background 0.2s; }
+    @media (min-width: 768px) { .nav-cta { display: inline-block; } }
+    .nav-cta:hover { background: var(--teal-700); }
+
+    /* ── Content ── */
+    .page-hero { padding: 120px 0 48px; background: linear-gradient(135deg, var(--teal-950) 0%, var(--slate-900) 100%); }
+    .page-hero h1 { font-size: 32px; font-weight: 700; color: white; margin-bottom: 8px; }
+    @media (min-width: 640px) { .page-hero h1 { font-size: 40px; } }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,0.5); }
+
+    .content-section { padding: 48px 0; }
+    @media (min-width: 640px) { .content-section { padding: 64px 0; } }
+    .content-wrapper { max-width: 800px; margin: 0 auto; }
+
+    .content-wrapper h2 {
+      font-size: 24px; font-weight: 700; color: var(--slate-900);
+      margin: 40px 0 16px; padding-bottom: 8px;
+      border-bottom: 2px solid var(--teal-400);
+    }
+    .content-wrapper h2:first-child { margin-top: 0; }
+    .content-wrapper h3 { font-size: 18px; font-weight: 600; color: var(--slate-800); margin: 24px 0 8px; }
+    .content-wrapper p { font-size: 15px; color: var(--slate-600); margin-bottom: 12px; line-height: 1.7; }
+    .content-wrapper ul { margin: 0 0 16px 20px; }
+    .content-wrapper li { font-size: 15px; color: var(--slate-600); margin-bottom: 6px; line-height: 1.7; }
+    .content-wrapper a { color: var(--teal-600); text-decoration: underline; }
+    .content-wrapper a:hover { color: var(--teal-700); }
+
+    .section-divider { border: none; border-top: 1px solid var(--slate-200); margin: 56px 0; }
+
+    .last-updated { font-size: 13px; color: var(--slate-400); margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--slate-200); }
+
+    /* ── Footer ── */
+    .footer { padding: 48px 0 32px; background: var(--teal-950); }
+    @media (min-width: 640px) { .footer { padding: 64px 0 32px; } }
+    .footer-grid { display: grid; gap: 32px; margin-bottom: 40px; }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; } }
+    .footer-brand-text { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 12px; max-width: 260px; line-height: 1.6; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .footer-logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--teal-600), var(--teal-400)); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .footer-logo-icon svg { width: 20px; height: 20px; color: white; }
+    .footer-logo-text { font-size: 20px; font-weight: 700; color: white; }
+    .footer-col-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--teal-400); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact a { color: rgba(255,255,255,0.5); }
+    .footer-contact a:hover { color: var(--teal-400); }
+  </style>
+</head>
+<body>
+
+  <!-- ════ Nav ════ -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+          <span class="nav-logo-text">Handymate</span>
+        </a>
+        <div class="nav-links">
+          <a href="/#features">Funktioner</a>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/demo">Demo</a>
+        </div>
+        <a href="https://app.handymate.se" class="nav-cta">Testa gratis</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════ Hero ════ -->
+  <div class="page-hero">
+    <div class="container">
+      <h1>Integritetspolicy & Villkor</h1>
+      <p>Så hanterar vi dina uppgifter och vilka villkor som gäller för Handymate.</p>
+    </div>
+  </div>
+
+  <!-- ════ Content ════ -->
+  <div class="content-section">
+    <div class="container">
+      <div class="content-wrapper">
+
+        <!-- ── Integritetspolicy ── -->
+        <h2>Integritetspolicy</h2>
+
+        <p>Handymate ("vi", "oss", "vår") värnar om din personliga integritet. Denna policy beskriver hur vi samlar in, använder och skyddar dina personuppgifter i enlighet med EU:s dataskyddsförordning (GDPR).</p>
+
+        <h3>1. Personuppgiftsansvarig</h3>
+        <p>Handymate AB är personuppgiftsansvarig för behandlingen av dina personuppgifter. Kontakta oss på <a href="mailto:hej@handymate.se">hej@handymate.se</a> vid frågor.</p>
+
+        <h3>2. Vilka uppgifter vi samlar in</h3>
+        <ul>
+          <li><strong>Kontaktuppgifter:</strong> Namn, e-postadress, telefonnummer och företagsuppgifter som du anger vid registrering eller kontakt.</li>
+          <li><strong>Användningsdata:</strong> Information om hur du använder tjänsten, t.ex. inloggningar och funktioner som nyttjas.</li>
+          <li><strong>Teknisk data:</strong> IP-adress, webbläsartyp och enhetsinformation för att säkerställa tjänstens funktion.</li>
+          <li><strong>Kunddata:</strong> Uppgifter du lagrar i tjänsten, t.ex. kundregister, offerter och fakturor.</li>
+        </ul>
+
+        <h3>3. Varför vi behandlar dina uppgifter</h3>
+        <ul>
+          <li>Tillhandahålla och förbättra vår tjänst</li>
+          <li>Skicka viktig information om ditt konto och tjänsten</li>
+          <li>Ge kundsupport</li>
+          <li>Uppfylla rättsliga skyldigheter (t.ex. bokföring)</li>
+          <li>Med ditt samtycke: skicka nyhetsbrev och erbjudanden</li>
+        </ul>
+
+        <h3>4. Rättslig grund</h3>
+        <p>Vi behandlar dina personuppgifter baserat på:</p>
+        <ul>
+          <li><strong>Avtal:</strong> För att kunna leverera den tjänst du beställt.</li>
+          <li><strong>Berättigat intresse:</strong> För att förbättra tjänsten och ge support.</li>
+          <li><strong>Rättslig förpliktelse:</strong> För att uppfylla lagkrav som bokföring.</li>
+          <li><strong>Samtycke:</strong> För marknadsföring via e-post.</li>
+        </ul>
+
+        <h3>5. Lagring och säkerhet</h3>
+        <p>Dina uppgifter lagras på servrar inom EU/EES. Vi använder kryptering, åtkomstkontroll och regelbundna säkerhetsgranskningar för att skydda dina uppgifter. Personuppgifter sparas så länge du har ett aktivt konto, eller så länge lagen kräver.</p>
+
+        <h3>6. Delning med tredje part</h3>
+        <p>Vi säljer aldrig dina personuppgifter. Vi kan dela uppgifter med:</p>
+        <ul>
+          <li><strong>Tjänsteleverantörer:</strong> Hosting, e-post och betalningslösningar som behandlar uppgifter på vårt uppdrag.</li>
+          <li><strong>Myndigheter:</strong> Om vi är skyldiga enligt lag.</li>
+        </ul>
+
+        <h3>7. Dina rättigheter</h3>
+        <p>Enligt GDPR har du rätt att:</p>
+        <ul>
+          <li>Begära tillgång till dina personuppgifter</li>
+          <li>Rätta felaktiga uppgifter</li>
+          <li>Begära radering av dina uppgifter</li>
+          <li>Invända mot behandling</li>
+          <li>Begära dataportabilitet</li>
+          <li>Återkalla samtycke</li>
+        </ul>
+        <p>Kontakta oss på <a href="mailto:hej@handymate.se">hej@handymate.se</a> för att utöva dina rättigheter. Du kan också lämna klagomål till Integritetsskyddsmyndigheten (IMY).</p>
+
+        <h3>8. Cookies</h3>
+        <p>Vi använder nödvändiga cookies för att tjänsten ska fungera, samt analytiska cookies för att förstå hur webbplatsen används. Du kan hantera cookies i din webbläsares inställningar.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── Användarvillkor ── -->
+        <h2>Användarvillkor</h2>
+
+        <p>Dessa villkor gäller mellan dig ("användaren") och Handymate AB ("Handymate") vid användning av Handymates tjänster.</p>
+
+        <h3>1. Tjänsten</h3>
+        <p>Handymate är en AI-driven administrationsplattform för hantverkare. Tjänsten hjälper till med samtalssvar, offerter, kunduppföljning, SMS-kampanjer och fakturering.</p>
+
+        <h3>2. Konto och åtkomst</h3>
+        <p>Du ansvarar för att hålla dina inloggningsuppgifter konfidentiella. Allt som sker under ditt konto är ditt ansvar. Meddela oss omedelbart vid misstänkt obehörig åtkomst.</p>
+
+        <h3>3. Användning</h3>
+        <p>Du förbinder dig att:</p>
+        <ul>
+          <li>Använda tjänsten i enlighet med gällande lagar</li>
+          <li>Inte använda tjänsten för spam, bedrägeri eller olaglig verksamhet</li>
+          <li>Inte försöka manipulera eller kringgå tjänstens säkerhetsfunktioner</li>
+          <li>Säkerställa att du har rätt att lagra de kunduppgifter du lägger in i tjänsten</li>
+        </ul>
+
+        <h3>4. AI-genererat innehåll</h3>
+        <p>Handymate använder AI för att generera svar, offerter och annat innehåll. Du ansvarar för att granska och godkänna allt AI-genererat innehåll innan det skickas till dina kunder. Handymate garanterar inte att AI-genererat innehåll är felfritt.</p>
+
+        <h3>5. Priser och betalning</h3>
+        <p>Aktuella priser visas på vår webbplats. Vi förbehåller oss rätten att ändra priser med 30 dagars förvarning. Betalning sker månadsvis i förskott om inget annat avtalats.</p>
+
+        <h3>6. Uppsägning</h3>
+        <p>Du kan säga upp ditt konto när som helst. Ingen bindningstid gäller. Vid uppsägning har du rätt att exportera dina uppgifter inom 30 dagar. Efter det raderas dina data permanent.</p>
+
+        <h3>7. Ansvarsbegränsning</h3>
+        <p>Handymate tillhandahåller tjänsten "som den är". Vi ansvarar inte för indirekta skador, utebliven vinst eller förlust av data utöver vad som följer av tvingande lag. Vårt totala ansvar är begränsat till det belopp du betalat för tjänsten under de senaste 12 månaderna.</p>
+
+        <h3>8. Ändringar av villkoren</h3>
+        <p>Vi kan uppdatera dessa villkor. Väsentliga ändringar meddelas via e-post minst 30 dagar i förväg. Fortsatt användning efter ändring innebär att du accepterar de nya villkoren.</p>
+
+        <h3>9. Tillämplig lag</h3>
+        <p>Svensk lag gäller för dessa villkor. Tvister avgörs av svensk allmän domstol.</p>
+
+        <p class="last-updated">Senast uppdaterad: 30 mars 2026</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ Footer ════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+            <span class="footer-logo-text">Handymate</span>
+          </div>
+          <p class="footer-brand-text">AI-administratör för hantverkare. Svarar på samtal, skriver offerter, följer upp kunder — du fokuserar på hantverket.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Produkt</div>
+          <a href="/#features">Funktioner</a>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/demo">Demo</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Företag</div>
+          <a href="mailto:hej@handymate.se">Kontakt</a>
+          <a href="/integritet">Integritet & Villkor</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Partners</div>
+          <a href="/partners">Bli partner</a>
+          <a href="https://app.handymate.se/partners/login">Partner-login</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2025 Handymate</div>
+        <div class="footer-contact">Frågor? <a href="mailto:hej@handymate.se">hej@handymate.se</a></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

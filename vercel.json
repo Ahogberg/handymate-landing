@@ -32,6 +32,10 @@
       "dest": "/jamfor.html"
     },
     {
+      "src": "/integritet",
+      "dest": "/integritet.html"
+    },
+    {
       "src": "/",
       "dest": "/index.html"
     }

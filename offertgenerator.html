@@ -262,7 +262,7 @@
               <a href="/#feat-pipeline"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📊</span> Lead-pipeline</a>
               <a href="/#feat-time"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">⏱</span> Tidrapportering</a>
               <a href="/#feat-invoice"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">💰</span> Fakturering</a>
-              <a href="/offertmall"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📋</span> Gratis offertmall</a>
+              <a href="/offertgenerator"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📋</span> Gratis offertgenerator</a>
             </div>
           </div>
           <a href="/#pricing">Priser</a>
@@ -282,7 +282,7 @@
         <a href="/#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Priser</a>
         <a href="/jamfor">Jämför</a>
         <a href="/demo">Demo</a>
-        <a href="/offertmall">Gratis offertmall</a>
+        <a href="/offertgenerator">Gratis offertgenerator</a>
         <a href="https://app.handymate.se/login">Logga in</a>
       </div>
     </div>
@@ -513,7 +513,7 @@
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Verktyg</div>
-          <a href="/offertmall">Offertmall-generator</a>
+          <a href="/offertgenerator">Offertgenerator</a>
           <a href="/rot-kalkylator">ROT-kalkylator</a>
         </div>
         <div class="footer-col">
@@ -694,7 +694,7 @@
       clearTimeout(previewTimeout)
       previewTimeout = setTimeout(function() {
         var data = getFormData('web')
-        fetch('/api/offertmall', {
+        fetch('/api/offertgenerator', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
@@ -725,7 +725,7 @@
       btn.textContent = 'Genererar...'
       btn.disabled = true
 
-      fetch('/api/offertmall', {
+      fetch('/api/offertgenerator', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

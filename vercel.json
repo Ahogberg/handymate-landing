@@ -36,8 +36,13 @@
       "dest": "/jamfor.html"
     },
     {
+      "src": "/offertgenerator",
+      "dest": "/offertgenerator.html"
+    },
+    {
       "src": "/offertmall",
-      "dest": "/offertmall.html"
+      "status": 301,
+      "headers": { "Location": "/offertgenerator" }
     },
     {
       "src": "/integritet",

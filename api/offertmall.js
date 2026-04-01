@@ -63,7 +63,7 @@ export default async function handler(req, res) {
         <div style="font-size:12px;color:#99d4cd;display:flex;gap:8px;opacity:0.6"><span>🔒</span> Fakturering med ett klick</div>
       </div>
       <a href="https://app.handymate.se/onboarding" style="display:block;width:100%;padding:11px;background:#14b8a6;color:white;border-radius:9px;font-size:13px;font-weight:600;text-decoration:none;text-align:center">
-        Prova Handymate gratis i 14 dagar →
+        Kom igång med Handymate →
       </a>
     </div>` : ''
 

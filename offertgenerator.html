@@ -482,9 +482,8 @@
                 <div class="om-hm-feature">💰 Faktura med ett klick när jobbet är klart</div>
               </div>
               <a href="https://app.handymate.se/onboarding" class="om-hm-btn">
-                Prova gratis i 14 dagar →
+                Kom igång med Handymate →
               </a>
-              <div class="om-hm-note">Inget kreditkort krävs för att starta</div>
             </div>
           </div>
         </div>
@@ -694,7 +693,7 @@
       clearTimeout(previewTimeout)
       previewTimeout = setTimeout(function() {
         var data = getFormData('web')
-        fetch('/api/offertgenerator', {
+        fetch('/api/offertmall', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
@@ -725,7 +724,7 @@
       btn.textContent = 'Genererar...'
       btn.disabled = true
 
-      fetch('/api/offertgenerator', {
+      fetch('/api/offertmall', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

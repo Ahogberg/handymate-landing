@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gratis offertmall — Handymate</title>
-  <meta name="description" content="Skapa en professionell offertmall gratis. Lägg till din logotyp, dina färger och ladda ner en PDF. Helt gratis — ingen registrering krävs.">
+  <title>Gratis offertgenerator — Handymate</title>
+  <meta name="description" content="Skapa en professionell offert gratis. Lägg till din logotyp, dina färger och alla rader. Ladda ner som PDF — ingen registrering krävs.">
   <link rel="icon" href="/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,6 +121,7 @@
     .om-label { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #0F766E; margin-bottom: 14px; }
     .om-h1 { font-size: 42px; font-weight: 700; color: #0f2e2a; line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.025em; }
     .om-sub { font-size: 17px; color: #64748b; line-height: 1.6; }
+    .om-hero-features { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px; font-size: 14px; color: #0F766E; font-weight: 500; }
 
     /* ── SECTION ── */
     .om-section { padding: 48px 24px 80px; background: #f8fafc; }
@@ -136,10 +137,16 @@
     .om-field-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
     .om-field-group:last-child { margin-bottom: 0; }
     .om-field-group label { font-size: 12px; font-weight: 500; color: #64748b; }
-    .om-field-group input, .om-field-group textarea { padding: 9px 13px; border: 1px solid #e2e8f0; border-radius: 9px; font-size: 14px; outline: none; transition: border-color 0.15s; width: 100%; font-family: inherit; }
-    .om-field-group input:focus, .om-field-group textarea:focus { border-color: #0F766E; }
+    .om-field-group input, .om-field-group textarea, .om-field-group select {
+      padding: 9px 13px; border: 1px solid #e2e8f0; border-radius: 9px;
+      font-size: 14px; outline: none; transition: border-color 0.15s;
+      width: 100%; font-family: inherit; background: white;
+    }
+    .om-field-group input:focus, .om-field-group textarea:focus, .om-field-group select:focus { border-color: #0F766E; }
     .om-field-group textarea { resize: vertical; }
     .om-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .om-checkbox-group { justify-content: flex-end; }
+    .om-checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #475569; cursor: pointer; margin-top: 20px; }
 
     /* ── UPLOAD ── */
     .om-upload-zone { border: 2px dashed #e2e8f0; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; transition: border-color 0.2s; }
@@ -156,6 +163,20 @@
     .color-preset:hover { transform: scale(1.2); }
     .color-preset.active { border-color: #0f2e2a; transform: scale(1.15); }
     .om-color-detected { font-size: 11px; color: #0F766E; margin-top: 6px; }
+
+    /* ── ITEMS ── */
+    .om-item-row { display: grid; grid-template-columns: 1fr 60px 70px 80px auto; gap: 6px; align-items: flex-start; margin-bottom: 8px; }
+    .om-item-row input, .om-item-row select {
+      padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 8px;
+      font-size: 13px; outline: none; width: 100%; font-family: inherit; background: white;
+    }
+    .om-item-row input:focus, .om-item-row select:focus { border-color: #0F766E; }
+    .om-item-desc-col { display: flex; flex-direction: column; gap: 4px; }
+    .om-item-note { font-size: 12px !important; color: #94a3b8; }
+    .om-remove-btn { width: 28px; height: 28px; border: none; background: #fee2e2; color: #dc2626; border-radius: 6px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+    .om-remove-btn:hover { background: #fecaca; }
+    .om-add-row { width: 100%; padding: 10px; border: 1.5px dashed #e2e8f0; border-radius: 9px; background: none; font-size: 13px; color: #64748b; cursor: pointer; margin-top: 8px; transition: all 0.2s; font-family: inherit; }
+    .om-add-row:hover { border-color: #0F766E; color: #0F766E; }
 
     /* ── PREVIEW ── */
     .om-preview-col { position: sticky; top: 90px; height: fit-content; }
@@ -174,12 +195,16 @@
     .om-email-row input:focus { border-color: #0F766E; }
     .om-email-row button { padding: 11px 20px; background: #0F766E; color: white; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: background 0.2s; font-family: inherit; }
     .om-email-row button:hover { background: #0d6560; }
+    .om-email-row button:disabled { opacity: 0.6; cursor: not-allowed; }
     .om-email-note { font-size: 11px; color: #94a3b8; }
     .om-handymate-cta { background: #f0fdf9; border: 1px solid #a7f3d0; border-radius: 12px; padding: 24px; }
+    .om-hm-badge { display: inline-block; font-size: 11px; font-weight: 600; background: #0F766E; color: white; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
     .om-hm-title { font-size: 15px; font-weight: 700; color: #0f2e2a; margin-bottom: 8px; }
-    .om-hm-desc { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 16px; }
-    .om-hm-btn { display: inline-block; padding: 11px 24px; background: #0F766E; color: white; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .om-hm-features { display: flex; flex-direction: column; gap: 7px; margin: 14px 0; }
+    .om-hm-feature { font-size: 13px; color: #475569; line-height: 1.4; }
+    .om-hm-btn { display: block; width: 100%; padding: 11px 24px; background: #0F766E; color: white; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s; text-align: center; }
     .om-hm-btn:hover { background: #0d6560; }
+    .om-hm-note { font-size: 11px; color: #94a3b8; text-align: center; margin-top: 8px; }
 
     /* ── Footer ── */
     .footer { padding: 48px 0 32px; background: var(--teal-950); }
@@ -209,6 +234,7 @@
     }
     @media (max-width: 640px) {
       .om-field-row { grid-template-columns: 1fr; }
+      .om-item-row { grid-template-columns: 1fr 50px 60px 70px auto; }
       .om-hero { padding-top: 100px; }
     }
   </style>
@@ -220,9 +246,7 @@
     <div class="container">
       <div class="nav-inner">
         <a href="/" class="logo">
-          <div class="logo-icon">
-            <img src="/logo.png" alt="Handymate logo">
-          </div>
+          <div class="logo-icon"><img src="/logo.png" alt="Handymate logo"></div>
           <span class="logo-text">Handymate</span>
         </a>
         <div class="nav-links">
@@ -268,8 +292,18 @@
   <section class="om-hero">
     <div class="om-hero-inner">
       <div class="om-label">Gratis verktyg</div>
-      <h1 class="om-h1">Skapa din professionella<br>offertmall på 2 minuter</h1>
-      <p class="om-sub">Lägg till din logotyp, dina färger och spara ner en PDF. Helt gratis — ingen registrering krävs.</p>
+      <h1 class="om-h1">Skapa en professionell offert<br>på 2 minuter — helt gratis</h1>
+      <p class="om-sub">
+        Lägg till din logotyp, dina färger och alla offert-rader.
+        Ladda ner som PDF och skicka till kunden direkt.
+        Ingen registrering krävs.
+      </p>
+      <div class="om-hero-features">
+        <span>✓ Din logotyp och färg</span>
+        <span>✓ ROT-avdrag beräknat</span>
+        <span>✓ Professionell PDF</span>
+        <span>✓ Gratis för alltid</span>
+      </div>
     </div>
   </section>
 
@@ -340,6 +374,74 @@
             </div>
           </div>
 
+          <!-- Offertuppgifter -->
+          <div class="om-card">
+            <div class="om-card-title">Offertuppgifter</div>
+            <div class="om-field-row">
+              <div class="om-field-group">
+                <label>Offertnummer</label>
+                <input type="text" id="quote_number" value="" oninput="updatePreview()"/>
+              </div>
+              <div class="om-field-group">
+                <label>Offertdatum</label>
+                <input type="date" id="quote_date" oninput="updatePreview()"/>
+              </div>
+            </div>
+            <div class="om-field-row">
+              <div class="om-field-group">
+                <label>Giltig till</label>
+                <input type="date" id="valid_until" oninput="updatePreview()"/>
+              </div>
+              <div class="om-field-group">
+                <label>Betalningsvillkor</label>
+                <input type="text" id="payment_terms" value="30 dagar netto" oninput="updatePreview()"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kund -->
+          <div class="om-card">
+            <div class="om-card-title">Kund</div>
+            <div class="om-field-group">
+              <label>Offertens titel / Avser</label>
+              <input type="text" id="title" placeholder="Badrumsrenovering Vasastan" oninput="updatePreview()"/>
+            </div>
+            <div class="om-field-row">
+              <div class="om-field-group">
+                <label>Kundnamn</label>
+                <input type="text" id="customer_name" placeholder="Kundens namn" oninput="updatePreview()"/>
+              </div>
+              <div class="om-field-group">
+                <label>Kund e-post</label>
+                <input type="email" id="customer_email" placeholder="kund@mail.se" oninput="updatePreview()"/>
+              </div>
+            </div>
+            <div class="om-field-group">
+              <label>Kundadress</label>
+              <input type="text" id="customer_address" placeholder="Gatuadress, Postort" oninput="updatePreview()"/>
+            </div>
+          </div>
+
+          <!-- Rader -->
+          <div class="om-card">
+            <div class="om-card-title">Offert-rader</div>
+            <div id="items-list"></div>
+            <button class="om-add-row" onclick="addItem()">+ Lägg till rad</button>
+          </div>
+
+          <!-- ROT + Anteckning -->
+          <div class="om-card">
+            <div class="om-card-title">Övrigt</div>
+            <label class="om-checkbox-label" style="margin-top:0;margin-bottom:12px">
+              <input type="checkbox" id="rot_enabled" onchange="updatePreview()"/>
+              ROT-avdrag (30%)
+            </label>
+            <div class="om-field-group">
+              <label>Anteckning (valfritt)</label>
+              <textarea id="notes" placeholder="T.ex. betalningsvillkor, garantier, leveranstid..." rows="3" oninput="updatePreview()"></textarea>
+            </div>
+          </div>
+
         </div>
 
         <!-- Höger: Förhandsgranskning -->
@@ -349,7 +451,7 @@
             <div class="om-preview-note">Uppdateras live</div>
           </div>
           <div class="om-preview-frame">
-            <iframe id="preview-frame" style="width:100%;height:700px;border:none;border-radius:8px"></iframe>
+            <iframe id="preview-frame" style="width:100%;height:800px;border:none;border-radius:8px"></iframe>
           </div>
         </div>
 
@@ -369,9 +471,20 @@
           </div>
           <div class="om-download-right">
             <div class="om-handymate-cta">
-              <div class="om-hm-title">Vill du skicka och signera direkt?</div>
-              <div class="om-hm-desc">Spara mallen i Handymate och skicka offerter digitalt med ett klick. Automatisk uppföljning ingår.</div>
-              <a href="https://app.handymate.se/signup" class="om-hm-btn">Prova gratis i 14 dagar →</a>
+              <div class="om-hm-badge">Handymate Pro</div>
+              <div class="om-hm-title">Vill du skicka och följa upp automatiskt?</div>
+              <div class="om-hm-features">
+                <div class="om-hm-feature">📤 Skicka direkt till kunden från appen</div>
+                <div class="om-hm-feature">✍️ Digital signering — kunden signerar på mobilen</div>
+                <div class="om-hm-feature">🔔 Automatisk uppföljning om ingen svarar</div>
+                <div class="om-hm-feature">📋 Projekt skapas automatiskt när offerten accepteras</div>
+                <div class="om-hm-feature">🤖 Matte svarar på kundfrågor dygnet runt</div>
+                <div class="om-hm-feature">💰 Faktura med ett klick när jobbet är klart</div>
+              </div>
+              <a href="https://app.handymate.se/onboarding" class="om-hm-btn">
+                Prova gratis i 14 dagar →
+              </a>
+              <div class="om-hm-note">Inget kreditkort krävs för att starta</div>
             </div>
           </div>
         </div>
@@ -420,28 +533,35 @@
   <!-- ════ Scripts ════ -->
   <script>
     var logoBase64 = null
-
-    // Exempeldata som visas i mallen
-    var exampleItems = [
-      { description: 'Arbete enligt beskrivning', qty: 1, unit: 'st', price: 12500 },
-      { description: 'Material', qty: 1, unit: 'st', price: 4500 },
-      { description: 'Resekostnad', qty: 1, unit: 'st', price: 500 },
+    var items = [
+      { description: 'Arbetskostnad', note: '', qty: 16, unit: 'tim', price: 895 },
+      { description: 'Material', note: 'Specificeras efter besiktning', qty: 1, unit: 'st', price: 8500 },
     ]
 
-    function esc(str) {
-      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+    // ── Init ──
+    window.onload = function() {
+      var today = new Date()
+      var valid = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000)
+
+      document.getElementById('quote_date').value = today.toISOString().split('T')[0]
+      document.getElementById('valid_until').value = valid.toISOString().split('T')[0]
+
+      var year = today.getFullYear()
+      var num = String(Math.floor(Math.random() * 900) + 100)
+      document.getElementById('quote_number').value = 'O-' + year + '-' + num
+
+      renderItems()
+      updatePreview()
     }
 
+    // ── Logo ──
     function handleLogo(input) {
       var file = input.files[0]
       if (!file) return
-      if (file.size > 2 * 1024 * 1024) {
-        alert('Logotypen får vara max 2 MB')
-        return
-      }
+      if (file.size > 2 * 1024 * 1024) { alert('Logotypen får vara max 2 MB'); return }
       var reader = new FileReader()
-      reader.onload = function(e) {
-        logoBase64 = e.target.result
+      reader.onload = function(ev) {
+        logoBase64 = ev.target.result
         document.getElementById('logo-preview').src = logoBase64
         document.getElementById('logo-preview').style.display = 'block'
         document.getElementById('upload-placeholder').style.display = 'none'
@@ -457,211 +577,176 @@
       img.onload = function() {
         var canvas = document.createElement('canvas')
         var size = 64
-        canvas.width = size
-        canvas.height = size
+        canvas.width = size; canvas.height = size
         var ctx = canvas.getContext('2d')
         ctx.drawImage(img, 0, 0, size, size)
         var data = ctx.getImageData(0, 0, size, size).data
-
-        // Samla färger, ignorera vita/svarta/transparenta
         var colors = {}
         for (var i = 0; i < data.length; i += 4) {
           var r = data[i], g = data[i+1], b = data[i+2], a = data[i+3]
           if (a < 128) continue
           var brightness = (r * 299 + g * 587 + b * 114) / 1000
           if (brightness > 240 || brightness < 15) continue
-          // Kvantisera till 16-steg för att gruppera liknande färger
-          var qr = Math.round(r / 16) * 16
-          var qg = Math.round(g / 16) * 16
-          var qb = Math.round(b / 16) * 16
-          var key = qr + ',' + qg + ',' + qb
-          // Vikta mer mättade färger högre
-          var max = Math.max(r, g, b), min = Math.min(r, g, b)
-          var saturation = max === 0 ? 0 : (max - min) / max
-          var weight = 1 + saturation * 3
-          colors[key] = (colors[key] || 0) + weight
+          var qr = Math.round(r/16)*16, qg = Math.round(g/16)*16, qb = Math.round(b/16)*16
+          var key = qr+','+qg+','+qb
+          var mx = Math.max(r,g,b), mn = Math.min(r,g,b)
+          var sat = mx === 0 ? 0 : (mx-mn)/mx
+          colors[key] = (colors[key]||0) + 1 + sat*3
         }
-
-        // Hitta dominant färg
         var best = null, bestCount = 0
-        for (var k in colors) {
-          if (colors[k] > bestCount) {
-            bestCount = colors[k]
-            best = k
-          }
-        }
+        for (var k in colors) { if (colors[k] > bestCount) { bestCount = colors[k]; best = k } }
         if (best) {
           var parts = best.split(',')
-          var hex = '#' + parts.map(function(c) {
-            var h = parseInt(c).toString(16)
-            return h.length < 2 ? '0' + h : h
-          }).join('')
-
+          var hex = '#' + parts.map(function(c){ var h=parseInt(c).toString(16); return h.length<2?'0'+h:h }).join('')
           document.getElementById('primary_color').value = hex
           document.getElementById('color-detected').style.display = 'block'
           document.getElementById('color-detected').textContent = 'Färg hämtad från logotypen — du kan ändra manuellt'
-
-          // Ta bort active från presets
           var presets = document.querySelectorAll('.color-preset')
           for (var p = 0; p < presets.length; p++) presets[p].classList.remove('active')
-
           updatePreview()
         }
       }
       img.src = dataUrl
     }
 
+    // ── Color ──
     function setColor(hex) {
       document.getElementById('primary_color').value = hex
       document.getElementById('color-detected').style.display = 'none'
-      // Markera aktiv preset
       var presets = document.querySelectorAll('.color-preset')
       for (var i = 0; i < presets.length; i++) {
-        presets[i].classList.toggle('active', presets[i].style.backgroundColor === hexToRgb(hex))
+        var bg = presets[i].style.backgroundColor
+        presets[i].classList.toggle('active', bg === hexToRgb(hex))
       }
       updatePreview()
     }
-
     function hexToRgb(hex) {
-      var r = parseInt(hex.slice(1,3), 16)
-      var g = parseInt(hex.slice(3,5), 16)
-      var b = parseInt(hex.slice(5,7), 16)
-      return 'rgb(' + r + ', ' + g + ', ' + b + ')'
+      var r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16)
+      return 'rgb('+r+', '+g+', '+b+')'
     }
 
-    function fmtKr(n) {
-      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' kr'
+    // ── Items ──
+    function addItem() {
+      items.push({ description: '', note: '', qty: 1, unit: 'tim', price: 0 })
+      renderItems()
+      updatePreview()
     }
-
-    function generatePreviewHtml() {
-      var company = esc(document.getElementById('company_name').value) || 'Ditt Företag AB'
-      var orgNr = esc(document.getElementById('org_number').value)
-      var phone = esc(document.getElementById('phone').value)
-      var email = esc(document.getElementById('email_company').value)
-      var addr = esc(document.getElementById('address').value)
-      var color = document.getElementById('primary_color').value
-
-      var today = new Date().toLocaleDateString('sv-SE')
-      var validUntil = new Date(Date.now() + 30 * 86400000).toLocaleDateString('sv-SE')
-
-      var subtotal = 0
-      var itemRows = exampleItems.map(function(item) {
-        var lineTotal = item.qty * item.price
-        subtotal += lineTotal
-        return '<tr>' +
-          '<td style="padding:10px 8px;border-bottom:1px solid #f1f5f9;font-size:13px;color:#1e293b">' + esc(item.description) + '</td>' +
-          '<td style="padding:10px 8px;border-bottom:1px solid #f1f5f9;font-size:13px;color:#64748b;text-align:right">' + item.qty + '</td>' +
-          '<td style="padding:10px 8px;border-bottom:1px solid #f1f5f9;font-size:13px;color:#64748b;text-align:right">' + esc(item.unit) + '</td>' +
-          '<td style="padding:10px 8px;border-bottom:1px solid #f1f5f9;font-size:13px;color:#64748b;text-align:right">' + fmtKr(item.price) + '</td>' +
-          '<td style="padding:10px 8px;border-bottom:1px solid #f1f5f9;font-size:13px;color:#1e293b;text-align:right;font-weight:500">' + fmtKr(lineTotal) + '</td>' +
-          '</tr>'
+    function removeItem(i) {
+      items.splice(i, 1)
+      renderItems()
+      updatePreview()
+    }
+    function escAttr(s) {
+      return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    }
+    function renderItems() {
+      var list = document.getElementById('items-list')
+      list.innerHTML = items.map(function(item, i) {
+        return '<div class="om-item-row">' +
+          '<div class="om-item-desc-col">' +
+            '<input type="text" value="' + escAttr(item.description) + '" placeholder="Beskrivning" oninput="items['+i+'].description=this.value;updatePreview()"/>' +
+            '<input type="text" value="' + escAttr(item.note) + '" placeholder="Kommentar (valfritt)" class="om-item-note" oninput="items['+i+'].note=this.value;updatePreview()"/>' +
+          '</div>' +
+          '<input type="number" value="'+item.qty+'" placeholder="Antal" min="0" step="0.5" oninput="items['+i+'].qty=parseFloat(this.value)||0;updatePreview()"/>' +
+          '<select oninput="items['+i+'].unit=this.value;updatePreview()">' +
+            '<option'+(item.unit==='tim'?' selected':'')+'>tim</option>' +
+            '<option'+(item.unit==='st'?' selected':'')+'>st</option>' +
+            '<option'+(item.unit==='m²'?' selected':'')+'>m²</option>' +
+            '<option'+(item.unit==='m'?' selected':'')+'>m</option>' +
+            '<option'+(item.unit==='kr'?' selected':'')+'>kr</option>' +
+          '</select>' +
+          '<input type="number" value="'+item.price+'" placeholder="Pris" min="0" oninput="items['+i+'].price=parseFloat(this.value)||0;updatePreview()"/>' +
+          '<button class="om-remove-btn" onclick="removeItem('+i+')">×</button>' +
+        '</div>'
       }).join('')
-
-      var vat = Math.round(subtotal * 0.25)
-      var total = subtotal + vat
-
-      var logoHtml = logoBase64
-        ? '<img src="' + logoBase64 + '" style="max-height:60px;max-width:160px;object-fit:contain" alt="Logo"/>'
-        : '<div style="font-size:22px;font-weight:700;color:' + color + '">' + company + '</div>'
-
-      return '<!DOCTYPE html><html lang="sv"><head><meta charset="UTF-8"><style>' +
-        '* { box-sizing: border-box; margin: 0; padding: 0; } ' +
-        'body { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; padding: 40px; color: #1e293b; font-size: 14px; }' +
-        '</style></head><body>' +
-
-        '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px">' +
-          '<div>' + logoHtml +
-            '<div style="margin-top:8px;font-size:12px;color:#64748b;line-height:1.8">' +
-              (orgNr ? 'Org.nr: ' + orgNr + '<br>' : '') +
-              (phone ? phone + '<br>' : '') +
-              (email ? email + '<br>' : '') +
-              (addr ? addr : '') +
-            '</div>' +
-          '</div>' +
-          '<div style="text-align:right">' +
-            '<div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:' + color + ';font-weight:600">Offert</div>' +
-            '<div style="font-size:24px;font-weight:700;color:#0f2e2a;margin:4px 0">O-2026-001</div>' +
-            '<div style="font-size:12px;color:#64748b;line-height:1.8">Datum: ' + today + '<br>Giltig till: ' + validUntil + '</div>' +
-          '</div>' +
-        '</div>' +
-
-        '<div style="height:2px;background:' + color + ';margin-bottom:28px;opacity:0.3"></div>' +
-
-        '<div style="display:flex;gap:48px;margin-bottom:32px">' +
-          '<div>' +
-            '<div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#cbd5e1;margin-bottom:6px">Faktureras till</div>' +
-            '<div style="font-size:14px;color:#1e293b;line-height:1.7">Kundnamn<br>Kundadress</div>' +
-          '</div>' +
-          '<div>' +
-            '<div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#cbd5e1;margin-bottom:6px">Avser</div>' +
-            '<div style="font-size:14px;color:#1e293b">Projektbeskrivning</div>' +
-          '</div>' +
-        '</div>' +
-
-        '<table style="width:100%;border-collapse:collapse;margin-bottom:24px">' +
-          '<thead><tr style="border-bottom:2px solid #e2e8f0">' +
-            '<th style="text-align:left;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#cbd5e1;padding:0 8px 10px;font-weight:400">Beskrivning</th>' +
-            '<th style="text-align:right;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#cbd5e1;padding:0 8px 10px;font-weight:400">Antal</th>' +
-            '<th style="text-align:right;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#cbd5e1;padding:0 8px 10px;font-weight:400">Enhet</th>' +
-            '<th style="text-align:right;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#cbd5e1;padding:0 8px 10px;font-weight:400">Pris/enhet</th>' +
-            '<th style="text-align:right;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#cbd5e1;padding:0 8px 10px;font-weight:400">Summa</th>' +
-          '</tr></thead>' +
-          '<tbody>' + itemRows + '</tbody>' +
-        '</table>' +
-
-        '<div style="display:flex;justify-content:flex-end;margin-bottom:32px">' +
-          '<div style="width:240px">' +
-            '<div style="display:flex;justify-content:space-between;padding:5px 0;font-size:13px;color:#64748b"><span>Netto exkl. moms</span><span>' + fmtKr(subtotal) + '</span></div>' +
-            '<div style="display:flex;justify-content:space-between;padding:5px 0;font-size:13px;color:#64748b"><span>Moms 25%</span><span>' + fmtKr(vat) + '</span></div>' +
-            '<div style="display:flex;justify-content:space-between;padding:12px 0;font-size:16px;font-weight:600;color:#1e293b;border-top:1px solid #e2e8f0;margin-top:8px"><span>Att betala</span><span>' + fmtKr(total) + '</span></div>' +
-          '</div>' +
-        '</div>' +
-
-        '<div style="background:#f8fafc;border-radius:8px;padding:16px;margin-bottom:24px;font-size:13px;color:#64748b;line-height:1.6">' +
-          'Betalningsvillkor: 30 dagar netto. Vid försenad betalning debiteras dröjsmålsränta enligt räntelagen.' +
-        '</div>' +
-
-        '<div style="border-top:1px solid #e2e8f0;padding-top:20px;display:flex;gap:48px">' +
-          '<div><div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#cbd5e1;margin-bottom:4px">Org.nr</div><div style="font-size:12px;color:#64748b">' + (orgNr || '—') + '</div></div>' +
-          '<div><div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#cbd5e1;margin-bottom:4px">F-skattsedel</div><div style="font-size:12px;color:#64748b">Godkänd</div></div>' +
-          '<div><div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#cbd5e1;margin-bottom:4px">Genererad av</div><div style="font-size:12px;color:' + color + ';font-weight:500">Handymate</div></div>' +
-        '</div>' +
-
-        '</body></html>'
     }
 
+    // ── Form data ──
+    function getFormData(mode) {
+      var qd = document.getElementById('quote_date').value
+      var vu = document.getElementById('valid_until').value
+      return {
+        mode: mode || 'web',
+        company_name: document.getElementById('company_name').value,
+        org_number: document.getElementById('org_number').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email_company').value,
+        address: document.getElementById('address').value,
+        logo_base64: logoBase64,
+        primary_color: document.getElementById('primary_color').value,
+        quote_number: document.getElementById('quote_number').value,
+        quote_date: qd ? new Date(qd).toLocaleDateString('sv-SE') : null,
+        valid_until: vu ? new Date(vu).toLocaleDateString('sv-SE') : null,
+        payment_terms: document.getElementById('payment_terms').value,
+        customer_name: document.getElementById('customer_name').value,
+        customer_email: document.getElementById('customer_email').value,
+        customer_address: document.getElementById('customer_address').value,
+        title: document.getElementById('title').value,
+        rot_enabled: document.getElementById('rot_enabled').checked,
+        notes: document.getElementById('notes').value,
+        items: items,
+      }
+    }
+
+    // ── Preview (web mode — with upsell) ──
     var previewTimeout = null
     function updatePreview() {
       clearTimeout(previewTimeout)
       previewTimeout = setTimeout(function() {
-        var html = generatePreviewHtml()
-        var iframe = document.getElementById('preview-frame')
-        iframe.srcdoc = html
-      }, 150)
+        var data = getFormData('web')
+        fetch('/api/offertmall', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(function(r) { return r.json() })
+        .then(function(json) {
+          document.getElementById('preview-frame').srcdoc = json.html
+        })
+        .catch(function() {})
+      }, 350)
     }
 
+    // ── Download (pdf mode — clean, no upsell) ──
     function downloadPDF() {
       var email = document.getElementById('lead-email').value
       var companyName = document.getElementById('company_name').value
+      var btn = document.getElementById('download-btn')
 
-      // Spara lead (non-blocking)
       if (email) {
         fetch('/api/save-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email, company_name: companyName, source: 'offertmall' })
-        }).catch(function() {})
+        }).catch(function(){})
       }
 
-      var html = generatePreviewHtml()
-      var win = window.open('', '_blank')
-      win.document.write(html)
-      win.document.close()
-      setTimeout(function() { win.print() }, 500)
-    }
+      var data = getFormData('pdf')
+      btn.textContent = 'Genererar...'
+      btn.disabled = true
 
-    // Init
-    updatePreview()
+      fetch('/api/offertmall', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(r) { return r.json() })
+      .then(function(json) {
+        var win = window.open('', '_blank')
+        win.document.write(json.html)
+        win.document.close()
+        setTimeout(function() {
+          win.print()
+          btn.textContent = 'Ladda ner PDF →'
+          btn.disabled = false
+        }, 600)
+      })
+      .catch(function() {
+        alert('Något gick fel — försök igen')
+        btn.textContent = 'Ladda ner PDF →'
+        btn.disabled = false
+      })
+    }
   </script>
 </body>
 </html>

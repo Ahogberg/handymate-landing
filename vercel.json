@@ -36,6 +36,10 @@
       "dest": "/jamfor.html"
     },
     {
+      "src": "/offertmall",
+      "dest": "/offertmall.html"
+    },
+    {
       "src": "/integritet",
       "dest": "/integritet.html"
     },

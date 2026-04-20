@@ -40,6 +40,10 @@
       "dest": "/offertgenerator.html"
     },
     {
+      "src": "/hemsida",
+      "dest": "/hemsida.html"
+    },
+    {
       "src": "/offertmall",
       "status": 301,
       "headers": { "Location": "/offertgenerator" }

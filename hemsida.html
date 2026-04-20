@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hemsida för hantverkare — Handymate</title>
+  <meta name="description" content="Beställ en professionell hemsida byggd på 24-48h. Kontaktformulär kopplat direkt till Handymate. Ingår gratis i Handymate Pro, annars 4 995 kr engång.">
+  <link rel="icon" href="/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-400: #2DD4BF;
+      --teal-500: #14B8A6;
+      --teal-600: #0D9488;
+      --teal-700: #0F766E;
+      --teal-800: #115E59;
+      --teal-900: #134E4A;
+      --teal-950: #0F2A35;
+      --slate-50: #F8FAFC;
+      --slate-100: #F1F5F9;
+      --slate-200: #E2E8F0;
+      --slate-300: #CBD5E1;
+      --slate-400: #94A3B8;
+      --slate-500: #64748B;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1E293B;
+      --slate-900: #0F172A;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-900);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 640px) { .container { padding: 0 24px; } }
+
+    /* ── Navigation (delas med övriga sidor) ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+      background: rgba(248, 250, 252, 0.9); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+    @media (min-width: 640px) { .nav-inner { padding: 16px 0; } }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    @media (min-width: 640px) { .logo { gap: 12px; } }
+    .logo-icon { width: 38px; height: 38px; }
+    @media (min-width: 640px) { .logo-icon { width: 42px; height: 42px; } }
+    .logo-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .logo-text { font-size: 18px; font-weight: 700; }
+    @media (min-width: 640px) { .logo-text { font-size: 20px; } }
+    .nav-links { display: none; align-items: center; gap: 28px; }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+    .nav-links a { color: var(--slate-500); transition: color 0.2s; font-size: 15px; }
+    .nav-links a:hover { color: var(--slate-900); }
+    .nav-dd { position: relative; }
+    .nav-dd-trigger { cursor: pointer; display: flex; align-items: center; gap: 4px; }
+    .nav-dd-trigger svg { width: 14px; height: 14px; transition: transform 0.2s; }
+    .nav-dd-menu {
+      position: absolute; top: calc(100% + 12px); left: -16px;
+      background: white; border: 1px solid var(--slate-200); border-radius: 16px;
+      padding: 12px; min-width: 260px; box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    }
+    .nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .nav-dd:hover .nav-dd-trigger svg { transform: rotate(180deg); }
+    .nav-dd-menu a {
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+      border-radius: 10px; font-size: 14px; color: var(--slate-700); transition: background 0.15s;
+    }
+    .nav-dd-menu a:hover { background: var(--slate-50); }
+    .nav-dd-menu .dd-icon {
+      width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    @media (min-width: 640px) { .nav-actions { gap: 16px; } }
+    .nav-login { display: none; color: var(--slate-500); font-size: 14px; transition: color 0.2s; }
+    .nav-login:hover { color: var(--slate-900); }
+    @media (min-width: 640px) { .nav-login { display: block; } }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 8px 12px; font-size: 14px; font-weight: 500; border-radius: 8px;
+      border: none; cursor: pointer; transition: all 0.2s;
+    }
+    @media (min-width: 640px) { .btn { padding: 10px 20px; border-radius: 12px; } }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: #fff; box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.25);
+    }
+    .btn-primary:hover { opacity: 0.9; }
+
+    .mobile-menu-btn { display: flex; padding: 8px; background: none; border: none; color: var(--slate-500); cursor: pointer; }
+    @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+    .mobile-menu { display: none; flex-direction: column; gap: 16px; padding: 16px 0; border-top: 1px solid var(--slate-200); margin-top: 16px; }
+    .mobile-menu.open { display: flex; }
+    @media (min-width: 768px) { .mobile-menu { display: none !important; } }
+    .mobile-menu a { color: var(--slate-500); transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--slate-900); }
+
+    /* ── Footer (delas) ── */
+    .footer { padding: 48px 0 32px; background: var(--teal-950); }
+    @media (min-width: 640px) { .footer { padding: 64px 0 32px; } }
+    .footer-grid { display: grid; gap: 32px; margin-bottom: 40px; }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; } }
+    .footer-brand-text { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 12px; max-width: 260px; line-height: 1.6; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .footer-logo-icon { width: 36px; height: 36px; }
+    .footer-logo-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .footer-logo-text { font-size: 20px; font-weight: 700; color: white; }
+    .footer-col-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--teal-400); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact a { color: rgba(255,255,255,0.5); }
+    .footer-contact a:hover { color: var(--teal-400); }
+
+    /* ═══════════════════════════════════════════════════════════ */
+    /* HEMSIDA-PAGE STYLES                                           */
+    /* ═══════════════════════════════════════════════════════════ */
+
+    /* HERO */
+    .hs-hero {
+      background: linear-gradient(160deg, #E6FFFA 0%, #F0FDF9 30%, #F8FAFC 80%);
+      padding: 120px 24px 64px;
+      text-align: center;
+    }
+    @media (min-width: 640px) { .hs-hero { padding: 140px 24px 80px; } }
+    .hs-hero-inner { max-width: 720px; margin: 0 auto; }
+    .hs-label { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-700); margin-bottom: 14px; }
+    .hs-h1 { font-size: 36px; font-weight: 700; color: var(--slate-900); line-height: 1.15; margin-bottom: 18px; letter-spacing: -0.025em; }
+    @media (min-width: 640px) { .hs-h1 { font-size: 48px; } }
+    @media (min-width: 1024px) { .hs-h1 { font-size: 56px; } }
+    .hs-sub { font-size: 17px; color: var(--slate-500); line-height: 1.6; margin-bottom: 26px; max-width: 620px; margin-left: auto; margin-right: auto; }
+    .hs-hero-pills { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; font-size: 14px; color: var(--teal-700); font-weight: 500; }
+    .hs-hero-btn {
+      display: inline-block; padding: 14px 32px;
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: white; border-radius: 12px; font-size: 16px; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.3);
+    }
+    .hs-hero-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(13, 148, 136, 0.4); }
+
+    /* PRICING */
+    .hs-pricing { padding: 48px 24px; background: white; }
+    .hs-pricing-inner { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .hs-price-card { border: 1px solid var(--slate-200); border-radius: 16px; padding: 28px 24px; text-align: center; }
+    .hs-price-card.hs-price-featured { border-color: var(--teal-600); background: linear-gradient(135deg, rgba(13,148,136,0.06), rgba(20,184,166,0.03)); position: relative; }
+    .hs-price-badge { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--slate-500); margin-bottom: 14px; }
+    .hs-price-featured .hs-price-badge { color: var(--teal-700); }
+    .hs-price-amount { font-size: 34px; font-weight: 700; color: var(--slate-900); margin-bottom: 6px; letter-spacing: -0.02em; }
+    .hs-price-sub { font-size: 13px; color: var(--slate-500); }
+    .hs-price-note { font-size: 12px; color: var(--slate-400); margin-top: 8px; }
+
+    /* FORM SECTION */
+    .hs-form-section { padding: 48px 24px 96px; background: var(--slate-50); }
+    .hs-form-inner { max-width: 720px; margin: 0 auto; }
+    .hs-form-header { text-align: center; margin-bottom: 36px; }
+    .hs-form-header h2 { font-size: 30px; font-weight: 700; color: var(--slate-900); margin-bottom: 10px; letter-spacing: -0.02em; }
+    .hs-form-header p { font-size: 15px; color: var(--slate-500); }
+
+    /* PROGRESS */
+    .hs-progress { height: 5px; background: var(--slate-200); border-radius: 3px; margin-bottom: 14px; overflow: hidden; }
+    .hs-progress-bar { height: 100%; background: linear-gradient(90deg, var(--teal-700), var(--teal-500)); border-radius: 3px; transition: width 0.3s ease; }
+    .hs-step-labels { display: flex; justify-content: space-between; margin-bottom: 28px; gap: 4px; }
+    .hs-step-labels span { font-size: 11px; color: var(--slate-400); font-weight: 500; text-align: center; flex: 1; }
+    @media (min-width: 640px) { .hs-step-labels span { font-size: 12px; } }
+    .hs-step-labels span.active { color: var(--teal-700); font-weight: 600; }
+
+    /* STEPS */
+    .hs-step { display: none; }
+    .hs-step.active { display: block; }
+
+    /* CARDS */
+    .hs-card {
+      background: white; border: 1px solid var(--slate-200); border-radius: 16px;
+      padding: 28px; margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .hs-card-title { font-size: 13px; font-weight: 600; color: var(--slate-900); margin-bottom: 22px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .hs-field-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .hs-field-group:last-child { margin-bottom: 0; }
+    .hs-field-group label { font-size: 12px; font-weight: 500; color: var(--slate-600); }
+    .hs-field-group input, .hs-field-group select, .hs-field-group textarea {
+      padding: 11px 14px; border: 1px solid var(--slate-200); border-radius: 10px;
+      font-size: 14px; outline: none; width: 100%; transition: border-color 0.15s, box-shadow 0.15s;
+      background: white; font-family: inherit; color: var(--slate-900);
+    }
+    .hs-field-group input:focus, .hs-field-group select:focus, .hs-field-group textarea:focus {
+      border-color: var(--teal-600);
+      box-shadow: 0 0 0 3px rgba(13,148,136,0.1);
+    }
+    .hs-field-group textarea { resize: vertical; min-height: 80px; }
+    .hs-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    .hs-field-row .hs-field-group { margin-bottom: 0; }
+
+    /* URL SCRAPE */
+    .hs-url-row { display: flex; gap: 8px; }
+    .hs-url-row input { flex: 1; }
+    .hs-url-row button {
+      padding: 11px 18px; background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: white; border: none; border-radius: 10px; font-size: 13px; font-weight: 600;
+      cursor: pointer; white-space: nowrap; transition: opacity 0.2s;
+    }
+    .hs-url-row button:hover { opacity: 0.9; }
+    .hs-url-row button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .hs-scrape-status { font-size: 12px; margin-top: 8px; }
+    .hs-scrape-status.loading { color: var(--slate-500); }
+    .hs-scrape-status.success { color: var(--teal-700); }
+    .hs-scrape-status.error { color: #ef4444; }
+
+    /* SERVICES */
+    .hs-services-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .hs-service-chip {
+      padding: 7px 16px; border: 1.5px solid var(--slate-200); border-radius: 20px;
+      font-size: 13px; cursor: pointer; transition: all 0.15s;
+      background: white; color: var(--slate-600);
+    }
+    .hs-service-chip:hover { border-color: var(--teal-400); }
+    .hs-service-chip.selected {
+      border-color: var(--teal-600); background: rgba(13,148,136,0.08);
+      color: var(--teal-700); font-weight: 500;
+    }
+
+    /* UPLOAD */
+    .hs-upload-zone {
+      border: 2px dashed var(--slate-200); border-radius: 12px; padding: 22px;
+      text-align: center; cursor: pointer; transition: all 0.2s;
+      font-size: 13px; color: var(--slate-500); margin-bottom: 8px; background: var(--slate-50);
+    }
+    .hs-upload-zone:hover { border-color: var(--teal-600); background: rgba(13,148,136,0.03); }
+    .hs-upload-note { font-size: 11px; color: var(--slate-400); margin-top: 4px; }
+    .hs-photos-preview { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .hs-photos-preview img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid var(--slate-200); }
+
+    /* STYLE GRID */
+    .hs-style-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (min-width: 640px) { .hs-style-grid { grid-template-columns: repeat(4, 1fr); } }
+    .hs-style-card {
+      border: 2px solid var(--slate-200); border-radius: 12px; padding: 14px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .hs-style-card:hover { border-color: var(--teal-400); }
+    .hs-style-card.active { border-color: var(--teal-600); background: rgba(13,148,136,0.05); }
+    .hs-style-preview { height: 52px; border-radius: 8px; margin-bottom: 10px; }
+    .hs-style-modern { background: linear-gradient(135deg, #0f2e2a, #0F766E); }
+    .hs-style-professionell { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+    .hs-style-vanlig { background: linear-gradient(135deg, #065f46, #34d399); }
+    .hs-style-tuff { background: linear-gradient(135deg, #1f2937, #6b7280); }
+    .hs-style-name { font-size: 13px; font-weight: 600; color: var(--slate-900); margin-bottom: 2px; }
+    .hs-style-desc { font-size: 11px; color: var(--slate-500); }
+
+    /* COLORS */
+    .hs-color-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .hs-color-row input[type=color] {
+      width: 44px; height: 44px; border: 1px solid var(--slate-200); border-radius: 10px;
+      cursor: pointer; padding: 2px; background: white;
+    }
+    .hs-color-presets { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hs-color-preset { width: 30px; height: 30px; border-radius: 8px; cursor: pointer; transition: transform 0.15s; border: 1px solid rgba(0,0,0,0.05); }
+    .hs-color-preset:hover { transform: scale(1.15); }
+
+    /* RADIO */
+    .hs-radio-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hs-radio-label {
+      display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--slate-700);
+      cursor: pointer; padding: 10px 14px; border: 1px solid var(--slate-200); border-radius: 10px;
+      flex: 1; min-width: 140px;
+    }
+    .hs-radio-label:has(input:checked) { border-color: var(--teal-600); background: rgba(13,148,136,0.05); }
+
+    /* NAVIGATION */
+    .hs-step-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 8px; }
+    .hs-next-btn {
+      padding: 13px 28px;
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: white; border: none; border-radius: 11px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      box-shadow: 0 8px 18px -5px rgba(13, 148, 136, 0.3);
+      font-family: inherit; transition: transform 0.2s, box-shadow 0.2s;
+      margin-left: auto;
+    }
+    .hs-next-btn:hover { transform: translateY(-1px); box-shadow: 0 12px 22px -5px rgba(13, 148, 136, 0.4); }
+    .hs-back-btn {
+      padding: 12px 20px; background: white; border: 1px solid var(--slate-200);
+      border-radius: 11px; font-size: 14px; color: var(--slate-600); cursor: pointer;
+      font-family: inherit; transition: background 0.15s;
+    }
+    .hs-back-btn:hover { background: var(--slate-100); }
+    .hs-submit-btn {
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: white; border: none; border-radius: 11px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      box-shadow: 0 10px 22px -5px rgba(13, 148, 136, 0.35);
+      font-family: inherit; margin-left: auto;
+    }
+    .hs-submit-btn:hover { opacity: 0.95; }
+    .hs-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* SUMMARY */
+    .hs-summary {
+      background: linear-gradient(135deg, rgba(13,148,136,0.06), rgba(20,184,166,0.03));
+      border: 1px solid rgba(13,148,136,0.25); border-radius: 12px;
+      padding: 18px; margin-top: 20px; font-size: 13px; color: var(--slate-700); line-height: 1.9;
+    }
+    .hs-summary strong { color: var(--slate-900); }
+
+    /* SUCCESS */
+    .hs-success { text-align: center; padding: 60px 24px; background: white; border-radius: 20px; border: 1px solid var(--slate-200); }
+    .hs-success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: white; font-size: 36px; line-height: 72px;
+      margin: 0 auto 20px; font-weight: 700;
+    }
+    .hs-success h2 { font-size: 26px; font-weight: 700; color: var(--slate-900); margin-bottom: 12px; letter-spacing: -0.02em; }
+    .hs-success p { font-size: 15px; color: var(--slate-500); margin-bottom: 8px; }
+    .hs-success-sub { font-size: 13px !important; color: var(--slate-400) !important; }
+    .hs-success-cta {
+      display: inline-block; margin-top: 28px; padding: 13px 28px;
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: white; border-radius: 11px; font-weight: 600; text-decoration: none;
+      box-shadow: 0 8px 18px -5px rgba(13,148,136,0.3);
+    }
+
+    @media (max-width: 640px) {
+      .hs-h1 { font-size: 30px; }
+      .hs-pricing-inner { grid-template-columns: 1fr; }
+      .hs-field-row { grid-template-columns: 1fr; }
+      .hs-url-row { flex-direction: column; }
+      .hs-url-row button { width: 100%; }
+      .hs-card { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ Nav ════ -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="logo">
+          <div class="logo-icon"><img src="/logo.png" alt="Handymate logo"></div>
+          <span class="logo-text">Handymate</span>
+        </a>
+        <div class="nav-links">
+          <div class="nav-dd">
+            <a href="/#features" class="nav-dd-trigger">
+              Funktioner
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+            <div class="nav-dd-menu">
+              <a href="/#feat-phone"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📞</span> AI-telefonsvarare</a>
+              <a href="/#feat-quote"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📄</span> Offert på minuter</a>
+              <a href="/#feat-sms"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">💬</span> SMS-kampanjer</a>
+              <a href="/#feat-pipeline"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📊</span> Lead-pipeline</a>
+              <a href="/#feat-time"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">⏱</span> Tidrapportering</a>
+              <a href="/#feat-invoice"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">💰</span> Fakturering</a>
+              <a href="/offertgenerator"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📋</span> Gratis offertgenerator</a>
+              <a href="/hemsida"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">🌐</span> Hemsida för hantverkare</a>
+            </div>
+          </div>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/demo">Demo</a>
+        </div>
+        <div class="nav-actions">
+          <a href="https://app.handymate.se/login" class="nav-login">Logga in</a>
+          <a href="https://app.handymate.se/signup" class="btn btn-primary">Kom igång</a>
+          <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="mobile-menu">
+        <a href="/#features">Funktioner</a>
+        <a href="/#pricing">Priser</a>
+        <a href="/jamfor">Jämför</a>
+        <a href="/demo">Demo</a>
+        <a href="/offertgenerator">Gratis offertgenerator</a>
+        <a href="/hemsida">Hemsida för hantverkare</a>
+        <a href="https://app.handymate.se/login">Logga in</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════ Hero ════ -->
+  <section class="hs-hero">
+    <div class="hs-hero-inner">
+      <div class="hs-label">För hantverkare</div>
+      <h1 class="hs-h1">Din professionella hemsida<br>— klar på 24 timmar</h1>
+      <p class="hs-sub">
+        Vi bygger en hemsida som representerar ditt företag professionellt
+        och kopplar automatiskt dina leads direkt till Handymate.
+        Inga tekniska kunskaper krävs.
+      </p>
+      <div class="hs-hero-pills">
+        <span>✓ Klar på 24-48h</span>
+        <span>✓ Leads direkt i Handymate</span>
+        <span>✓ Ingen bindningstid</span>
+        <span>✓ Ingår i Handymate Pro</span>
+      </div>
+      <a href="#bestall" class="hs-hero-btn">Beställ din hemsida →</a>
+    </div>
+  </section>
+
+  <!-- ════ Pricing ════ -->
+  <section class="hs-pricing">
+    <div class="hs-pricing-inner">
+      <div class="hs-price-card hs-price-featured">
+        <div class="hs-price-badge">Handymate Pro-kunder</div>
+        <div class="hs-price-amount">Gratis</div>
+        <div class="hs-price-sub">Ingår i din prenumeration</div>
+        <div class="hs-price-note">+ 299 kr/mån hosting</div>
+      </div>
+      <div class="hs-price-card">
+        <div class="hs-price-badge">Utan Handymate</div>
+        <div class="hs-price-amount">4 995 kr</div>
+        <div class="hs-price-sub">Engångsavgift</div>
+        <div class="hs-price-note">+ 299 kr/mån hosting</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ Form ════ -->
+  <section class="hs-form-section" id="bestall">
+    <div class="hs-form-inner">
+      <div class="hs-form-header">
+        <h2>Beställ din hemsida</h2>
+        <p>Fyll i formuläret nedan — vi återkommer inom 2 timmar</p>
+      </div>
+
+      <div class="hs-progress">
+        <div class="hs-progress-bar" id="progress-bar" style="width:20%"></div>
+      </div>
+      <div class="hs-step-labels">
+        <span class="active">Företaget</span>
+        <span>Tjänster</span>
+        <span>Innehåll</span>
+        <span>Design</span>
+        <span>Kontakt</span>
+      </div>
+
+      <form id="hs-form">
+
+        <!-- STEG 1 — Företaget -->
+        <div class="hs-step active" data-step="1">
+          <div class="hs-card">
+            <div class="hs-card-title">Ditt företag</div>
+
+            <div class="hs-field-group">
+              <label>Har du en befintlig hemsida? (valfritt)</label>
+              <div class="hs-url-row">
+                <input type="url" id="existing_url" placeholder="https://dittforetag.se"/>
+                <button type="button" id="scrape-btn" onclick="scrapeUrl()">
+                  Hämta info automatiskt →
+                </button>
+              </div>
+              <div id="scrape-status" class="hs-scrape-status"></div>
+            </div>
+
+            <div class="hs-field-row">
+              <div class="hs-field-group">
+                <label>Företagsnamn *</label>
+                <input type="text" id="company_name" placeholder="Bee Service AB" required/>
+              </div>
+              <div class="hs-field-group">
+                <label>Org-nummer</label>
+                <input type="text" id="org_number" placeholder="556789-1234"/>
+              </div>
+            </div>
+
+            <div class="hs-field-row">
+              <div class="hs-field-group">
+                <label>Bransch *</label>
+                <select id="industry" required>
+                  <option value="">Välj bransch</option>
+                  <option value="elektriker">Elektriker</option>
+                  <option value="rormokar">Rörmokare / VVS</option>
+                  <option value="malare">Målare</option>
+                  <option value="byggare">Byggare / Snickare</option>
+                  <option value="städ">Städ</option>
+                  <option value="sanering">Sanering</option>
+                  <option value="tak">Takläggare</option>
+                  <option value="plattsattare">Plattsättare</option>
+                  <option value="annat">Annat</option>
+                </select>
+              </div>
+              <div class="hs-field-group">
+                <label>Stad / Område *</label>
+                <input type="text" id="city" placeholder="Stockholm" required/>
+              </div>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Är du redan Handymate-kund?</label>
+              <div class="hs-radio-row">
+                <label class="hs-radio-label">
+                  <input type="radio" name="handymate_customer" value="true"/>
+                  Ja — hemsidan ingår gratis
+                </label>
+                <label class="hs-radio-label">
+                  <input type="radio" name="handymate_customer" value="false" checked/>
+                  Nej — 4 995 kr engång
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="hs-step-nav">
+            <button type="button" class="hs-next-btn" onclick="nextStep()">Nästa →</button>
+          </div>
+        </div>
+
+        <!-- STEG 2 — Tjänster -->
+        <div class="hs-step" data-step="2">
+          <div class="hs-card">
+            <div class="hs-card-title">Tjänster och erbjudande</div>
+
+            <div class="hs-field-group">
+              <label>Vilka tjänster erbjuder du? *</label>
+              <div class="hs-services-grid" id="services-grid"></div>
+              <input type="text" id="services-custom" placeholder="Lägg till egen tjänst + Enter"/>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Vad är du bäst på? Din USP</label>
+              <input type="text" id="usp" placeholder="T.ex. Alltid fasta priser, jouravtal dygnet runt"/>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Kort om företaget</label>
+              <textarea id="about" rows="3"
+                placeholder="T.ex. Vi är ett familjeföretag med 15 års erfarenhet i Stockholm..."></textarea>
+            </div>
+          </div>
+          <div class="hs-step-nav">
+            <button type="button" class="hs-back-btn" onclick="prevStep()">← Tillbaka</button>
+            <button type="button" class="hs-next-btn" onclick="nextStep()">Nästa →</button>
+          </div>
+        </div>
+
+        <!-- STEG 3 — Innehåll -->
+        <div class="hs-step" data-step="3">
+          <div class="hs-card">
+            <div class="hs-card-title">Bilder och innehåll</div>
+
+            <div class="hs-field-group">
+              <label>Logotyp (valfritt)</label>
+              <div class="hs-upload-zone" onclick="document.getElementById('logo-upload').click()">
+                <div id="logo-placeholder">↑ Klicka för att ladda upp logotyp</div>
+                <img id="logo-preview" style="display:none;max-height:60px"/>
+              </div>
+              <input type="file" id="logo-upload" accept="image/*" style="display:none"
+                onchange="handleLogoUpload(this)"/>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Projektfoton (valfritt, max 5)</label>
+              <div class="hs-upload-zone" onclick="document.getElementById('photos-upload').click()">
+                <div>↑ Ladda upp bilder på ditt arbete</div>
+                <div class="hs-upload-note">JPG, PNG — max 5 bilder</div>
+              </div>
+              <input type="file" id="photos-upload" accept="image/*" multiple style="display:none"
+                onchange="handlePhotosUpload(this)"/>
+              <div id="photos-preview" class="hs-photos-preview"></div>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Öppettider</label>
+              <input type="text" id="opening_hours"
+                placeholder="T.ex. Mån-fre 07-17, jour dygnet runt"/>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Recensioner att lyfta fram (valfritt)</label>
+              <textarea id="reviews" rows="3"
+                placeholder="Klistra in 1-3 recensioner från Google eller Hittahem..."></textarea>
+            </div>
+          </div>
+          <div class="hs-step-nav">
+            <button type="button" class="hs-back-btn" onclick="prevStep()">← Tillbaka</button>
+            <button type="button" class="hs-next-btn" onclick="nextStep()">Nästa →</button>
+          </div>
+        </div>
+
+        <!-- STEG 4 — Design -->
+        <div class="hs-step" data-step="4">
+          <div class="hs-card">
+            <div class="hs-card-title">Känsla och design</div>
+
+            <div class="hs-field-group">
+              <label>Vilken känsla vill du ha?</label>
+              <div class="hs-style-grid">
+                <div class="hs-style-card" data-style="modern" onclick="selectStyle(this)">
+                  <div class="hs-style-preview hs-style-modern"></div>
+                  <div class="hs-style-name">Modern</div>
+                  <div class="hs-style-desc">Ren, tech-känsla</div>
+                </div>
+                <div class="hs-style-card" data-style="professionell" onclick="selectStyle(this)">
+                  <div class="hs-style-preview hs-style-professionell"></div>
+                  <div class="hs-style-name">Professionell</div>
+                  <div class="hs-style-desc">Seriös, förtroendeingivande</div>
+                </div>
+                <div class="hs-style-card active" data-style="vanlig" onclick="selectStyle(this)">
+                  <div class="hs-style-preview hs-style-vanlig"></div>
+                  <div class="hs-style-name">Vänlig</div>
+                  <div class="hs-style-desc">Varm, tillgänglig</div>
+                </div>
+                <div class="hs-style-card" data-style="tuff" onclick="selectStyle(this)">
+                  <div class="hs-style-preview hs-style-tuff"></div>
+                  <div class="hs-style-name">Tuff</div>
+                  <div class="hs-style-desc">Stark, maskulin</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Primärfärg</label>
+              <div class="hs-color-row">
+                <input type="color" id="primary_color" value="#0F766E"/>
+                <div class="hs-color-presets">
+                  <div class="hs-color-preset" style="background:#0F766E" onclick="setColor('#0F766E')"></div>
+                  <div class="hs-color-preset" style="background:#1D4ED8" onclick="setColor('#1D4ED8')"></div>
+                  <div class="hs-color-preset" style="background:#DC2626" onclick="setColor('#DC2626')"></div>
+                  <div class="hs-color-preset" style="background:#D97706" onclick="setColor('#D97706')"></div>
+                  <div class="hs-color-preset" style="background:#0f2e2a" onclick="setColor('#0f2e2a')"></div>
+                  <div class="hs-color-preset" style="background:#374151" onclick="setColor('#374151')"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Referenssidor du gillar (valfritt)</label>
+              <input type="text" id="reference_urls"
+                placeholder="T.ex. https://example.se — ange gärna vad du gillar"/>
+            </div>
+          </div>
+          <div class="hs-step-nav">
+            <button type="button" class="hs-back-btn" onclick="prevStep()">← Tillbaka</button>
+            <button type="button" class="hs-next-btn" onclick="nextStep()">Nästa →</button>
+          </div>
+        </div>
+
+        <!-- STEG 5 — Kontakt -->
+        <div class="hs-step" data-step="5">
+          <div class="hs-card">
+            <div class="hs-card-title">Din kontaktinformation</div>
+
+            <div class="hs-field-row">
+              <div class="hs-field-group">
+                <label>Ditt namn *</label>
+                <input type="text" id="contact_name" placeholder="Christoffer Thanger" required/>
+              </div>
+              <div class="hs-field-group">
+                <label>Din telefon *</label>
+                <input type="tel" id="contact_phone" placeholder="070-123 45 67" required/>
+              </div>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Din mailadress *</label>
+              <input type="email" id="contact_email" placeholder="christoffer@beeservice.se" required/>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Telefon på hemsidan (kan skilja från ovan)</label>
+              <input type="tel" id="phone" placeholder="070-123 45 67"/>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Mail på hemsidan</label>
+              <input type="email" id="email" placeholder="info@beeservice.se"/>
+            </div>
+
+            <div class="hs-field-group">
+              <label>Övriga önskemål</label>
+              <textarea id="notes" rows="3"
+                placeholder="Något speciellt du vill ha med? Frågor?"></textarea>
+            </div>
+
+            <div class="hs-summary" id="order-summary"></div>
+          </div>
+
+          <div class="hs-step-nav">
+            <button type="button" class="hs-back-btn" onclick="prevStep()">← Tillbaka</button>
+            <button type="submit" class="hs-submit-btn" id="submit-btn">
+              Skicka beställning →
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- Tack-meddelande -->
+      <div class="hs-success" id="hs-success" style="display:none">
+        <div class="hs-success-icon">✓</div>
+        <h2>Tack för din beställning!</h2>
+        <p>Vi återkommer inom 2 timmar med en bekräftelse och nästa steg.</p>
+        <p class="hs-success-sub">Kolla din mail: <span id="success-email"></span></p>
+        <a href="https://app.handymate.se/onboarding" class="hs-success-cta">
+          Kom igång med Handymate gratis →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════ Footer ════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><img src="/logo.png" alt="Handymate logo"></div>
+            <span class="footer-logo-text">Handymate</span>
+          </div>
+          <p class="footer-brand-text">AI-administratör för hantverkare. Svarar på samtal, skriver offerter, följer upp kunder — du fokuserar på hantverket.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Produkt</div>
+          <a href="/#features">Funktioner</a>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/#feat-sms">SMS-kampanjer</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Verktyg</div>
+          <a href="/offertgenerator">Offertgenerator</a>
+          <a href="/rot-kalkylator">ROT-kalkylator</a>
+          <a href="/hemsida">Beställ hemsida</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Företag</div>
+          <a href="mailto:hej@handymate.se">Kontakt</a>
+          <a href="/integritet">Integritet & Villkor</a>
+          <a href="/partners">Bli partner</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2025 Handymate</div>
+        <div class="footer-contact">Frågor? <a href="mailto:hej@handymate.se">hej@handymate.se</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════ Scripts ════ -->
+  <script>
+    let currentStep = 1
+    let selectedServices = []
+    let selectedStyle = 'vanlig'
+    let logoBase64 = null
+    let photosBase64 = []
+    let scrapedData = {}
+
+    const SERVICES_BY_INDUSTRY = {
+      elektriker: ['Elinstallation', 'Felsökning', 'Säkringsskåp', 'Utryckning', 'Belysning', 'Laddbox'],
+      rormokar: ['Rörinstallation', 'Avloppsspolning', 'Värmepump', 'Utryckning', 'Badrumsrenovering', 'VVS-service'],
+      malare: ['Innermålning', 'Yttermålning', 'Tapetsering', 'Spartling', 'Fasadrenovering'],
+      byggare: ['Renovering', 'Nybyggnation', 'Tillbyggnad', 'Köksrenovering', 'Badrumsrenovering', 'ROT-arbeten'],
+      'städ': ['Hemstädning', 'Kontorsstädning', 'Flyttstädning', 'Storstädning', 'Fönsterputs'],
+      sanering: ['Vattenskada', 'Brandskada', 'Mögelbehandling', 'Skadedjur', 'Fuktutredning'],
+      tak: ['Takomläggning', 'Takreparation', 'Takrännor', 'Plåtarbeten'],
+      plattsattare: ['Kakel', 'Klinker', 'Badrum', 'Kök', 'Utomhus'],
+      annat: ['Konsultation', 'Projekt', 'Service', 'Reparation']
+    }
+
+    function updateProgress() {
+      const pct = (currentStep / 5) * 100
+      document.getElementById('progress-bar').style.width = pct + '%'
+      document.querySelectorAll('.hs-step-labels span').forEach((el, i) => {
+        el.classList.toggle('active', i < currentStep)
+      })
+    }
+
+    function nextStep() {
+      const step = document.querySelector('.hs-step[data-step="' + currentStep + '"]')
+      const required = step.querySelectorAll('[required]')
+      let valid = true
+      required.forEach(el => {
+        if (!el.value.trim()) { el.style.borderColor = '#ef4444'; valid = false }
+        else el.style.borderColor = ''
+      })
+      if (!valid) return
+
+      document.querySelector('.hs-step[data-step="' + currentStep + '"]').classList.remove('active')
+      currentStep++
+      document.querySelector('.hs-step[data-step="' + currentStep + '"]').classList.add('active')
+      updateProgress()
+
+      if (currentStep === 2) renderServices()
+      if (currentStep === 5) renderSummary()
+
+      window.scrollTo({ top: document.getElementById('bestall').offsetTop - 20, behavior: 'smooth' })
+    }
+
+    function prevStep() {
+      document.querySelector('.hs-step[data-step="' + currentStep + '"]').classList.remove('active')
+      currentStep--
+      document.querySelector('.hs-step[data-step="' + currentStep + '"]').classList.add('active')
+      updateProgress()
+      window.scrollTo({ top: document.getElementById('bestall').offsetTop - 20, behavior: 'smooth' })
+    }
+
+    function renderServices() {
+      const industry = document.getElementById('industry').value || 'annat'
+      const services = SERVICES_BY_INDUSTRY[industry] || SERVICES_BY_INDUSTRY.annat
+      const grid = document.getElementById('services-grid')
+      const scrapedServices = Array.isArray(scrapedData.services) ? scrapedData.services : []
+      const merged = Array.from(new Set([...services, ...scrapedServices]))
+      grid.innerHTML = merged.map(s => {
+        const sEsc = s.replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+        const sel = selectedServices.includes(s) ? 'selected' : ''
+        return '<div class="hs-service-chip ' + sel + '" onclick="toggleService(this, \'' + sEsc.replace(/'/g, "\\'") + '\')">' + s + '</div>'
+      }).join('')
+    }
+
+    function toggleService(el, service) {
+      el.classList.toggle('selected')
+      if (selectedServices.includes(service)) {
+        selectedServices = selectedServices.filter(s => s !== service)
+      } else {
+        selectedServices.push(service)
+      }
+    }
+
+    function selectStyle(el) {
+      document.querySelectorAll('.hs-style-card').forEach(c => c.classList.remove('active'))
+      el.classList.add('active')
+      selectedStyle = el.dataset.style
+    }
+
+    function setColor(hex) {
+      document.getElementById('primary_color').value = hex
+    }
+
+    function handleLogoUpload(input) {
+      const file = input.files[0]
+      if (!file) return
+      const reader = new FileReader()
+      reader.onload = e => {
+        logoBase64 = e.target.result
+        document.getElementById('logo-preview').src = logoBase64
+        document.getElementById('logo-preview').style.display = 'block'
+        document.getElementById('logo-placeholder').style.display = 'none'
+      }
+      reader.readAsDataURL(file)
+    }
+
+    function handlePhotosUpload(input) {
+      const files = Array.from(input.files).slice(0, 5)
+      const preview = document.getElementById('photos-preview')
+      preview.innerHTML = ''
+      photosBase64 = []
+      files.forEach(file => {
+        const reader = new FileReader()
+        reader.onload = e => {
+          photosBase64.push(e.target.result)
+          const img = document.createElement('img')
+          img.src = e.target.result
+          preview.appendChild(img)
+        }
+        reader.readAsDataURL(file)
+      })
+    }
+
+    async function scrapeUrl() {
+      const url = document.getElementById('existing_url').value.trim()
+      if (!url) return
+
+      const status = document.getElementById('scrape-status')
+      const btn = document.getElementById('scrape-btn')
+
+      status.className = 'hs-scrape-status loading'
+      status.textContent = 'Hämtar information från din hemsida...'
+      btn.disabled = true
+
+      try {
+        const res = await fetch('/api/hemsida-scrape', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        })
+        const payload = await res.json()
+        const { success, data, error } = payload
+
+        if (success && data) {
+          scrapedData = data
+          if (data.company_name) document.getElementById('company_name').value = data.company_name
+          if (data.city) document.getElementById('city').value = data.city
+          if (data.phone) document.getElementById('phone').value = data.phone
+          if (data.email) document.getElementById('email').value = data.email
+          if (data.org_number) document.getElementById('org_number').value = data.org_number
+          if (data.description) document.getElementById('about').value = data.description
+          if (data.tagline && !document.getElementById('usp').value) {
+            document.getElementById('usp').value = data.tagline
+          }
+          if (data.tone && ['modern','professionell','vanlig','tuff'].includes(data.tone === 'vänlig' ? 'vanlig' : data.tone)) {
+            const tone = data.tone === 'vänlig' ? 'vanlig' : data.tone
+            const card = document.querySelector('.hs-style-card[data-style="' + tone + '"]')
+            if (card) selectStyle(card)
+          }
+          if (Array.isArray(data.brand_colors) && data.brand_colors[0] && /^#[0-9a-f]{6}$/i.test(data.brand_colors[0])) {
+            setColor(data.brand_colors[0])
+          }
+
+          status.className = 'hs-scrape-status success'
+          status.textContent = '✓ Information hämtad — granska och komplettera nedan'
+        } else {
+          status.className = 'hs-scrape-status error'
+          status.textContent = error || 'Kunde inte läsa sidan — fyll i manuellt'
+        }
+      } catch {
+        status.className = 'hs-scrape-status error'
+        status.textContent = 'Något gick fel — fyll i manuellt'
+      }
+
+      btn.disabled = false
+    }
+
+    function renderSummary() {
+      const summary = document.getElementById('order-summary')
+      const isHandymate = document.querySelector('[name="handymate_customer"]:checked')?.value === 'true'
+      const industry = document.getElementById('industry').value || '—'
+      const company = document.getElementById('company_name').value || '—'
+
+      summary.innerHTML =
+        '<strong>Sammanfattning:</strong><br>' +
+        company + ' — ' + industry + '<br>' +
+        'Tjänster: ' + (selectedServices.join(', ') || 'Ej valt') + '<br>' +
+        'Stil: ' + selectedStyle + '<br>' +
+        'Pris: ' + (isHandymate ? 'Gratis (ingår i Handymate Pro) + 299 kr/mån hosting' : '4 995 kr + 299 kr/mån hosting')
+    }
+
+    document.getElementById('hs-form').addEventListener('submit', async e => {
+      e.preventDefault()
+
+      const btn = document.getElementById('submit-btn')
+      btn.textContent = 'Skickar...'
+      btn.disabled = true
+
+      const isHandymate = document.querySelector('[name="handymate_customer"]:checked')?.value === 'true'
+
+      const data = {
+        company_name: document.getElementById('company_name').value,
+        org_number: document.getElementById('org_number').value,
+        industry: document.getElementById('industry').value,
+        city: document.getElementById('city').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        existing_url: document.getElementById('existing_url').value,
+        services: selectedServices,
+        usp: document.getElementById('usp').value,
+        about: document.getElementById('about').value,
+        style: selectedStyle,
+        primary_color: document.getElementById('primary_color').value,
+        contact_name: document.getElementById('contact_name').value,
+        contact_phone: document.getElementById('contact_phone').value,
+        contact_email: document.getElementById('contact_email').value,
+        opening_hours: document.getElementById('opening_hours').value,
+        handymate_customer: isHandymate,
+        scraped_data: scrapedData,
+      }
+
+      try {
+        const res = await fetch('/api/hemsida-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+
+        if (res.ok) {
+          document.getElementById('hs-form').style.display = 'none'
+          document.getElementById('hs-success').style.display = 'block'
+          document.getElementById('success-email').textContent = data.contact_email
+          window.scrollTo({ top: document.getElementById('bestall').offsetTop - 20, behavior: 'smooth' })
+        } else {
+          btn.textContent = 'Något gick fel — försök igen'
+          btn.disabled = false
+        }
+      } catch {
+        btn.textContent = 'Något gick fel — försök igen'
+        btn.disabled = false
+      }
+    })
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const customInput = document.getElementById('services-custom')
+      if (customInput) {
+        customInput.addEventListener('keypress', e => {
+          if (e.key === 'Enter') {
+            e.preventDefault()
+            const val = customInput.value.trim()
+            if (val && !selectedServices.includes(val)) {
+              selectedServices.push(val)
+              const grid = document.getElementById('services-grid')
+              const chip = document.createElement('div')
+              chip.className = 'hs-service-chip selected'
+              chip.textContent = val
+              chip.onclick = () => toggleService(chip, val)
+              grid.appendChild(chip)
+              customInput.value = ''
+            }
+          }
+        })
+      }
+    })
+  </script>
+
+</body>
+</html>

@@ -14,7 +14,10 @@ export default async function handler(req, res) {
 
   const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
   const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY
-  const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY
+  const RESEND_API_KEY = process.env.RESEND_API_KEY
+  const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'andreashogberg93@gmail.com'
+
+  const servicesList = Array.isArray(services) ? services : (services ? [services] : [])
 
   try {
     if (SUPABASE_URL && SUPABASE_KEY) {
@@ -34,7 +37,7 @@ export default async function handler(req, res) {
           phone,
           email,
           existing_url,
-          services: Array.isArray(services) ? services : (services ? [services] : []),
+          services: servicesList,
           usp,
           about,
           style,
@@ -53,18 +56,55 @@ export default async function handler(req, res) {
   } catch { /* non-blocking */ }
 
   try {
-    if (ANTHROPIC_API_KEY) {
-      await fetch('https://api.anthropic.com/v1/messages', {
+    if (RESEND_API_KEY) {
+      const emailBody =
+`Ny hemsidebeställning inkommen!
+
+Företag: ${company_name || '—'} (${industry || '—'})
+Stad: ${city || '—'}
+Kontakt: ${contact_name || '—'}, ${contact_phone || '—'}, ${contact_email || '—'}
+Handymate-kund: ${handymate_customer ? 'Ja' : 'Nej'}
+Befintlig sajt: ${existing_url || 'Ingen'}
+
+---
+CLAUDE DESIGN PROMPT — kopiera och klistra in direkt:
+
+Bygg en professionell hemsida för ett hantverksföretag.
+
+Företag: ${company_name || ''}
+Bransch: ${industry || ''}
+Stad: ${city || ''}
+Primärfärg: ${primary_color || ''}
+Stil: ${style || ''}
+Tjänster: ${servicesList.join(', ')}
+USP: ${usp || ''}
+Om företaget: ${about || ''}
+Öppettider: ${opening_hours || ''}
+
+Kontakt på hemsidan:
+Telefon: ${phone || ''}
+Mail: ${email || ''}
+
+Skapa en komplett hemsida med hero-sektion med företagsnamn
+och USP, tjänster-sektion med kort beskrivning av varje tjänst,
+om-oss-sektion, kontaktformulär och footer med kontaktinfo.
+Professionell känsla anpassad för hantverksbranschen.
+Använd ${primary_color || '(primärfärg)'} som primärfärg genomgående.
+---
+`
+
+      await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': ANTHROPIC_API_KEY,
-          'anthropic-version': '2023-06-01',
+          'Authorization': `Bearer ${RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 100,
-          messages: [{ role: 'user', content: 'ping' }],
+          from: 'Handymate <noreply@handymate.se>',
+          to: ADMIN_EMAIL,
+          reply_to: contact_email || undefined,
+          subject: `Ny hemsidebeställning — ${company_name || 'Okänt företag'}`,
+          text: emailBody,
         }),
       })
     }

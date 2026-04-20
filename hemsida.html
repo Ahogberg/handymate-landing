@@ -251,21 +251,74 @@
     .hs-photos-preview img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid var(--slate-200); }
 
     /* STYLE GRID */
-    .hs-style-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .hs-style-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     @media (min-width: 640px) { .hs-style-grid { grid-template-columns: repeat(4, 1fr); } }
     .hs-style-card {
-      border: 2px solid var(--slate-200); border-radius: 12px; padding: 14px;
+      border: 2px solid var(--slate-200); border-radius: 14px; padding: 14px;
       cursor: pointer; transition: all 0.2s;
     }
-    .hs-style-card:hover { border-color: var(--teal-400); }
+    .hs-style-card:hover { border-color: var(--teal-400); transform: translateY(-2px); }
     .hs-style-card.active { border-color: var(--teal-600); background: rgba(13,148,136,0.05); }
-    .hs-style-preview { height: 52px; border-radius: 8px; margin-bottom: 10px; }
-    .hs-style-modern { background: linear-gradient(135deg, #0f2e2a, #0F766E); }
-    .hs-style-professionell { background: linear-gradient(135deg, #1e40af, #3b82f6); }
-    .hs-style-vanlig { background: linear-gradient(135deg, #065f46, #34d399); }
-    .hs-style-tuff { background: linear-gradient(135deg, #1f2937, #6b7280); }
-    .hs-style-name { font-size: 13px; font-weight: 600; color: var(--slate-900); margin-bottom: 2px; }
-    .hs-style-desc { font-size: 11px; color: var(--slate-500); }
+
+    /* Stil-preview: en liten "hemsida" som representerar känslan */
+    .hs-style-preview {
+      position: relative; aspect-ratio: 4/3; border-radius: 8px;
+      overflow: hidden; margin-bottom: 12px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+    }
+    .hs-style-preview::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 14%;
+      background: rgba(255,255,255,0.08); border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* Modern: mörk, tech, sharp typografi */
+    .hs-style-modern { background: #0f2e2a; }
+    .hs-style-modern::before { background: rgba(255,255,255,0.05); border-bottom-color: rgba(255,255,255,0.08); }
+    .hs-style-modern::after {
+      content: ''; position: absolute; left: 12%; right: 12%; top: 38%;
+      height: 12%; background: white; border-radius: 2px;
+      box-shadow: 0 22px 0 -2px #14b8a6, 0 40px 0 -4px rgba(255,255,255,0.4);
+    }
+
+    /* Professionell: ljus, strukturerad, klassisk */
+    .hs-style-professionell { background: #f8fafc; }
+    .hs-style-professionell::before { background: #1e3a8a; border-bottom: none; }
+    .hs-style-professionell::after {
+      content: ''; position: absolute; left: 14%; right: 14%; top: 32%;
+      height: 10%; background: #1e293b; border-radius: 2px;
+      box-shadow:
+        0 18px 0 -2px #cbd5e1,
+        0 32px 0 -2px #1e3a8a,
+        -24% 50px 0 -2px #e2e8f0,
+        24% 50px 0 -2px #e2e8f0;
+    }
+
+    /* Vänlig: varm, rundad, mjuk */
+    .hs-style-vanlig { background: #fef3c7; }
+    .hs-style-vanlig::before { background: #fef9e7; border-bottom-color: #fde68a; }
+    .hs-style-vanlig::after {
+      content: ''; position: absolute; left: 50%; top: 40%;
+      width: 28%; height: 28%; transform: translateX(-50%);
+      background: #10b981; border-radius: 50%;
+      box-shadow:
+        -110% 0 0 -4px #34d399,
+        110% 0 0 -4px #34d399;
+    }
+
+    /* Tuff: mörk, bold, industriell */
+    .hs-style-tuff { background: #18181b; }
+    .hs-style-tuff::before { background: #27272a; border-bottom-color: #f97316; border-bottom-width: 2px; }
+    .hs-style-tuff::after {
+      content: ''; position: absolute; left: 10%; top: 34%;
+      width: 45%; height: 10%; background: #f97316;
+      box-shadow:
+        0 18px 0 0 #fff,
+        0 32px 0 -3px #71717a;
+      clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+    }
+
+    .hs-style-name { font-size: 13px; font-weight: 600; color: var(--slate-900); margin-bottom: 3px; }
+    .hs-style-desc { font-size: 11px; color: var(--slate-500); line-height: 1.45; }
 
     /* COLORS */
     .hs-color-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
@@ -480,7 +533,7 @@
             <div class="hs-field-row">
               <div class="hs-field-group">
                 <label>Företagsnamn *</label>
-                <input type="text" id="company_name" placeholder="Bee Service AB" required/>
+                <input type="text" id="company_name" placeholder="Ditt företag AB" required/>
               </div>
               <div class="hs-field-group">
                 <label>Org-nummer</label>
@@ -607,27 +660,27 @@
             <div class="hs-card-title">Känsla och design</div>
 
             <div class="hs-field-group">
-              <label>Vilken känsla vill du ha?</label>
+              <label>Vilken känsla vill du ha? <span style="color:var(--slate-400);font-weight:400">— du kan alltid byta efteråt</span></label>
               <div class="hs-style-grid">
                 <div class="hs-style-card" data-style="modern" onclick="selectStyle(this)">
                   <div class="hs-style-preview hs-style-modern"></div>
                   <div class="hs-style-name">Modern</div>
-                  <div class="hs-style-desc">Ren, tech-känsla</div>
+                  <div class="hs-style-desc">Mörk, minimalistisk, tech-känsla — för dig som vill sticka ut</div>
                 </div>
                 <div class="hs-style-card" data-style="professionell" onclick="selectStyle(this)">
                   <div class="hs-style-preview hs-style-professionell"></div>
                   <div class="hs-style-name">Professionell</div>
-                  <div class="hs-style-desc">Seriös, förtroendeingivande</div>
+                  <div class="hs-style-desc">Klassisk, städad, förtroendeingivande — funkar för alla kundgrupper</div>
                 </div>
                 <div class="hs-style-card active" data-style="vanlig" onclick="selectStyle(this)">
                   <div class="hs-style-preview hs-style-vanlig"></div>
                   <div class="hs-style-name">Vänlig</div>
-                  <div class="hs-style-desc">Varm, tillgänglig</div>
+                  <div class="hs-style-desc">Varm, inbjudande — passar lokala familjeföretag och privatkunder</div>
                 </div>
                 <div class="hs-style-card" data-style="tuff" onclick="selectStyle(this)">
                   <div class="hs-style-preview hs-style-tuff"></div>
                   <div class="hs-style-name">Tuff</div>
-                  <div class="hs-style-desc">Stark, maskulin</div>
+                  <div class="hs-style-desc">Stark, industriell — passar bygg, rivning och tyngre hantverk</div>
                 </div>
               </div>
             </div>
@@ -667,7 +720,7 @@
             <div class="hs-field-row">
               <div class="hs-field-group">
                 <label>Ditt namn *</label>
-                <input type="text" id="contact_name" placeholder="Christoffer Thanger" required/>
+                <input type="text" id="contact_name" placeholder="För- och efternamn" required/>
               </div>
               <div class="hs-field-group">
                 <label>Din telefon *</label>
@@ -677,7 +730,7 @@
 
             <div class="hs-field-group">
               <label>Din mailadress *</label>
-              <input type="email" id="contact_email" placeholder="christoffer@beeservice.se" required/>
+              <input type="email" id="contact_email" placeholder="namn@dittforetag.se" required/>
             </div>
 
             <div class="hs-field-group">
@@ -687,7 +740,7 @@
 
             <div class="hs-field-group">
               <label>Mail på hemsidan</label>
-              <input type="email" id="email" placeholder="info@beeservice.se"/>
+              <input type="email" id="email" placeholder="info@dittforetag.se"/>
             </div>
 
             <div class="hs-field-group">

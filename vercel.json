@@ -10,6 +10,18 @@
       "use": "@vercel/static"
     },
     {
+      "src": "*.txt",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.xml",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "img/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "api/**/*.js",
       "use": "@vercel/node"
     }
@@ -18,6 +30,18 @@
     {
       "src": "/api/(.*)",
       "dest": "/api/$1"
+    },
+    {
+      "src": "/img/(.*)",
+      "dest": "/img/$1"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
     },
     {
       "src": "/demo",
@@ -51,6 +75,34 @@
     {
       "src": "/integritet",
       "dest": "/integritet.html"
+    },
+    {
+      "src": "/ai-team",
+      "dest": "/ai-team.html"
+    },
+    {
+      "src": "/lisa",
+      "dest": "/lisa.html"
+    },
+    {
+      "src": "/karin",
+      "dest": "/karin.html"
+    },
+    {
+      "src": "/daniel",
+      "dest": "/daniel.html"
+    },
+    {
+      "src": "/hanna",
+      "dest": "/hanna.html"
+    },
+    {
+      "src": "/lars",
+      "dest": "/lars.html"
+    },
+    {
+      "src": "/matte",
+      "dest": "/matte.html"
     },
     {
       "src": "/",

@@ -89,8 +89,9 @@
     .hub-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 32px 0 40px; }
     @media (min-width: 640px) { .hub-grid { grid-template-columns: repeat(2,1fr); } }
     @media (min-width: 1024px) { .hub-grid { grid-template-columns: repeat(3,1fr); } }
-    .hub-card { display: block; background: white; border: 1px solid var(--slate-200); border-radius: 16px; padding: 24px; transition: border-color .2s, transform .2s, box-shadow .2s; }
+    .hub-card { display: flex; align-items: flex-start; gap: 16px; background: white; border: 1px solid var(--slate-200); border-radius: 16px; padding: 24px; transition: border-color .2s, transform .2s, box-shadow .2s; }
     .hub-card:hover { border-color: var(--teal-400); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(15,118,110,0.1); }
+    .hub-card .hc-avatar { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--teal-400); flex-shrink: 0; }
     .hub-card .hc-name { font-size: 18px; font-weight: 700; color: var(--slate-900); margin-bottom: 2px; }
     .hub-card .hc-role { font-size: 12px; font-weight: 600; color: var(--teal-600); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; }
     .hub-card .hc-desc { font-size: 14px; color: var(--slate-500); line-height: 1.6; }
@@ -176,34 +177,52 @@
         <p>Sex specialister, var och en med sitt eget ansvarsområde.</p>
         <div class="hub-grid">
           <a class="hub-card" href="/lisa">
-            <div class="hc-name">Lisa</div>
-            <div class="hc-role">Kundservice</div>
-            <div class="hc-desc">Ser till att inga samtal går förlorade — fångar det som händer runt telefonen.</div>
+            <img class="hc-avatar" src="/img/lisa.webp" width="64" height="64" alt="Lisa, Handymates AI-kundservice som fångar missade samtal och skickar SMS till kunden" loading="lazy">
+            <div>
+              <div class="hc-name">Lisa</div>
+              <div class="hc-role">Kundservice</div>
+              <div class="hc-desc">Ser till att inga samtal går förlorade — fångar det som händer runt telefonen.</div>
+            </div>
           </a>
           <a class="hub-card" href="/karin">
-            <div class="hc-name">Karin</div>
-            <div class="hc-role">Ekonom</div>
-            <div class="hc-desc">Ser till att pengarna kommer in — fakturapåminnelser och ROT-avdrag.</div>
+            <img class="hc-avatar" src="/img/karin.webp" width="64" height="64" alt="Karin, Handymates AI-ekonom som håller koll på fakturor och ROT-avdrag" loading="lazy">
+            <div>
+              <div class="hc-name">Karin</div>
+              <div class="hc-role">Ekonom</div>
+              <div class="hc-desc">Ser till att pengarna kommer in — fakturapåminnelser och ROT-avdrag.</div>
+            </div>
           </a>
           <a class="hub-card" href="/daniel">
-            <div class="hc-name">Daniel</div>
-            <div class="hc-role">Säljare</div>
-            <div class="hc-desc">Följer upp offerterna du hinner skicka men inte jaga.</div>
+            <img class="hc-avatar" src="/img/daniel.webp" width="64" height="64" alt="Daniel, Handymates AI-säljare som följer upp offerter du inte hinner jaga" loading="lazy">
+            <div>
+              <div class="hc-name">Daniel</div>
+              <div class="hc-role">Säljare</div>
+              <div class="hc-desc">Följer upp offerterna du hinner skicka men inte jaga.</div>
+            </div>
           </a>
           <a class="hub-card" href="/hanna">
-            <div class="hc-name">Hanna</div>
-            <div class="hc-role">Marknadschef</div>
-            <div class="hc-desc">Väcker kunderna du redan har — i stället för att bara jaga nya.</div>
+            <img class="hc-avatar" src="/img/hanna.webp" width="64" height="64" alt="Hanna, Handymates AI-marknadschef som väcker kunder du redan har" loading="lazy">
+            <div>
+              <div class="hc-name">Hanna</div>
+              <div class="hc-role">Marknadschef</div>
+              <div class="hc-desc">Väcker kunderna du redan har — i stället för att bara jaga nya.</div>
+            </div>
           </a>
           <a class="hub-card" href="/lars">
-            <div class="hc-name">Lars</div>
-            <div class="hc-role">Projektledare</div>
-            <div class="hc-desc">Håller koll på att jobben går som de ska — tid, bokningar, avvikelser.</div>
+            <img class="hc-avatar" src="/img/lars.webp" width="64" height="64" alt="Lars, Handymates AI-projektledare som håller koll på jobb, tider och bokningar" loading="lazy">
+            <div>
+              <div class="hc-name">Lars</div>
+              <div class="hc-role">Projektledare</div>
+              <div class="hc-desc">Håller koll på att jobben går som de ska — tid, bokningar, avvikelser.</div>
+            </div>
           </a>
           <a class="hub-card" href="/matte">
-            <div class="hc-name">Matte</div>
-            <div class="hc-role">Chefsassistent</div>
-            <div class="hc-desc">Chefsassistenten du pratar med — koordinerar och fördelar till rätt kollega.</div>
+            <img class="hc-avatar" src="/img/matte.webp" width="64" height="64" alt="Matte, Handymates AI-chefsassistent som koordinerar teamet och fördelar ärenden" loading="lazy">
+            <div>
+              <div class="hc-name">Matte</div>
+              <div class="hc-role">Chefsassistent</div>
+              <div class="hc-desc">Chefsassistenten du pratar med — koordinerar och fördelar till rätt kollega.</div>
+            </div>
           </a>
         </div>
 

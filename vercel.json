@@ -18,6 +18,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "img/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "api/**/*.js",
       "use": "@vercel/node"
     }
@@ -26,6 +30,10 @@
     {
       "src": "/api/(.*)",
       "dest": "/api/$1"
+    },
+    {
+      "src": "/img/(.*)",
+      "dest": "/img/$1"
     },
     {
       "src": "/robots.txt",

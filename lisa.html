@@ -10,10 +10,11 @@
   <meta property="og:description" content="Lisa är Handymates kundservice-agent. Hon kopplar samtal, tar emot meddelanden och skickar SMS så inget missat samtal går till nästa firma.">
   <meta property="og:url" content="https://handymate.se/lisa">
   <meta property="og:type" content="article">
-  <meta property="og:image" content="https://handymate.se/logo.png">
+  <meta property="og:image" content="https://pktaqedooyzgvzwipslu.supabase.co/storage/v1/render/image/public/team-avatars/Lisa.png?width=1200&height=630&resize=cover&quality=80">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Lisa — den som ser till att inga samtal går förlorade — Handymate">
   <meta name="twitter:description" content="Lisa är Handymates kundservice-agent. Hon kopplar samtal, tar emot meddelanden och skickar SMS så inget missat samtal går till nästa firma.">
+  <meta name="twitter:image" content="https://pktaqedooyzgvzwipslu.supabase.co/storage/v1/render/image/public/team-avatars/Lisa.png?width=1200&height=630&resize=cover&quality=80">
   <link rel="icon" href="/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,11 +61,15 @@
     .page-hero { padding: 120px 0 48px; background: linear-gradient(135deg, var(--teal-950) 0%, var(--slate-900) 100%); }
     .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--teal-400); margin-bottom: 16px; font-weight: 600; }
     .back-link:hover { color: var(--teal-300); }
-    .page-hero-badge { display: inline-block; padding: 5px 14px; background: rgba(45,212,191,0.15); color: var(--teal-400); border-radius: 50px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; margin-left: 10px; }
+    .page-hero-badge { display: inline-block; padding: 5px 14px; background: rgba(45,212,191,0.15); color: var(--teal-400); border-radius: 50px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
     .page-hero h1 { font-size: 28px; font-weight: 700; color: white; margin-bottom: 12px; line-height: 1.25; max-width: 760px; }
     @media (min-width: 640px) { .page-hero h1 { font-size: 38px; } }
     .page-hero p { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 600px; }
     @media (min-width: 640px) { .page-hero p { font-size: 18px; } }
+    .page-hero-flex { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+    @media (min-width: 640px) { .page-hero-flex { flex-direction: row; align-items: center; gap: 28px; } }
+    .page-hero-portrait { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; border: 3px solid var(--teal-400); flex-shrink: 0; }
+    @media (min-width: 640px) { .page-hero-portrait { width: 136px; height: 136px; } }
 
     .content-section { padding: 48px 0; }
     @media (min-width: 640px) { .content-section { padding: 64px 0; } }
@@ -133,9 +138,15 @@
 
   <div class="page-hero">
     <div class="container">
-      <a href="/ai-team" class="back-link">← Hela AI-teamet</a><span class="page-hero-badge">Kundservice</span>
-      <h1>Lisa — den som ser till att inga samtal går förlorade</h1>
-      <p>Ett missat samtal är sällan bara ett missat samtal. Det är en kund som ringer nästa firma medan du står med händerna i en väggkonstruktion.</p>
+      <a href="/ai-team" class="back-link">← Hela AI-teamet</a>
+      <div class="page-hero-flex">
+        <img src="/img/lisa.webp" width="136" height="136" alt="Lisa, Handymates AI-kundservice som fångar missade samtal och skickar SMS till kunden" class="page-hero-portrait" loading="eager">
+        <div>
+          <span class="page-hero-badge">Kundservice</span>
+          <h1>Lisa — den som ser till att inga samtal går förlorade</h1>
+          <p>Ett missat samtal är sällan bara ett missat samtal. Det är en kund som ringer nästa firma medan du står med händerna i en väggkonstruktion.</p>
+        </div>
+      </div>
     </div>
   </div>
 

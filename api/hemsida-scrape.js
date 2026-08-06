@@ -1,18 +1,46 @@
+import { safeFetchExternalUrl, UnsafeUrlError } from './_lib/safe-fetch.js'
+
+/**
+ * Enkel takräknare per IP (2026-08-06). Endpointen är oautentiserad och varje
+ * anrop kostar Anthropic-tokens — utan tak kan vem som helst bränna vår budget
+ * eller använda domänen som anonym request-proxy.
+ *
+ * In-memory räcker inte i serverless (varje instans har sin egen karta), men
+ * höjer tröskeln från "gratis och obegränsat" till "kräver distribuerade
+ * anrop". Kartläggningens P1.3 föreslår en distribuerad lösning — den gäller
+ * fler endpoints än den här och görs separat.
+ */
+const RATE_WINDOW_MS = 60_000
+const RATE_MAX = 5
+const hits = new Map()
+
+function rateLimited(ip) {
+  const now = Date.now()
+  const list = (hits.get(ip) || []).filter(t => now - t < RATE_WINDOW_MS)
+  list.push(now)
+  hits.set(ip, list)
+  if (hits.size > 5000) hits.clear() // enkel takhållning på minnet
+  return list.length > RATE_MAX
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end()
 
   const { url } = req.body || {}
   if (!url) return res.status(400).json({ error: 'URL saknas' })
 
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'okänd'
+  if (rateLimited(ip)) {
+    return res.status(429).json({ error: 'För många försök — vänta en minut' })
+  }
+
   const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY
   if (!ANTHROPIC_API_KEY) return res.status(500).json({ error: 'API-nyckel saknas' })
 
   try {
-    const pageRes = await fetch(url, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Handymate/1.0)' },
-      signal: AbortSignal.timeout(10000),
-    })
-    const html = await pageRes.text()
+    // Ersätter ett rått fetch(url) utan någon validering alls. Se
+    // api/_lib/safe-fetch.js för vad som kontrolleras och varför.
+    const html = await safeFetchExternalUrl(url)
 
     const text = html
       .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
@@ -62,7 +90,15 @@ ${text}`,
 
     return res.status(200).json({ success: true, data: extracted })
   } catch (err) {
-    console.error('[hemsida-scrape] Error:', err)
+    // Blockerad adress loggas som avvisad, inte som fel — det är skyddet som
+    // fungerar, och skillnaden behövs för att kunna se missbruksmönster.
+    if (err instanceof UnsafeUrlError) {
+      console.warn(`[hemsida-scrape] avvisad URL från ${ip}: ${err.message}`)
+    } else {
+      console.error('[hemsida-scrape] Error:', err)
+    }
+    // Samma svar oavsett orsak: skillnader i felmeddelande eller statuskod
+    // hade gjort endpointen till en portskanner via svarsanalys.
     return res.status(200).json({
       success: false,
       error: 'Kunde inte läsa sidan — fyll i manuellt',

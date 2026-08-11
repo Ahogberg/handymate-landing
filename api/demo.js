@@ -1,6 +1,30 @@
+/**
+ * Takräknare per IP (2026-08-11) — samma mönster och motivering som i
+ * hemsida-scrape.js: endpointen är oautentiserad och varje anrop kostar
+ * Anthropic-tokens. Blev akut när /foretagskollen började länka hit.
+ * In-memory är opålitligt i serverless men höjer tröskeln rejält.
+ */
+const RATE_WINDOW_MS = 60_000
+const RATE_MAX = 10
+const hits = new Map()
+
+function rateLimited(ip) {
+  const now = Date.now()
+  const list = (hits.get(ip) || []).filter(t => now - t < RATE_WINDOW_MS)
+  list.push(now)
+  hits.set(ip, list)
+  if (hits.size > 5000) hits.clear()
+  return list.length > RATE_MAX
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
+  }
+
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'okänd'
+  if (rateLimited(ip)) {
+    return res.status(429).json({ error: 'För många försök — vänta en minut' })
   }
 
   const { scenario, input } = req.body

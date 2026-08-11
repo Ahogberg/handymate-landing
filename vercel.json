@@ -6,6 +6,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "foretagskollen-scoring.js",
+      "use": "@vercel/static"
+    },
+    {
       "src": "*.png",
       "use": "@vercel/static"
     },
@@ -46,6 +50,14 @@
     {
       "src": "/demo",
       "dest": "/demo.html"
+    },
+    {
+      "src": "/foretagskollen",
+      "dest": "/foretagskollen.html"
+    },
+    {
+      "src": "/foretagskollen-scoring.js",
+      "dest": "/foretagskollen-scoring.js"
     },
     {
       "src": "/rot-kalkylator",

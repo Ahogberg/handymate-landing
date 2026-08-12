@@ -52,6 +52,11 @@
       "dest": "/demo.html"
     },
     {
+      "src": "/f(?:ö|%C3%B6|%c3%b6)retagskollen",
+      "status": 301,
+      "headers": { "Location": "/foretagskollen" }
+    },
+    {
       "src": "/foretagskollen",
       "dest": "/foretagskollen.html"
     },
@@ -66,6 +71,11 @@
     {
       "src": "/partners",
       "dest": "/partners.html"
+    },
+    {
+      "src": "/j(?:ä|%C3%A4|%c3%a4)mf(?:ö|%C3%B6|%c3%b6)r",
+      "status": 301,
+      "headers": { "Location": "/jamfor" }
     },
     {
       "src": "/jamfor",

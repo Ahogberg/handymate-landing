@@ -486,6 +486,19 @@
     .sms-stat-label { font-size: 13px; color: rgba(255,255,255,0.5); }
     @media (min-width: 640px) { .sms-stat-label { font-size: 14px; } }
 
+    /* ── Uppdragsloopen ── */
+    .loop-grid { display: grid; gap: 16px; max-width: 1120px; margin: 0 auto; position: relative; }
+    @media (min-width: 900px) { .loop-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+    .loop-step {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 24px; position: relative;
+    }
+    .loop-step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--teal-500); color: #063a35; font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+    .loop-step-title { font-size: 16px; font-weight: 600; color: white; margin-bottom: 8px; }
+    .loop-step-text { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .loop-step-arrow { display: none; }
+    @media (min-width: 900px) { .loop-step-arrow { display: block; position: absolute; top: 24px; right: -22px; color: rgba(255,255,255,0.25); font-size: 20px; z-index: 1; } }
+
     /* ── FAQ ── */
     .faq-list { max-width: 768px; margin: 0 auto; }
     .faq-item { background: white; border: 1px solid var(--slate-200); border-radius: 12px; margin-bottom: 12px; }
@@ -538,6 +551,11 @@
     .pricing-btn { width: 100%; padding: 12px; font-size: 14px; }
     @media (min-width: 640px) { .pricing-btn { padding: 16px; font-size: 16px; } }
     .pricing-rec { text-align: center; font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 12px; }
+    .pricing-volume { text-align: center; max-width: 700px; margin: 40px auto 0; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .pricing-volume p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 10px; }
+    @media (min-width: 640px) { .pricing-volume p { font-size: 15px; } }
+    .pricing-volume .pricing-guarantee { font-size: 15px; font-weight: 600; color: var(--teal-400); }
+    @media (min-width: 640px) { .pricing-volume .pricing-guarantee { font-size: 16px; } }
     .section-dark .btn-secondary { background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); }
     .section-dark .btn-secondary:hover { background: rgba(255,255,255,0.18); }
 
@@ -578,7 +596,7 @@
     .ai-team-heading { font-size: 44px; font-weight: 700; color: #ffffff; text-align: center; line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.025em; opacity: 0; animation: aiTeamFadeUp 0.6s 0.2s forwards; }
     .ai-team-sub { font-size: 17px; color: #99d4cd; text-align: center; max-width: 520px; margin: 0 auto 64px; line-height: 1.6; opacity: 0; animation: aiTeamFadeUp 0.6s 0.3s forwards; }
     .ai-team-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
-    .ai-team-card { background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 20px; padding: 36px 24px 30px; text-align: center; cursor: pointer; transition: background 0.3s, border-color 0.3s, transform 0.3s; opacity: 0; position: relative; overflow: hidden; }
+    .ai-team-card { display: block; background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 20px; padding: 36px 24px 30px; text-align: center; text-decoration: none; color: inherit; cursor: pointer; transition: background 0.3s, border-color 0.3s, transform 0.3s; opacity: 0; position: relative; overflow: hidden; }
     .ai-team-card::before { content: ''; position: absolute; inset: 0; background: rgba(94, 234, 212, 0.08); opacity: 0; transition: opacity 0.3s; border-radius: 20px; pointer-events: none; }
     .ai-team-card:hover::before { opacity: 1; }
     .ai-team-card:hover { border-color: rgba(94, 234, 212, 0.5); transform: translateY(-6px); }
@@ -644,8 +662,13 @@
               <a href="#feat-pipeline"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📊</span> Lead-pipeline</a>
               <a href="#feat-time"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">⏱</span> Tidrapportering</a>
               <a href="#feat-invoice"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">💰</span> Fakturering</a>
+              <a href="#feat-meeting"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">🎙</span> Mötesassistenten</a>
+              <a href="#feat-portal"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">🔗</span> Kundportalen</a>
+              <a href="#feat-jobbpass"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📦</span> Jobbpasset</a>
               <a href="/offertgenerator"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">📋</span> Gratis offertgenerator</a>
               <a href="/hemsida"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">🌐</span> Hemsida för hantverkare</a>
+              <a href="/foretagskollen"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">🔍</span> Företagskollen — gratis diagnos</a>
+              <a href="/rot-kalkylator"><span class="dd-icon" style="background:rgba(13,148,136,0.1);">🧮</span> ROT-kalkylator</a>
             </div>
           </div>
           <a href="#pricing">Priser</a>
@@ -667,6 +690,8 @@
         <a href="/demo">Demo</a>
         <a href="/offertgenerator">Gratis offertgenerator</a>
         <a href="/hemsida">Hemsida för hantverkare</a>
+        <a href="/foretagskollen">Företagskollen — gratis diagnos</a>
+        <a href="/rot-kalkylator">ROT-kalkylator</a>
         <a href="https://app.handymate.se/login">Logga in</a>
       </div>
     </div>
@@ -687,7 +712,7 @@
             </a>
           </div>
           <div class="hero-stats">
-            <div class="hero-stat"><div class="hero-stat-value" data-count="6">6+</div><div class="hero-stat-label">AI-moduler</div></div>
+            <div class="hero-stat"><div class="hero-stat-value" data-count="6">6+</div><div class="hero-stat-label">Specialister i teamet</div></div>
             <div class="hero-divider"></div>
             <div class="hero-stat"><div class="hero-stat-value">24/7</div><div class="hero-stat-label">Alltid aktiv</div></div>
             <div class="hero-divider"></div>
@@ -739,7 +764,7 @@
 
       <div class="ai-team-row">
 
-        <div class="ai-team-card" data-delay="0">
+        <a class="ai-team-card" data-delay="0" href="/matte">
           <div class="ai-team-photo-wrap">
             <div class="ai-team-glow"></div>
             <img class="ai-team-photo" src="https://pktaqedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Matte.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Matte"/>
@@ -750,9 +775,9 @@
           <div class="ai-team-role">Chefsassistent</div>
           <div class="ai-team-divider"></div>
           <div class="ai-team-desc">Koordinerar teamet och delegerar varje ärende till rätt specialist automatiskt.</div>
-        </div>
+        </a>
 
-        <div class="ai-team-card" data-delay="100">
+        <a class="ai-team-card" data-delay="100" href="/karin">
           <div class="ai-team-photo-wrap">
             <div class="ai-team-glow"></div>
             <img class="ai-team-photo" src="https://pktaqedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Karin.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Karin"/>
@@ -763,9 +788,9 @@
           <div class="ai-team-role">Ekonom</div>
           <div class="ai-team-divider"></div>
           <div class="ai-team-desc">Fakturor, påminnelser och kassaflöde. Flaggar risker innan de blir problem.</div>
-        </div>
+        </a>
 
-        <div class="ai-team-card" data-delay="200">
+        <a class="ai-team-card" data-delay="200" href="/daniel">
           <div class="ai-team-photo-wrap">
             <div class="ai-team-glow"></div>
             <img class="ai-team-photo" src="https://pktaqedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Daniel.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Daniel"/>
@@ -776,9 +801,9 @@
           <div class="ai-team-role">Säljare</div>
           <div class="ai-team-divider"></div>
           <div class="ai-team-desc">Kvalificerar leads och följer upp offerter. Ingen affär faller mellan stolarna.</div>
-        </div>
+        </a>
 
-        <div class="ai-team-card" data-delay="300">
+        <a class="ai-team-card" data-delay="300" href="/lars">
           <div class="ai-team-photo-wrap">
             <div class="ai-team-glow"></div>
             <img class="ai-team-photo" src="https://pktaqedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Lars.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Lars"/>
@@ -789,9 +814,9 @@
           <div class="ai-team-role">Projektledare</div>
           <div class="ai-team-divider"></div>
           <div class="ai-team-desc">Bokningar och projektuppföljning. Allt levereras i tid och inom budget.</div>
-        </div>
+        </a>
 
-        <div class="ai-team-card" data-delay="400">
+        <a class="ai-team-card" data-delay="400" href="/hanna">
           <div class="ai-team-photo-wrap">
             <div class="ai-team-glow"></div>
             <img class="ai-team-photo" src="https://pktaqedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Hanna.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Hanna"/>
@@ -802,9 +827,9 @@
           <div class="ai-team-role">Marknadschef</div>
           <div class="ai-team-divider"></div>
           <div class="ai-team-desc">Reaktiverar gamla kunder med SMS-kampanjer vid rätt tillfälle. Maximerar varje relation.</div>
-        </div>
+        </a>
 
-        <div class="ai-team-card" data-delay="500">
+        <a class="ai-team-card" data-delay="500" href="/lisa">
           <div class="ai-team-photo-wrap">
             <div class="ai-team-glow"></div>
             <img class="ai-team-photo" src="https://pktaqedooyzgvzwipslu.supabase.co/storage/v1/object/public/team-avatars/Lisa.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Lisa"/>
@@ -815,12 +840,12 @@
           <div class="ai-team-role">Kundservice</div>
           <div class="ai-team-divider"></div>
           <div class="ai-team-desc">Fångar samtalen dygnet runt — även när du är uppe på ett tak i Bromma.</div>
-        </div>
+        </a>
 
       </div>
 
       <div class="ai-team-cta">
-        <a href="/onboarding" class="ai-team-btn">
+        <a href="https://app.handymate.se/onboarding" class="ai-team-btn">
           Träffa ditt team — kom igång nu
           <span class="ai-team-arrow">→</span>
         </a>
@@ -828,31 +853,42 @@
     </div>
   </section>
 
-  <!-- ════ Tre kedjor: det som gör Handymate annorlunda ════ -->
+  <!-- ════ Uppdragsloopen: det som gör Handymate annorlunda ════ -->
   <section id="chains" class="section section-dark">
     <div class="container">
       <div class="section-header reveal">
         <div class="section-label">Mer än uppgifter</div>
         <h2 class="section-title">Säg vad du vill uppnå — teamet bygger planen och kör den.</h2>
-        <p class="section-subtitle">Det som gör Handymate annorlunda är inte att uppgifter blir gjorda — det är att teamet kan ta ett mål, göra en plan av det, och bevisa resultatet.</p>
+        <p class="section-subtitle">Det som gör Handymate annorlunda är inte att uppgifter blir gjorda — det är att teamet kan ta ett mål, göra en plan av verkliga möjligheter i din firma, och arbeta mot det inom gränser du sätter.</p>
       </div>
-      <div class="sms-grid">
-        <div class="sms-card reveal reveal-d1">
-          <div class="sms-card-title">Ge teamet ett uppdrag</div>
-          <div class="sms-card-text">Skriv målet i klartext. Teamet bygger en plan av det som redan finns i din firma och genomför den steg för steg — i din godkännandekö, med framdrift du kan lita på.</div>
+      <div class="loop-grid">
+        <div class="loop-step reveal reveal-d1">
+          <div class="loop-step-num">1</div>
+          <div class="loop-step-title">Du sätter målet</div>
+          <div class="loop-step-text">Skriv målet i klartext — till exempel "få in 80 000 kr före månadsskiftet". Inga menyer att klicka i, inga inställningar att lära sig.</div>
+          <div class="loop-step-arrow">→</div>
         </div>
-        <div class="sms-card reveal reveal-d2">
-          <div class="sms-card-title">Löften som hålls</div>
-          <div class="sms-card-text">Det ni lovar kunderna fångas upp, får ett datum och bevakas tills det är hållet. Inget glöms bort — och när det är klart finns kvittot.</div>
+        <div class="loop-step reveal reveal-d2">
+          <div class="loop-step-num">2</div>
+          <div class="loop-step-title">Teamet bygger planen</div>
+          <div class="loop-step-text">Matte går igenom det som faktiskt finns i din firma — förfallna fakturor, färdiga jobb som aldrig fakturerats, gamla offerter som aldrig fått svar — och bygger en plan av verkliga möjligheter. Aldrig påhittade.</div>
+          <div class="loop-step-arrow">→</div>
         </div>
-        <div class="sms-card reveal reveal-d3">
-          <div class="sms-card-title">Rätt betalt för utfört arbete</div>
-          <div class="sms-card-text">Innan fakturan går ut vet du att underlaget håller — och exakt vad som saknas om det inte gör det. Inget glöms, inget faktureras på lösa grunder.</div>
+        <div class="loop-step reveal reveal-d3">
+          <div class="loop-step-num">3</div>
+          <div class="loop-step-title">Du godkänner och sätter gränserna</div>
+          <div class="loop-step-text">Du granskar planen och kan ge ett mandat med tydliga gränser du själv sätter: max antal utskick per dag, aldrig över en viss summa, alltid återkallbart med ett tryck.</div>
+          <div class="loop-step-arrow">→</div>
+        </div>
+        <div class="loop-step reveal reveal-d4">
+          <div class="loop-step-num">4</div>
+          <div class="loop-step-title">Teamet arbetar — du ser allt</div>
+          <div class="loop-step-text">Inom de gränserna jobbar teamet vidare i dagar eller veckor utan att fråga varje gång. Du ser hela tiden exakt vad som gjorts, vad som väntar och vad som inte kunde verifieras.</div>
         </div>
       </div>
       <div class="pricing-intro reveal" style="margin-top: 40px; margin-bottom: 0;">
         <div class="big">Du är chefen — allt går genom din godkännandekö.</div>
-        <div class="small">Kvittoprincipen: teamet påstår aldrig mer än det bevisat. Offerter i pipeline kallas aldrig "säkrade pengar".</div>
+        <div class="small">Kvittoprincipen: teamet räknar bara det som bevisats — betalda kronor räknas när de är betalda, inte när en offert skickas. Offerter i pipeline kallas aldrig "säkrade pengar".</div>
       </div>
     </div>
   </section>
@@ -864,6 +900,22 @@
         <h2 class="problem-title">Du driver ett företag — inte ett kontor</h2>
         <p class="problem-text">Varje dag lägger hantverkare timmar på att svara på samtal, skriva offerter, jaga betalningar och följa upp kunder. Det är inte varför du startade företag. <strong style="color: var(--slate-900);">Handymate tar över hela admin-rollen</strong> — så du kan fokusera på det du faktiskt är bra på.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ════ Frånvaroläge ════ -->
+  <section id="absence" class="section" style="background: var(--slate-50); border-top: 1px solid var(--slate-200); border-bottom: 1px solid var(--slate-200);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Frånvaroläge</div>
+        <h2 class="section-title">Åk på semester. På riktigt.</h2>
+        <p class="section-subtitle">Sätt frånvaroläge innan du åker. Teamet fortsätter jobba, men filtrerar det du ser.</p>
+      </div>
+      <ul class="feat-list reveal" style="max-width: 600px; margin: 0 auto; font-size: 16px;">
+        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Vardagshändelser samlas ihop av teamet, i din frånvaro</li>
+        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Bara en kort, fördefinierad lista med verkliga undantag når dig: missad leverans, ett brutet kundlöfte, ett betalningsfel</li>
+        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Vid hemkomst: en rapport över vad som är gjort, vad som väntar och vad som behöver dig</li>
+      </ul>
     </div>
   </section>
 
@@ -925,6 +977,7 @@
           </div>
         </div>
       </div>
+      <p class="reveal" style="text-align:center;margin-top:32px;color:var(--slate-500);font-size:15px;">Och varje måndag: ett kort möte med veckans läge — vad som hänt, vad som väntar, vad som behöver dig. Dygnsrapporten kommer var morgon, hela veckan.</p>
     </div>
   </section>
 
@@ -947,6 +1000,7 @@
             <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Fångar samtalet du missar direkt</li>
             <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Kvalificerar lead automatiskt</li>
             <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Skickar SMS-sammanfattning till dig</li>
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Eget telefonnummer — nytt 010-nummer eller vidarekoppling av ditt befintliga, samtalen blir kundhistorik</li>
           </ul>
         </div>
         <div class="feat-mockup reveal-right">
@@ -1084,7 +1138,7 @@
       </div>
 
       <!-- F6: Fakturering -->
-      <div id="feat-invoice" class="feat-row feat-row-reverse">
+      <div id="feat-invoice" class="feat-row feat-row-reverse" style="margin-bottom: 80px;">
         <div class="feat-text reveal-right">
           <div class="feat-label">Fakturering</div>
           <h3 class="feat-title">Betalt. Utan att du jagar.</h3>
@@ -1105,6 +1159,88 @@
               <div style="font-size:12px;color:var(--slate-400);margin-bottom:16px;">Förfaller: 2024-12-15</div>
               <div style="width:100px;height:100px;margin:0 auto 12px;background:var(--slate-100);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--slate-400);border:1px solid var(--slate-200);">Swish QR</div>
               <div style="padding:8px;background:rgba(34,197,94,0.1);border-radius:8px;font-size:12px;font-weight:600;color:#15803d;">💚 Betald 2024-12-10</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F7: Mötesassistenten -->
+      <div id="feat-meeting" class="feat-row" style="margin-bottom: 80px;">
+        <div class="feat-text reveal-left">
+          <div class="feat-label">Mötesassistenten</div>
+          <h3 class="feat-title">Spela in platsbesöket. Få ett ÄTA-underlag tillbaka.</h3>
+          <p class="feat-desc">Spela in samtalet när du är på plats hos kunden. Teamet sammanfattar vad som sas och föreslår ett ÄTA-underlag redo att granska — inga anteckningar att komma ihåg efteråt.</p>
+          <ul class="feat-list">
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Sammanfattning av platsbesöket automatiskt</li>
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Förslag på ÄTA-underlag redo att godkänna</li>
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Inget mer "jag skrev ner det på en lapp"</li>
+          </ul>
+        </div>
+        <div class="feat-mockup reveal-right">
+          <div class="app-frame">
+            <div class="app-bar"><div class="app-dot app-dot-r"></div><div class="app-dot app-dot-y"></div><div class="app-dot app-dot-g"></div></div>
+            <div class="app-body">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+                <div class="mock-avatar" style="background:linear-gradient(135deg,var(--teal-600),var(--teal-400));"></div>
+                <div><div style="font-size:14px;font-weight:600;">Platsbesök inspelat</div><div style="font-size:12px;color:var(--slate-400);">Vasastan · 18 min 12 sek</div></div>
+              </div>
+              <div class="mock-card"><div style="font-size:12px;font-weight:600;color:var(--teal-700);margin-bottom:4px;">Föreslaget ÄTA-underlag</div><div style="font-size:13px;color:var(--slate-500);line-height:1.5;">Extra dränering vid grunden, ca 4 200 kr — kunden godkände muntligt på plats.</div></div>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <span class="mock-badge" style="background:rgba(13,148,136,0.1);color:var(--teal-700);">Redo att godkänna</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F8: Kundportalen -->
+      <div id="feat-portal" class="feat-row feat-row-reverse" style="margin-bottom: 80px;">
+        <div class="feat-text reveal-right">
+          <div class="feat-label">Kundportalen</div>
+          <h3 class="feat-title">Kunden ser sitt projekt — utan att ringa dig.</h3>
+          <p class="feat-desc">Varje kund får en egen sida där de ser offerter, godkänner och signerar digitalt, och följer sitt projekt steg för steg.</p>
+          <ul class="feat-list">
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Offerter att godkänna och signera direkt</li>
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Projektstatus i realtid</li>
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Allt samlat — inga borttappade PDF:er i mejlen</li>
+          </ul>
+        </div>
+        <div class="feat-mockup reveal-left">
+          <div class="app-frame">
+            <div class="app-bar"><div class="app-dot app-dot-r"></div><div class="app-dot app-dot-y"></div><div class="app-dot app-dot-g"></div></div>
+            <div class="app-body" style="text-align:center;">
+              <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Ditt projekt</div>
+              <div style="font-size:12px;color:var(--slate-400);margin-bottom:16px;">Badrumsrenovering — Erik Andersson</div>
+              <div class="mock-card" style="text-align:left;"><div style="font-size:13px;font-weight:600;">Offert #2024-087</div><div style="font-size:11px;color:var(--slate-400);margin-top:2px;">Väntar på din signatur</div></div>
+              <div class="mock-card" style="text-align:left;"><div style="font-size:13px;font-weight:600;">Projektstatus</div><div style="margin-top:6px;height:6px;background:var(--slate-100);border-radius:3px;overflow:hidden;"><div style="width:45%;height:100%;background:var(--teal-500);border-radius:3px;"></div></div></div>
+              <div style="padding:8px;background:rgba(13,148,136,0.08);border-radius:8px;font-size:12px;font-weight:600;color:var(--teal-700);margin-top:8px;">Signera offert →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F9: Jobbpasset -->
+      <div id="feat-jobbpass" class="feat-row">
+        <div class="feat-text reveal-left">
+          <div class="feat-label">Jobbpasset</div>
+          <h3 class="feat-title">Ett proffsigt avslut som öppnar nästa affär.</h3>
+          <p class="feat-desc">När projektet är klart föreslår teamet ett digitalt jobbpass till kunden: omfattning, godkända ändringar, utfört arbete, utvalda foton, egenkontroll och garantivillkor. En snygg avslutning — och starten på nästa affär, med recension, rekommendation eller servicepåminnelse som kunden själv väljer.</p>
+          <ul class="feat-list">
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Omfattning, ÄTA och utfört arbete samlat</li>
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Foton, egenkontroll och garantivillkor</li>
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Kunden väljer själv: recension, rekommendation eller påminnelse</li>
+          </ul>
+        </div>
+        <div class="feat-mockup reveal-right">
+          <div class="app-frame">
+            <div class="app-bar"><div class="app-dot app-dot-r"></div><div class="app-dot app-dot-y"></div><div class="app-dot app-dot-g"></div></div>
+            <div class="app-body" style="text-align:center;">
+              <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Jobbpass — Badrumsrenovering</div>
+              <div style="font-size:12px;color:var(--slate-400);margin-bottom:16px;">Klart 2024-12-18</div>
+              <div class="mock-card" style="text-align:left;"><div style="font-size:13px;font-weight:600;">✅ Egenkontroll genomförd</div></div>
+              <div class="mock-card" style="text-align:left;"><div style="font-size:13px;font-weight:600;">📸 6 foton från jobbet</div></div>
+              <div class="mock-card" style="text-align:left;"><div style="font-size:13px;font-weight:600;">🛡️ Garantivillkor bifogade</div></div>
+              <div style="padding:8px;background:rgba(13,148,136,0.08);border-radius:8px;font-size:12px;font-weight:600;color:var(--teal-700);margin-top:8px;">Kunden väljer: lämna recension →</div>
             </div>
           </div>
         </div>
@@ -1210,7 +1346,7 @@
         <div class="faq-item reveal"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')"><span>Hur fungerar SMS-kampanjerna?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button><div class="faq-answer">Handymate analyserar din kundlista och identifierar kunder du inte pratat med på ett tag. AI:n föreslår ett personligt meddelande baserat på historiken (t.ex. "Dags för service sedan renoveringen?"). Du godkänner och skickar med ett klick.</div></div>
         <div class="faq-item reveal"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')"><span>Vad händer om AI:n gör fel?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button><div class="faq-answer">Du har full kontroll. Allt som går till en kund läggs i din godkännandekö — du godkänner med ett tryck, ändrar eller avvisar. Varje åtgärd loggas och syns i dashboarden.</div></div>
         <div class="faq-item reveal"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')"><span>Måste jag byta telefonnummer?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button><div class="faq-answer">Nej. Du kan antingen få ett nytt 010-nummer från oss, eller vidarekoppla ditt befintliga nummer till Handymate när du inte kan svara.</div></div>
-        <div class="faq-item reveal"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')"><span>Finns det bindningstid?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button><div class="faq-answer">Nej, ingen bindningstid. Du kan avsluta när som helst.</div></div>
+        <div class="faq-item reveal"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')"><span>Finns det bindningstid?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button><div class="faq-answer">Nej, ingen bindningstid. Du kan avsluta när som helst. Du provar dessutom riskfritt: 30 dagars pengarna-tillbaka-garanti. Inga frågor.</div></div>
       </div>
     </div>
   </section>
@@ -1239,7 +1375,7 @@
             <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Faktura, ROT/RUT & Swish QR</li>
             <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> SMS-utskick & kampanjer</li>
             <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Gmail & Google Calendar</li>
-            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> 3 användare</li>
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> 5 användare</li>
           </ul>
           <a href="https://app.handymate.se/signup" class="btn btn-primary pricing-btn">Kom igång</a>
           <div class="pricing-rec">Ett räddat jobb betalar flera månader</div>
@@ -1262,12 +1398,16 @@
           <p class="pricing-desc">För större företag med särskilda behov</p>
           <div class="pricing-price"><span class="pricing-amount" style="font-size: 1.5rem;">Kontakta oss</span></div>
           <ul class="pricing-features">
-            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Allt i Business</li>
+            <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Allt i Storfirman</li>
             <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Upplägg efter era behov</li>
             <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Personlig genomgång med grundarna</li>
           </ul>
           <a href="mailto:andreas@handymate.se?subject=Anpassat%20uppl%C3%A4gg" class="btn btn-secondary pricing-btn">Kontakta oss</a>
         </div>
+      </div>
+      <div class="pricing-volume reveal">
+        <p>Skillnaden mellan planerna är volym, inte hjärna. Firman ger 300 SMS och 400 samtal i månaden, upp till 5 användare. Storfirman ger 1 000 SMS i månaden och obegränsat med samtal och användare. All intelligens ingår i båda planerna — du betalar för volym, inte för hjärnan.</p>
+        <p class="pricing-guarantee">30 dagars pengarna-tillbaka-garanti. Inga frågor.</p>
       </div>
     </div>
   </section>
@@ -1276,7 +1416,7 @@
   <section class="cta">
     <div class="container">
       <h2 class="cta-title reveal">Låt AI:n sköta kontoret — <span class="gradient-text">du sköter hantverket</span></h2>
-      <p class="cta-text reveal">Kom igång på 15 minuter. Ingen bindningstid.</p>
+      <p class="cta-text reveal">Kom igång på 15 minuter. Ingen bindningstid. 30 dagars pengarna-tillbaka-garanti. Inga frågor.</p>
       <div class="reveal"><a href="https://app.handymate.se/signup" class="btn btn-primary btn-lg">Kom igång</a></div>
     </div>
   </section>
@@ -1301,6 +1441,8 @@
           <a href="/offertgenerator">Offertgenerator</a>
           <a href="/hemsida">Beställ hemsida</a>
           <a href="/ai-team">AI-teamet</a>
+          <a href="/foretagskollen">Företagskollen — gratis diagnos</a>
+          <a href="/rot-kalkylator">ROT-kalkylator</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Företag</div>

@@ -594,7 +594,7 @@
         </div>
         <h2 class="cta-h2">Boka en demo — vi utgår från er diagnos.</h2>
         <p class="cta-p">30 minuter. Vi går igenom siffrorna du just såg och visar hur teamet tar över dem — på riktigt, i er vardag.</p>
-        <a class="cta-btn" id="ctaBoka" href="#">Boka demo</a>
+        <a class="cta-btn" id="ctaBoka" href="#">Boka en genomgång — 20 minuter</a>
         <p class="cta-note">Ingen bindningstid · Kom igång på 15 minuter</p>
       </div>
     </section>
@@ -642,9 +642,12 @@
   <script>
     'use strict'
     // ─────────────────────────────────────────────────────────────────────
-    // BOKNINGSLÄNK: byt till Calendly/motsvarande när den finns.
-    // Mailto-fallback tills dess — flaggas ändå som booking_cta_clicked.
-    var BOOKING_URL = 'mailto:hej@handymate.se?subject=' + encodeURIComponent('Boka demo — Företagskollen')
+    // BOKNINGSLÄNK: kanoniska strängen, samma som index.html-heroets
+    // Calendly-bytesprocedur (se kommentaren där för hela proceduren:
+    // ersätt på ALLA träffar + target="_blank" rel="noopener" +
+    // tests/cta.test.mjs i samma commit).
+    // Mailto-fallback tills Calendly finns — flaggas ändå som booking_cta_clicked.
+    var BOOKING_URL = 'mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20'
     // ─────────────────────────────────────────────────────────────────────
 
     var scoring = window.ForetagskollenScoring

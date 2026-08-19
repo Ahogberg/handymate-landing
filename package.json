@@ -1,0 +1,9 @@
+{
+  "name": "handymate-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Statisk landningssajt för Handymate — handymate.se",
+  "scripts": {
+    "test": "node tests/ssrf.test.mjs && node tests/scoring.test.mjs && node tests/cta.test.mjs"
+  }
+}

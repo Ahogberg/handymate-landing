@@ -37,9 +37,9 @@
     "operatingSystem": "Web",
     "offers": {
       "@type": "Offer",
-      "price": "4995",
+      "price": "4996",
       "priceCurrency": "SEK",
-      "description": "Firman — 4 995 kr/mån vid årsbetalning (59 940 kr/år) eller 5 995 kr/mån månadsvis"
+      "description": "Firman — 4 996 kr/mån vid årsbetalning (59 950 kr/år) eller 5 995 kr/mån månadsvis"
     },
     "provider": {
       "@type": "Organization",
@@ -503,8 +503,8 @@
     <div class="price-grid">
       <div class="price-card featured reveal">
         <h3>Firman</h3>
-        <div class="price-value"><span data-price data-year="4 995" data-month="5 995">4 995</span> kr <small>/mån exkl. moms</small></div>
-        <p class="price-note" data-note data-year="Faktureras årsvis (59 940 kr) — <b>spara 12 000 kr/år</b>" data-month="Löpande månadsvis, ingen bindningstid">Faktureras årsvis (59 940 kr) — <b>spara 12 000 kr/år</b></p>
+        <div class="price-value"><span data-price data-year="4 996" data-month="5 995">4 996</span> kr <small>/mån exkl. moms</small></div>
+        <p class="price-note" data-note data-year="Faktureras årsvis (59 950 kr) — <b>betala för 10 månader, få 12</b>" data-month="Löpande månadsvis, ingen bindningstid">Faktureras årsvis (59 950 kr) — <b>betala för 10 månader, få 12</b></p>
         <p>Hela agentteamet och kärnprodukten, för de flesta firmor.</p>
         <ul class="price-features">
           <li>Hela AI-teamet — sex medarbetare</li>
@@ -519,8 +519,8 @@
       </div>
       <div class="price-card reveal" style="transition-delay:.1s">
         <h3>Storfirman</h3>
-        <div class="price-value"><span data-price data-year="9 995" data-month="11 995">9 995</span> kr <small>/mån exkl. moms</small></div>
-        <p class="price-note" data-note data-year="Faktureras årsvis (119 940 kr) — <b>spara 24 000 kr/år</b>" data-month="Löpande månadsvis, ingen bindningstid">Faktureras årsvis (119 940 kr) — <b>spara 24 000 kr/år</b></p>
+        <div class="price-value"><span data-price data-year="9 996" data-month="11 995">9 996</span> kr <small>/mån exkl. moms</small></div>
+        <p class="price-note" data-note data-year="Faktureras årsvis (119 950 kr) — <b>betala för 10 månader, få 12</b>" data-month="Löpande månadsvis, ingen bindningstid">Faktureras årsvis (119 950 kr) — <b>betala för 10 månader, få 12</b></p>
         <p>För växande företag med fler anställda.</p>
         <ul class="price-features">
           <li>Allt i Firman</li>
@@ -594,7 +594,7 @@
 
   // Pristoggle: årsvis (default, säljs först) ⇄ månadsvis.
   // Siffrorna ligger i data-attribut på varje kort — EN sanning per kort,
-  // ingen sifferlogik i JS (12 000/24 000 kr/år är exakt: (5995−4995)×12).
+  // ingen sifferlogik i JS. Årspriser = dashboardens getPlanYearlyPrice (10× månadspris, "betala för 10, få 12") — ändra ALDRIG här utan att ändra där.
   (function () {
     const yearBtn = document.getElementById('billYear');
     const monthBtn = document.getElementById('billMonth');

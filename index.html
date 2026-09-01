@@ -204,6 +204,12 @@
     .price-features{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
     .price-features li{display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.5;color:rgba(255,255,255,0.75)}
     .price-features li::before{content:"✓";color:#5eead4;font-weight:700;flex:0 0 auto}
+    .price-features li.inherited-label{font-weight:700;color:#fff;margin-top:2px}
+    .price-features li.inherited-label::before{content:"✓";color:#5eead4}
+    .price-inherited{list-style:none;margin:0 0 2px 26px;padding:10px 0 10px 16px;display:flex;flex-direction:column;gap:7px;border-left:2px solid rgba(94,234,212,0.2)}
+    .price-inherited li{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,0.5)}
+    .price-inherited li::before{content:"✓";color:rgba(94,234,212,0.5);font-weight:700;flex:0 0 auto;font-size:12px}
+    .price-badge{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font:700 11px var(--body);letter-spacing:0.04em;text-transform:uppercase;color:#fcd34d;background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);border-radius:9999px;padding:5px 12px;margin-bottom:2px}
     .price-volume{max-width:860px;margin:36px auto 0;text-align:center;font-size:15px;line-height:1.65;color:rgba(255,255,255,0.6)}
     .price-volume .guarantee{margin-top:12px;font-weight:700;color:rgba(255,255,255,0.85)}
     .finder{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:28px 32px 24px;max-width:860px;margin:0 auto 36px}
@@ -540,7 +546,6 @@
         <p>Hela agentteamet — samtal, admin och rådgivning inbyggt — för de flesta firmor, oavsett hur många ni är.</p>
         <ul class="price-features">
           <li>Hela AI-teamet — sex medarbetare</li>
-          <li>Så många i teamet ni vill, ingen extra kostnad per person</li>
           <li>Automatiserad admin &amp; rådgivning — marginalkoll, prisförslag och pappersarbete</li>
           <li>Missade samtal fångas 24/7</li>
           <li>Offerthantering &amp; e-signering</li>
@@ -551,14 +556,26 @@
         <a href="https://app.handymate.se/signup" class="btn-primary" style="margin-top:14px;height:52px">Kom igång</a>
       </div>
       <div class="price-card reveal" id="cardStorfirman" style="transition-delay:.1s">
+        <span class="price-badge">Mest utrymme att växa i</span>
         <h3>Storfirman</h3>
         <div class="price-value"><span data-price data-year="9 996" data-month="11 995">9 996</span> kr <small>/mån exkl. moms</small></div>
         <p class="price-note" data-note data-year="Faktureras årsvis (119 950 kr) — <b>betala för 10 månader, få 12</b>" data-month="Löpande månadsvis, ingen bindningstid">Faktureras årsvis (119 950 kr) — <b>betala för 10 månader, få 12</b></p>
-        <p>För firmor som redan kör AI-teamet varje dag och vill ha mer utrymme att växa i.</p>
+        <p>För firmor med högre volym — samma AI-team, utan taken på samtal och SMS.</p>
         <ul class="price-features">
-          <li>Allt i Firman</li>
-          <li>Obegränsade användare</li>
-          <li>Större utrymme för SMS &amp; utskick</li>
+          <li class="inherited-label">Allt i Firman:</li>
+        </ul>
+        <ul class="price-inherited">
+          <li>Hela AI-teamet — sex medarbetare</li>
+          <li>Automatiserad admin &amp; rådgivning — marginalkoll, prisförslag och pappersarbete</li>
+          <li>Missade samtal fångas 24/7</li>
+          <li>Offerthantering &amp; e-signering</li>
+          <li>Faktura, ROT/RUT &amp; Swish QR</li>
+          <li>SMS-utskick &amp; kampanjer</li>
+          <li>Gmail &amp; Google Calendar</li>
+        </ul>
+        <ul class="price-features">
+          <li><b>Obegränsade samtal</b> — inget tak alls</li>
+          <li><b>Större utrymme för SMS</b> &amp; utskick</li>
           <li>Egen hemsida med SEO</li>
           <li>Dedikerad support</li>
         </ul>

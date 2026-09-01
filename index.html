@@ -206,6 +206,23 @@
     .price-features li::before{content:"✓";color:#5eead4;font-weight:700;flex:0 0 auto}
     .price-volume{max-width:860px;margin:36px auto 0;text-align:center;font-size:15px;line-height:1.65;color:rgba(255,255,255,0.6)}
     .price-volume .guarantee{margin-top:12px;font-weight:700;color:rgba(255,255,255,0.85)}
+    .finder{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:28px 32px 24px;max-width:860px;margin:0 auto 36px}
+    .finder-top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+    .finder-label{font-size:15px;font-weight:500;color:#fff}
+    .finder-value{font:700 28px var(--heading);color:#5eead4;white-space:nowrap}
+    .finder-value span{font:500 14px var(--body);color:rgba(255,255,255,0.55);margin-left:4px}
+    .finder input[type=range]{-webkit-appearance:none;width:100%;height:8px;border-radius:9999px;background:rgba(255,255,255,0.15);outline:none;margin:6px 0 8px}
+    .finder input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#5eead4;border:4px solid var(--teal-950);box-shadow:0 0 0 2px #5eead4;cursor:pointer}
+    .finder input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#5eead4;border:4px solid var(--teal-950);box-shadow:0 0 0 2px #5eead4;cursor:pointer;border:none}
+    .finder-scale{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:18px}
+    .finder-stat{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .finder-stat b{font:700 32px var(--heading);color:#5eead4;letter-spacing:-0.02em}
+    .finder-stat span{font-size:15px;font-weight:500;color:#fff}
+    .finder-plan{display:flex;align-items:center;gap:14px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.12);flex-wrap:wrap}
+    .finder-badge{font-size:14px;font-weight:700;color:var(--teal-950);background:#5eead4;padding:6px 12px;border-radius:8px;white-space:nowrap}
+    .finder-detail{font-size:14px;color:rgba(255,255,255,0.65);flex:1;min-width:220px}
+    .finder-detail strong{color:#fff;font-weight:600}
+    .finder-note{font-size:12px;color:rgba(255,255,255,0.4);margin:14px 0 0}
     .founder-strip{max-width:860px;margin:28px auto 0;display:flex;align-items:center;gap:18px;background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.25);border-radius:16px;padding:20px 26px}
     .founder-strip b{font:700 15px var(--heading);letter-spacing:0.1em;color:#5eead4;flex:0 0 auto}
     .founder-strip span{font-size:15px;line-height:1.5;color:rgba(255,255,255,0.75)}
@@ -495,33 +512,49 @@
       <p>Jämför inte med billigaste licensen — jämför med kvällarna vid köksbordet och affärerna som faller mellan stolarna.</p>
     </div>
 
+    <div class="finder reveal">
+      <div class="finder-top">
+        <span class="finder-label">Hur många är ni i firman?</span>
+        <span class="finder-value" id="teamOut">3 <span>personer</span></span>
+      </div>
+      <input type="range" id="teamSlider" min="1" max="15" step="1" value="3" aria-label="Antal personer i firman">
+      <div class="finder-scale"><span>1 · soloföretagare</span><span>15+ · flera lag i full drift</span></div>
+      <div class="finder-stat"><b id="hoursOut">175</b><span id="hoursLabel">arbetstimmar av Matte &amp; gänget ingår i Firman / månad</span></div>
+      <div class="finder-plan">
+        <span class="finder-badge" id="finderBadge">Firman räcker gott och väl</span>
+        <span class="finder-detail" id="finderDetail">Det motsvarar ungefär <strong>600 ärenden</strong> i månaden som AI-teamet hanterar åt er — samtal, SMS, bokningar och uppföljningar, plus admin i bakgrunden som fakturor, prisförslag och marginalkoll. Firman har gott om utrymme för det.</span>
+      </div>
+      <p class="finder-note">* Arbetstimmarna räknas på planens samtals-/SMS-tak (Firman: 400 samtal + 300 SMS, Storfirman: obegränsade samtal) — admin och rådgivning tillkommer utan eget tak. En uppskattning, inte en tidsbesparingsgaranti.</p>
+    </div>
+
     <div class="bill-toggle reveal" role="group" aria-label="Betalningsperiod">
       <button type="button" id="billYear" aria-pressed="true">Årsvis <span class="bill-save">2 mån gratis</span></button>
       <button type="button" id="billMonth" aria-pressed="false">Månadsvis</button>
     </div>
 
     <div class="price-grid">
-      <div class="price-card featured reveal">
+      <div class="price-card featured reveal" id="cardFirman">
         <h3>Firman</h3>
         <div class="price-value"><span data-price data-year="4 996" data-month="5 995">4 996</span> kr <small>/mån exkl. moms</small></div>
         <p class="price-note" data-note data-year="Faktureras årsvis (59 950 kr) — <b>betala för 10 månader, få 12</b>" data-month="Löpande månadsvis, ingen bindningstid">Faktureras årsvis (59 950 kr) — <b>betala för 10 månader, få 12</b></p>
-        <p>Hela agentteamet och kärnprodukten, för de flesta firmor.</p>
+        <p>Hela agentteamet — samtal, admin och rådgivning inbyggt — för de flesta firmor, oavsett hur många ni är.</p>
         <ul class="price-features">
           <li>Hela AI-teamet — sex medarbetare</li>
+          <li>Så många i teamet ni vill, ingen extra kostnad per person</li>
+          <li>Automatiserad admin &amp; rådgivning — marginalkoll, prisförslag och pappersarbete</li>
           <li>Missade samtal fångas 24/7</li>
           <li>Offerthantering &amp; e-signering</li>
           <li>Faktura, ROT/RUT &amp; Swish QR</li>
           <li>SMS-utskick &amp; kampanjer</li>
           <li>Gmail &amp; Google Calendar</li>
-          <li>5 användare</li>
         </ul>
         <a href="https://app.handymate.se/signup" class="btn-primary" style="margin-top:14px;height:52px">Kom igång</a>
       </div>
-      <div class="price-card reveal" style="transition-delay:.1s">
+      <div class="price-card reveal" id="cardStorfirman" style="transition-delay:.1s">
         <h3>Storfirman</h3>
         <div class="price-value"><span data-price data-year="9 996" data-month="11 995">9 996</span> kr <small>/mån exkl. moms</small></div>
         <p class="price-note" data-note data-year="Faktureras årsvis (119 950 kr) — <b>betala för 10 månader, få 12</b>" data-month="Löpande månadsvis, ingen bindningstid">Faktureras årsvis (119 950 kr) — <b>betala för 10 månader, få 12</b></p>
-        <p>För växande företag med fler anställda.</p>
+        <p>För firmor som redan kör AI-teamet varje dag och vill ha mer utrymme att växa i.</p>
         <ul class="price-features">
           <li>Allt i Firman</li>
           <li>Obegränsade användare</li>
@@ -534,7 +567,7 @@
     </div>
 
     <div class="price-volume reveal">
-      <p>Skillnaden mellan planerna är volym, inte hjärna. Firman ger 300 SMS och 400 samtal i månaden, upp till 5 användare. Storfirman ger 1 000 SMS i månaden och obegränsat med samtal och användare. All intelligens ingår i båda planerna — du betalar för volym, inte för hjärnan.</p>
+      <p>All intelligens ingår i båda planerna — du betalar för volym, inte för hjärnan.</p>
       <p>Större företag med särskilda behov? <a href="mailto:andreas@handymate.se?subject=Anpassat%20uppl%C3%A4gg" style="color:#5eead4;font-weight:600">Kontakta oss för ett anpassat upplägg.</a></p>
       <p class="guarantee">30 dagars pengarna-tillbaka-garanti. Inga frågor.</p>
     </div>
@@ -606,6 +639,65 @@
     }
     yearBtn.addEventListener('click', () => setMode('year'));
     monthBtn.addEventListener('click', () => setMode('month'));
+  })();
+
+  // Hitta rätt plan: reglaget rekommenderar Firman/Storfirman utifrån
+  // antal anställda. Övergångsfas 6–7 personer (medvetet mjuk, inte en
+  // hård gräns). Arbetstimmarna är en EGENSKAP PER PLAN (Firmans tak
+  // 400 samtal + 300 SMS omräknat, Storfirman "Obegränsat" eftersom
+  // samtal faktiskt saknar tak där) — skalar aldrig med reglaget.
+  (function () {
+    const slider = document.getElementById('teamSlider');
+    const teamOut = document.getElementById('teamOut');
+    const hoursOut = document.getElementById('hoursOut');
+    const hoursLabel = document.getElementById('hoursLabel');
+    const badge = document.getElementById('finderBadge');
+    const detail = document.getElementById('finderDetail');
+    const cardFirman = document.getElementById('cardFirman');
+    const cardStorfirman = document.getElementById('cardStorfirman');
+
+    const TRANSITION_START = 6, TRANSITION_END = 8;
+    const TASKS_PER_PERSON = 200;
+    const FIRMAN_HOURS = 175;
+
+    function update() {
+      const team = Number(slider.value);
+      teamOut.innerHTML = team + ' <span>' + (team === 1 ? 'person' : 'personer') + '</span>';
+
+      const tasks = Math.round(team * TASKS_PER_PERSON);
+      const tasksFmt = tasks.toLocaleString('sv-SE');
+
+      let state;
+      if (team < TRANSITION_START) state = 'firman';
+      else if (team < TRANSITION_END) state = 'transition';
+      else state = 'storfirman';
+
+      const base = 'Det motsvarar ungefär <strong>' + tasksFmt + ' ärenden</strong> i månaden som AI-teamet hanterar åt er — samtal, SMS, bokningar och uppföljningar, plus admin i bakgrunden som fakturor, prisförslag och marginalkoll.';
+
+      if (state === 'firman') {
+        hoursOut.textContent = String(FIRMAN_HOURS);
+        hoursLabel.textContent = 'arbetstimmar av Matte & gänget ingår i Firman / månad';
+        badge.textContent = 'Firman räcker gott och väl';
+        detail.innerHTML = base + ' Firman har gott om utrymme för det.';
+        cardStorfirman.classList.remove('featured');
+        cardFirman.classList.add('featured');
+      } else {
+        hoursOut.textContent = 'Obegränsat';
+        hoursLabel.textContent = 'arbetstimmar av Matte & gänget ingår i Storfirman';
+        cardFirman.classList.remove('featured');
+        cardStorfirman.classList.add('featured');
+        if (state === 'transition') {
+          badge.textContent = 'Storfirman börjar löna sig';
+          detail.innerHTML = base + ' Ni börjar nå en nivå där Storfirmans extra utrymme gör skillnad.';
+        } else {
+          badge.textContent = 'Storfirman passar er bäst';
+          detail.innerHTML = base + ' Storfirman är byggd för den takten.';
+        }
+      }
+    }
+
+    slider.addEventListener('input', update);
+    update();
   })();
 </script>
 </body>

@@ -59,6 +59,16 @@ ok('inget löfte om autonom kundkontakt — teamet förbereder, du godkänner',
   src.includes('förbereder') && !/sköter allt åt dig|utan att du behöver göra något/i.test(hero))
 
 // Det cta.test.mjs kräver ska överleva heroets omskrivning.
+// Antalet frågor i heroets hint måste stämma med Företagskollen. Jag
+// skrev först "Sju" på ren gissning — facit läser nu det faktiska antalet
+// ur foretagskollen.html så påståendet inte kan glida från källan.
+const fragorSrc = readFileSync(join(__dirname, '..', 'foretagskollen.html'), 'utf8')
+const fragorBlock = fragorSrc.slice(fragorSrc.indexOf('var FRAGOR = ['), fragorSrc.indexOf('var FRAGOR = [') + 9000)
+const antalFragor = (fragorBlock.match(/\bid:\s*'[a-z_]+'/g) || []).length
+const raknord = { 7: 'Sju', 8: 'Åtta', 9: 'Nio', 10: 'Tio' }[antalFragor]
+ok(`heroet säger rätt antal frågor (${antalFragor} = ${raknord})`,
+  !!raknord && hero.includes(`${raknord} frågor`))
+
 ok('bokningslänken finns kvar på sidan', src.includes('Boka en genomgång'))
 ok('signup-länken finns kvar på sidan', src.includes('https://app.handymate.se/signup'))
 

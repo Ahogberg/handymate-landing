@@ -96,6 +96,105 @@
     /* Uppdrag hero card */
     .mission-card{position:relative;background:#fff;border:1px solid var(--border);border-radius:24px;padding:30px;box-shadow:0 24px 70px rgba(15,118,110,0.14);animation:hmfloat 7s ease-in-out infinite}
     @keyframes hmfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    /* ══ Nedräkningspanel (2026-09-03) ══
+       EN HELSKÄRM ovanpå den ordinarie sidan. Höjdbudgeten är hård: allt
+       måste rymmas utan skroll, också på 375×667 med en 73px sticky nav.
+       Därför två kolumner från 900px och en stram kolumn under — och därför
+       bär teamremsan bara ansikten på mobil, rollerna först när det finns
+       plats. Första utkastet blev 1235px högt; det här är den omgjorda. */
+    .lansering{background:var(--teal-950);color:#fff;position:relative;overflow:hidden;
+      /* 100svh, inte 100vh: på mobil krymper 100vh inte när adressfältet fälls
+         in, vilket trycker ner innehållet under vikningen. min-height, aldrig
+         height — innehållet ska få växa på en extremt låg skärm i stället för
+         att klippas. */
+      min-height:calc(100vh - 73px);min-height:calc(100svh - 73px);
+      display:flex;align-items:center;padding:20px 0 44px}
+    @media (min-width:900px){.lansering{padding:32px 0 48px}}
+    .lansering::after{content:'';position:absolute;inset:auto -20% -60% 40%;height:420px;
+      background:radial-gradient(closest-side,rgba(20,184,166,0.18),transparent);pointer-events:none}
+    .lansering .container{position:relative;z-index:1;width:100%}
+    .lansering-grid{display:grid;gap:24px;align-items:center}
+    @media (min-width:900px){.lansering-grid{grid-template-columns:1.15fr 0.85fr;gap:48px}}
+
+    .lansering-eyebrow{font:600 12px var(--body);letter-spacing:0.18em;color:var(--teal-400);text-transform:uppercase;margin-bottom:10px}
+    .lansering h1{font-size:clamp(28px,5.4vw,58px);line-height:1.06;color:#fff;max-width:14ch;margin:0 0 10px}
+    .lansering h1 .accent{color:#5eead4}
+    .lansering-sub{font-size:clamp(14px,1.7vw,18px);line-height:1.5;color:rgba(255,255,255,0.7);max-width:46ch;margin:0 0 18px}
+
+    .nedrakning{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:420px;margin:0 0 18px}
+    .nedrakning-ruta{display:flex;flex-direction:column;align-items:center;gap:2px;
+      background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.13);border-radius:14px;padding:10px 4px}
+    @media (min-width:900px){.nedrakning-ruta{padding:16px 6px;border-radius:18px}}
+    .nedrakning-tal{font:700 clamp(24px,4.4vw,42px)/1.1 ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+      color:#fff;font-variant-numeric:tabular-nums}
+    .nedrakning-etikett{font:600 clamp(8px,1.4vw,11px) var(--body);letter-spacing:0.1em;color:rgba(255,255,255,0.5)}
+
+    .lansering-cta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+    .lansering-cta .btn-primary,.lansering-cta .btn-secondary{height:46px;padding:0 20px;font-size:15px}
+    .lansering-cta .btn-secondary{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.22);color:#fff}
+    .lansering-cta .btn-secondary:hover{background:rgba(255,255,255,0.16)}
+    /* Bokningsknappen finns redan i navet — på mobil är höjdbudgeten viktigare. */
+    @media (max-width:559px){.lansering-cta .btn-secondary{display:none}}
+
+    .vantelista-rad{display:flex;gap:8px;max-width:520px;margin:0 0 8px}
+    .vantelista-rad input{flex:1;min-width:0;height:46px;padding:0 14px;font-size:16px;font-family:inherit;
+      border:1px solid rgba(255,255,255,0.25);border-radius:11px;background:rgba(255,255,255,0.08);color:#fff}
+    .vantelista-rad input::placeholder{color:rgba(255,255,255,0.4)}
+    .vantelista-rad input:focus{outline:2px solid var(--teal-400);outline-offset:-1px}
+    /* Telefonfältet är frivilligt och får bara plats när skärmen räcker. */
+    @media (max-width:639px){.vantelista-rad #vantelistaTelefon{display:none}}
+    .vantelista-rad button{height:46px;padding:0 20px;border:none;border-radius:11px;cursor:pointer;
+      background:linear-gradient(135deg,var(--teal-700),var(--teal-500));color:#fff;font:500 15px var(--body);white-space:nowrap}
+    .vantelista-rad button:disabled{opacity:.6;cursor:default}
+    .vantelista-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+    .vantelista-svar{font-size:13px;margin:0;line-height:1.4}
+    .vantelista-svar.ok{color:#4ade80;font-weight:600} .vantelista-svar.fel{color:#fca5a5;font-weight:600}
+
+    .team-remsa-label{font:600 11px var(--body);letter-spacing:0.14em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:10px}
+    .team-remsa{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+    @media (min-width:900px){.team-remsa{grid-template-columns:repeat(3,1fr);gap:14px}}
+    .team-kort{text-align:center;min-width:0}
+    .team-kort img{width:100%;max-width:52px;aspect-ratio:1;object-fit:cover;border-radius:12px;
+      filter:grayscale(1) brightness(0.62)}
+    @media (min-width:900px){.team-kort img{max-width:76px;border-radius:16px}}
+    .team-namn{font-weight:600;font-size:12px;color:#fff;margin-top:5px}
+    @media (min-width:900px){.team-namn{font-size:14px;margin-top:8px}}
+    /* Rollerna är ordagrant lib/agents/team.ts — men de får bara plats när
+       skärmen räcker. Hellre inget än en avhuggen mening. */
+    .team-roll{display:none}
+    @media (min-width:900px){.team-roll{display:block;font-size:11px;color:rgba(255,255,255,0.45);line-height:1.3;margin-top:2px}}
+
+    /* Små telefoner (iPhone SE m.fl., 375×667): rubriken bryts till fler
+       rader och panelen spillde 47px under vikningen. Stramas här i stället
+       för att göra ALLA skärmar trängre än de behöver vara. */
+    @media (max-width:400px),(max-height:700px){
+      .lansering{padding:14px 0 34px}
+      .lansering h1{font-size:26px;margin-bottom:8px}
+      .lansering-eyebrow{margin-bottom:8px;font-size:11px}
+      .lansering-sub{font-size:14px;margin-bottom:14px}
+      .nedrakning{gap:6px;margin-bottom:14px}
+      .nedrakning-ruta{padding:8px 3px;border-radius:12px}
+      .nedrakning-tal{font-size:22px}
+      .lansering-cta{margin-bottom:10px}
+      .lansering-cta .btn-primary{height:44px;font-size:14px}
+      .vantelista-rad input,.vantelista-rad button{height:44px}
+      .team-kort img{max-width:44px;border-radius:10px}
+      .team-namn{font-size:11px;margin-top:4px}
+      .team-remsa-label{margin-bottom:8px}
+      .vantelista-svar{font-size:12px}
+    }
+
+    /* Pilen säger att sidan fortsätter under panelen — utan den ser en
+       helskärm ut som hela sajten och besökaren skrollar aldrig vidare. */
+    .lansering-vidare{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      font:500 11px var(--body);letter-spacing:0.1em;color:rgba(255,255,255,0.4);
+      text-decoration:none;animation:vidareGunga 2.4s var(--ease) infinite}
+    .lansering-vidare:hover{color:rgba(255,255,255,0.75)}
+    @keyframes vidareGunga{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,5px)}}
+    @media (max-height:700px){.lansering-vidare{display:none}}
+    @media (prefers-reduced-motion:reduce){.lansering-vidare{animation:none}}
+
     .mission-badge{font:500 12px var(--body);letter-spacing:0.12em;color:var(--teal-700);background:var(--teal-tint);border-radius:9999px;padding:6px 14px}
     .mission-title{font:700 24px var(--heading);letter-spacing:-0.01em;margin-top:16px}
     .mission-progress{height:8px;border-radius:4px;background:#f1f5f9;margin:18px 0 24px;overflow:hidden}
@@ -264,6 +363,64 @@
     </div>
   </div>
 </nav>
+
+<!-- ══ Nedräkningspanel (2026-09-03) ══
+     EN HELSKÄRM ovanpå den ordinarie sidan, inte en ersättning. Det riktiga
+     heroet ligger orört direkt under och ska fortsätta användas efter
+     lanseringen.
+     DEN 14 SEPTEMBER: radera den här <section>en, dess CSS-block (.lansering*,
+     .nedrakning*, .team-remsa*, .vantelista*) och skriptet längst ner i filen.
+     Fram tills dess döljer panelen sig själv automatiskt vid lanseringen, så
+     sajten aldrig står och räknar mot ett datum som passerat. -->
+<section class="lansering" id="lanseringHero" aria-label="Nedräkning till lansering">
+  <div class="container">
+    <div class="lansering-grid">
+      <div>
+        <div class="lansering-eyebrow">Det digitala teamet för hantverksföretag</div>
+        <h1>Framtidens hantverksföretag <span class="accent">vaknar snart.</span></h1>
+        <p class="lansering-sub">Du ska inte arbeta för systemet. Systemet ska arbeta för dig.</p>
+
+        <div class="nedrakning" id="nedrakning">
+          <div class="nedrakning-ruta"><span class="nedrakning-tal" id="ndDagar">–</span><span class="nedrakning-etikett">DAGAR</span></div>
+          <div class="nedrakning-ruta"><span class="nedrakning-tal" id="ndTimmar">–</span><span class="nedrakning-etikett">TIMMAR</span></div>
+          <div class="nedrakning-ruta"><span class="nedrakning-tal" id="ndMinuter">–</span><span class="nedrakning-etikett">MINUTER</span></div>
+          <div class="nedrakning-ruta"><span class="nedrakning-tal" id="ndSekunder">–</span><span class="nedrakning-etikett">SEKUNDER</span></div>
+        </div>
+
+        <div class="lansering-cta">
+          <a href="/foretagskollen" class="btn-primary">Se vad din firma läcker</a>
+          <a href="mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20" class="btn-secondary">Boka en genomgång</a>
+        </div>
+
+        <div id="vantelistaBlock">
+          <div class="vantelista-rad" id="vantelistaForm">
+            <input type="email" id="vantelistaEpost" placeholder="Din mejladress" autocomplete="email" inputmode="email" aria-label="Din e-postadress">
+            <input type="tel" id="vantelistaTelefon" placeholder="Telefon (frivilligt)" autocomplete="tel" inputmode="tel" aria-label="Ditt telefonnummer, frivilligt">
+            <button type="button" id="vantelistaKnapp" onclick="skickaVantelista()">Hör av er</button>
+          </div>
+          <input type="text" id="vantelistaWebsite" class="vantelista-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="vantelista-svar" id="vantelistaSvar" style="color:rgba(255,255,255,0.42)">Åtta frågor i Företagskollen, inga filer att ladda upp — eller lämna mejlen så hör vi av oss när vi öppnar.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="team-remsa-label" id="teamLabel">Teamet sover — än så länge</div>
+        <div class="team-remsa">
+          <div class="team-kort"><img src="/img/matte.webp" alt="Matte" width="76" height="76"><div class="team-namn">Matte</div><div class="team-roll">Koordinerar teamet och pratar med dig</div></div>
+          <div class="team-kort"><img src="/img/karin.webp" alt="Karin" width="76" height="76"><div class="team-namn">Karin</div><div class="team-roll">Håller koll på fakturor och betalningar</div></div>
+          <div class="team-kort"><img src="/img/daniel.webp" alt="Daniel" width="76" height="76"><div class="team-namn">Daniel</div><div class="team-roll">Följer upp offerter och leads</div></div>
+          <div class="team-kort"><img src="/img/lars.webp" alt="Lars" width="76" height="76"><div class="team-namn">Lars</div><div class="team-roll">Koordinerar projekt och bokningar</div></div>
+          <div class="team-kort"><img src="/img/hanna.webp" alt="Hanna" width="76" height="76"><div class="team-namn">Hanna</div><div class="team-roll">Sköter kampanjer och nya kunder</div></div>
+          <div class="team-kort"><img src="/img/lisa.webp" alt="Lisa" width="76" height="76"><div class="team-namn">Lisa</div><div class="team-roll">Fångar samtalen du missar och hanterar kundförfrågningar</div></div>
+        </div>
+      </div>
+    </div>
+    <a href="#uppdrag" class="lansering-vidare" aria-label="Skrolla vidare till sidan">
+      <span>SE HUR DET FUNGERAR</span>
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </a>
+  </div>
+</section>
 
 <header class="hero">
   <div class="container hero-grid">
@@ -716,6 +873,93 @@
     slider.addEventListener('input', update);
     update();
   })();
+</script>
+<script>
+// ══ Nedräkningspanelen och väntelistan (2026-09-03) ══
+// Panelen ligger OVANPÅ den ordinarie sidan och ersätter ingenting. Det
+// riktiga heroet finns orört direkt under och används vidare efter lansering.
+//
+// DEN 14 SEPTEMBER: radera <section id="lanseringHero">, dess CSS och det här
+// skriptet. Fram tills dess döljer panelen sig själv när tiden är inne, så
+// sajten aldrig står och räknar mot ett datum som passerat om ingen hinner
+// göra det manuellt. Datumet står på ETT ställe: raden nedan.
+(function () {
+  var LANSERING = new Date('2026-09-14T09:00:00+02:00').getTime();
+  var panel = document.getElementById('lanseringHero');
+  if (!panel) return;
+
+  function passerad() { return Date.now() >= LANSERING; }
+  function tvasiffrigt(n) { return String(n).padStart(2, '0'); }
+
+  function doljPanelen() {
+    panel.remove();
+    document.documentElement.classList.add('efter-lansering');
+  }
+
+  function ritaNedrakning() {
+    var kvar = Math.max(0, LANSERING - Date.now());
+    document.getElementById('ndDagar').textContent = String(Math.floor(kvar / 86400000));
+    document.getElementById('ndTimmar').textContent = tvasiffrigt(Math.floor(kvar / 3600000) % 24);
+    document.getElementById('ndMinuter').textContent = tvasiffrigt(Math.floor(kvar / 60000) % 60);
+    document.getElementById('ndSekunder').textContent = tvasiffrigt(Math.floor(kvar / 1000) % 60);
+  }
+
+  if (passerad()) {
+    doljPanelen();
+    return;
+  }
+
+  ritaNedrakning();
+  setInterval(function () {
+    if (passerad()) { doljPanelen(); return; }
+    ritaNedrakning();
+  }, 1000);
+
+  // ── Väntelistan ──
+  // KVITTOT SÄTTS FÖRST NÄR SERVERN SVARAT OK. Ett "Tack!" över en misslyckad
+  // skrivning är ett löfte till en människa som ingenting kan hålla.
+  function svar(text, klass) {
+    var el = document.getElementById('vantelistaSvar');
+    el.textContent = text;
+    el.className = 'vantelista-svar ' + klass;
+    el.style.color = '';
+    el.style.fontWeight = '';
+  }
+
+  window.skickaVantelista = function () {
+    var epost = document.getElementById('vantelistaEpost').value.trim();
+    var telefon = document.getElementById('vantelistaTelefon').value.trim();
+    var honeypot = document.getElementById('vantelistaWebsite').value;
+    var knapp = document.getElementById('vantelistaKnapp');
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(epost)) {
+      svar('Kontrollera e-postadressen.', 'fel');
+      return;
+    }
+
+    knapp.disabled = true;
+    knapp.textContent = 'Skickar...';
+
+    fetch('/api/save-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: epost,
+        phone: telefon || null,
+        source: 'nedrakning',
+        website: honeypot
+      })
+    }).then(function (res) {
+      if (!res.ok) throw new Error('status ' + res.status);
+      document.getElementById('vantelistaForm').style.display = 'none';
+      svar('Tack! Vi hör av oss när vi öppnar — med ditt team på plats.', 'ok');
+    }).catch(function () {
+      knapp.disabled = false;
+      knapp.textContent = 'Hör av er';
+      svar('Det gick inte att spara — försök igen om en stund.', 'fel');
+    });
+  };
+})();
 </script>
 </body>
 </html>

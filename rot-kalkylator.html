@@ -281,6 +281,39 @@
     }
 
     /* ── Rules info (collapsible) ── */
+    /* ── Väntelista (2026-09-03) ── Sidan räknade ut ett avdrag åt besökaren
+       och lät hen sedan gå utan spår. Blocket ligger EFTER resultatet och
+       gatear det aldrig: uträkningen är gratis, adressen är frivillig. */
+    .vantelista {
+      margin-top: 20px; padding: 20px;
+      background: #fff; border: 1px solid var(--slate-200); border-radius: 16px;
+    }
+    @media (min-width: 640px) { .vantelista { padding: 24px; } }
+    .vantelista h3 { font-size: 17px; font-weight: 700; color: var(--slate-900); margin: 0 0 6px; }
+    .vantelista p { font-size: 14px; color: var(--slate-600); margin: 0 0 14px; line-height: 1.5; }
+    .vantelista-falt { display: flex; flex-direction: column; gap: 10px; }
+    @media (min-width: 520px) { .vantelista-falt { flex-direction: row; } }
+    .vantelista input {
+      flex: 1; min-width: 0; padding: 13px 15px; font-size: 16px;
+      border: 1px solid var(--slate-300); border-radius: 12px; color: var(--slate-900);
+      background: #fff; font-family: inherit;
+    }
+    .vantelista input:focus { outline: 2px solid var(--teal-600); outline-offset: -1px; border-color: transparent; }
+    .vantelista button {
+      padding: 13px 22px; font-size: 15px; font-weight: 600; color: #fff;
+      background: var(--teal-700); border: none; border-radius: 12px; cursor: pointer;
+      font-family: inherit; white-space: nowrap; transition: background .15s ease;
+    }
+    .vantelista button:hover:not(:disabled) { background: var(--teal-800); }
+    .vantelista button:disabled { opacity: .6; cursor: default; }
+    .vantelista-finstilt { font-size: 13px; color: var(--slate-500); margin: 12px 0 0; }
+    .vantelista-svar { font-size: 15px; font-weight: 600; margin: 0; line-height: 1.5; }
+    .vantelista-svar.ok { color: var(--teal-700); }
+    .vantelista-svar.fel { color: #B91C1C; }
+    /* Honeypot: utanför bild och utanför tabbordningen, aldrig display:none
+       (vissa bottar hoppar över dolda fält). */
+    .vantelista-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
     .rules-section { max-width: 820px; margin: 0 auto 48px; }
     .rules-toggle {
       width: 100%; padding: 16px 20px; font-size: 15px; font-weight: 600;
@@ -501,6 +534,22 @@
         </div>
       </div>
 
+      <!-- ════ Väntelista ════ -->
+      <div class="vantelista reveal" id="vantelista">
+        <div id="vantelistaForm">
+          <h3 id="vantelistaRubrik">Vill du att vi hör av oss?</h3>
+          <p id="vantelistaText">Handymate räknar ROT automatiskt på varje offert du skickar. Lämna din adress så hör vi av oss.</p>
+          <div class="vantelista-falt">
+            <input type="email" id="vantelistaEpost" placeholder="din@epost.se" autocomplete="email" inputmode="email" aria-label="Din e-postadress">
+            <input type="tel" id="vantelistaTelefon" placeholder="Telefon (frivilligt)" autocomplete="tel" inputmode="tel" aria-label="Ditt telefonnummer, frivilligt">
+            <button type="button" id="vantelistaKnapp" onclick="skickaVantelista()">Hör av er</button>
+          </div>
+          <input type="text" id="vantelistaWebsite" class="vantelista-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="vantelista-finstilt" id="vantelistaFinstilt">Ett mejl. Inget nyhetsbrev.</p>
+        </div>
+        <p class="vantelista-svar" id="vantelistaSvar" style="display:none;"></p>
+      </div>
+
       <!-- Rules (collapsible) -->
       <div class="rules-section reveal" style="margin-top: 32px;">
         <button class="rules-toggle" onclick="toggleRules(this)">
@@ -660,6 +709,87 @@
         note.innerHTML = '💡 Moms tillkommer på materialkostnad. ROT-avdrag gäller enbart arbetskostnad.';
       }
     }
+
+    // ══ Väntelistan (2026-09-03) ══
+    // Sidan räknade ut ett avdrag och lät besökaren gå utan spår. Nu fångar
+    // vi adressen — men bara efter att uträkningen redan visats, och aldrig
+    // som en grind.
+    //
+    // KVITTOT SÄTTS FÖRST NÄR SERVERN SVARAT OK. Aldrig optimistiskt: ett
+    // "Tack, vi hörs!" över en misslyckad skrivning är ett löfte till en
+    // människa som ingenting kan hålla. api/save-lead.js returnerar riktig
+    // status sedan 2026-09-03 just för att det här ska gå att lita på.
+    var LANSERING = new Date('2026-09-14T09:00:00+02:00').getTime();
+
+    function foreLansering() { return Date.now() < LANSERING; }
+
+    // Texten flippar av sig själv vid lanseringen — ingen ska behöva minnas
+    // att redigera sidan den 14:e.
+    function stallInVantelistetext() {
+      if (!foreLansering()) return;
+      document.getElementById('vantelistaRubrik').textContent = 'Vill du att vi hör av oss den 14 september?';
+      document.getElementById('vantelistaText').textContent =
+        'Handymate öppnar den 14 september och räknar ROT automatiskt på varje offert du skickar.';
+      document.getElementById('vantelistaFinstilt').textContent = 'Ett mejl, den 14 september. Inget nyhetsbrev.';
+    }
+
+    function visaVantelistesvar(text, klass) {
+      var svar = document.getElementById('vantelistaSvar');
+      svar.textContent = text;
+      svar.className = 'vantelista-svar ' + klass;
+      svar.style.display = '';
+    }
+
+    function skickaVantelista() {
+      var epost = document.getElementById('vantelistaEpost').value.trim();
+      var telefon = document.getElementById('vantelistaTelefon').value.trim();
+      var honeypot = document.getElementById('vantelistaWebsite').value;
+      var knapp = document.getElementById('vantelistaKnapp');
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(epost)) {
+        visaVantelistesvar('Kontrollera e-postadressen.', 'fel');
+        return;
+      }
+
+      knapp.disabled = true;
+      knapp.textContent = 'Skickar...';
+
+      // Uträkningen följer med — då ringer du inte en adress, du ringer
+      // någon vars jobb du redan vet storleken på.
+      var payload = {
+        arbetskostnad: Number(document.getElementById('costInput').value) || 0,
+        personer: document.getElementById('person2').classList.contains('active') ? 2 : 1,
+        jobbtyp: document.getElementById('jobType').value,
+        avdrag: document.getElementById('resultAmount').textContent
+      };
+
+      fetch('/api/save-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: epost,
+          phone: telefon || null,
+          source: 'rot-kalkylator',
+          website: honeypot,
+          payload: payload
+        })
+      }).then(function (res) {
+        if (!res.ok) throw new Error('status ' + res.status);
+        document.getElementById('vantelistaForm').style.display = 'none';
+        visaVantelistesvar(
+          foreLansering()
+            ? 'Tack! Vi hör av oss den 14 september — med ditt team på plats.'
+            : 'Tack! Vi hör av oss.',
+          'ok'
+        );
+      }).catch(function () {
+        knapp.disabled = false;
+        knapp.textContent = 'Hör av er';
+        visaVantelistesvar('Det gick inte att spara — försök igen om en stund.', 'fel');
+      });
+    }
+
+    stallInVantelistetext();
 
     function toggleRules(btn) {
       btn.classList.toggle('open');

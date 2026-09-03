@@ -4,6 +4,6 @@
   "private": true,
   "description": "Statisk landningssajt för Handymate — handymate.se",
   "scripts": {
-    "test": "node tests/ssrf.test.mjs && node tests/scoring.test.mjs && node tests/cta.test.mjs && node tests/save-lead.test.mjs"
+    "test": "node tests/ssrf.test.mjs && node tests/scoring.test.mjs && node tests/cta.test.mjs && node tests/save-lead.test.mjs && node tests/rot-kalkylator-lead.test.mjs"
   }
 }

@@ -78,6 +78,30 @@ const raknord = { 7: 'Sju', 8: 'Åtta', 9: 'Nio', 10: 'Tio' }[antalFragor]
 ok(`heroet säger rätt antal frågor (${antalFragor} = ${raknord})`,
   !!raknord && hero.includes(`${raknord} frågor`))
 
+// ── Tillgänglighet och hierarki (2026-09-03, Andreas granskning) ──
+// Vit text på gradientens ljusa ände gav 2.49:1 i navet. WCAG AA kräver
+// 4.5 för normal text; knappen är 15px/500 och får inte den lägre
+// 3.0-gränsen för stor text.
+ok('navets knapp har egen, mörkare gradient som klarar AA',
+  src.includes('.nav .btn-primary{background:linear-gradient(135deg,#115E59,#0f766e)}'))
+
+// .hero-grid sitter på samma element som .container och skrev över hela
+// padding-shorthanden, inklusive .container{padding:0 24px}. Innehållet gick
+// kant i kant. Långsidorna måste sättas var för sig.
+ok('heroets sidpadding överlever — ingen padding-shorthand i .hero-grid',
+  !/\.hero-grid\{[^}]*[^-]padding:/.test(src) &&
+  src.includes('.hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:72px;align-items:center;padding-top:96px'))
+ok('samma sak i 1024px-brytpunkten',
+  !/@media \(max-width:1024px\)\{\.hero-grid\{[^}]*[^-]padding:/.test(src))
+
+// EN primär åtgärd. Väntelisteknappen hade samma teal-gradient, höjd och
+// vikt som primärknappen — två likadana knappar läses som jämbördiga val.
+ok('väntelisteknappen är en dämpad kontur, inte en andra primärknapp',
+  /\.vantelista-rad button\{[^}]*background:rgba\(255,255,255,0\.08\)/.test(src) &&
+  !/\.vantelista-rad button\{[^}]*linear-gradient/.test(src))
+ok('väntelistan har en egen inledning som ramar in den som alternativet',
+  hero.includes('Hinner du inte nu?'))
+
 ok('bokningslänken finns kvar på sidan', src.includes('Boka en genomgång'))
 ok('signup-länken finns kvar på sidan', src.includes('https://app.handymate.se/signup'))
 

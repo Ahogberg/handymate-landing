@@ -84,11 +84,19 @@
     .nav{position:sticky;top:0;z-index:40;background:rgba(248,250,252,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1280px;margin:0 auto}
     .nav-brand{display:flex;align-items:center;gap:12px;font:700 20px var(--heading);color:#0f172a}
+    /* Kontrastfix 2026-09-03: vit text på gradientens ljusa ände (#14b8a6)
+       gav 2.49:1 — långt under WCAG AA:s 4.5 för normal text (knappen är
+       15px/500, alltså inte "stor text" med den lägre 3.0-gränsen). Navets
+       knapp får teal-800 -> teal-700: 7.58 i den mörka änden, 5.47 i den
+       ljusa — hela ytan klarar AA. Ett mellansteg med #0D9488 landade på
+       3.74 och underkändes. Enbart navet: samma knapp på mörk botten eller
+       i ett vitt kort har annan omgivning och rörs inte. */
+    .nav .btn-primary{background:linear-gradient(135deg,#115E59,#0f766e)}
     .nav-links{display:flex;align-items:center;gap:28px;font-size:15px}
     .nav-links a{color:var(--muted)} .nav-links a:hover{color:#0f172a}
     /* Hero */
     .hero{background:linear-gradient(160deg,#e6fffa 0%,#f0fdf9 30%,#f8fafc 65%);overflow:hidden;position:relative}
-    .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:72px;align-items:center;padding:96px 0 110px}
+    .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:72px;align-items:center;padding-top:96px;padding-bottom:110px}
     .hero h1{font-size:clamp(44px,4.6vw,68px);line-height:1.08}
     .hero h1 .accent{color:var(--teal-700)}
     .hero-sub{font-size:19px;line-height:1.65;color:#475569;max-width:520px}
@@ -129,10 +137,11 @@
       color:#fff;font-variant-numeric:tabular-nums}
     .nedrakning-etikett{font:600 clamp(8px,1.4vw,11px) var(--body);letter-spacing:0.1em;color:rgba(255,255,255,0.5)}
 
-    .lansering-cta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+    .lansering-cta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
     .lansering-cta .btn-primary,.lansering-cta .btn-secondary{height:46px;padding:0 20px;font-size:15px}
     .lansering-cta .btn-secondary{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.22);color:#fff}
     .lansering-cta .btn-secondary:hover{background:rgba(255,255,255,0.16)}
+    .lansering-hint{font-size:13px;color:rgba(255,255,255,0.42);margin:0 0 16px}
     /* Bokningsknappen finns redan i navet — på mobil är höjdbudgeten viktigare. */
     @media (max-width:559px){.lansering-cta .btn-secondary{display:none}}
 
@@ -143,11 +152,20 @@
     .vantelista-rad input:focus{outline:2px solid var(--teal-400);outline-offset:-1px}
     /* Telefonfältet är frivilligt och får bara plats när skärmen räcker. */
     @media (max-width:639px){.vantelista-rad #vantelistaTelefon{display:none}}
-    .vantelista-rad button{height:46px;padding:0 20px;border:none;border-radius:11px;cursor:pointer;
-      background:linear-gradient(135deg,var(--teal-700),var(--teal-500));color:#fff;font:500 15px var(--body);white-space:nowrap}
+    /* EN primär åtgärd i panelen. Väntelisteknappen hade samma teal-gradient,
+       samma höjd och samma vikt som "Se vad din firma läcker" — två likadana
+       knappar ovanpå varandra läses som två jämbördiga val, och besökaren
+       väljer inget. Den här är nu en dämpad kontur: fortfarande fullt
+       klickbar, men tydligt det mindre alternativet. */
+    .vantelista-rad button{height:46px;padding:0 18px;border:1px solid rgba(255,255,255,0.3);border-radius:11px;cursor:pointer;
+      background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.92);font:500 15px var(--body);white-space:nowrap;
+      transition:background .15s var(--ease)}
+    .vantelista-rad button:hover:not(:disabled){background:rgba(255,255,255,0.16)}
     .vantelista-rad button:disabled{opacity:.6;cursor:default}
     .vantelista-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+    .vantelista-inledning{font-size:13px;color:rgba(255,255,255,0.42);margin:0 0 8px;line-height:1.4}
     .vantelista-svar{font-size:13px;margin:0;line-height:1.4}
+    .vantelista-svar:empty{display:none}
     .vantelista-svar.ok{color:#4ade80;font-weight:600} .vantelista-svar.fel{color:#fca5a5;font-weight:600}
 
     .team-remsa-label{font:600 11px var(--body);letter-spacing:0.14em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:10px}
@@ -164,24 +182,34 @@
     .team-roll{display:none}
     @media (min-width:900px){.team-roll{display:block;font-size:11px;color:rgba(255,255,255,0.45);line-height:1.3;margin-top:2px}}
 
-    /* Små telefoner (iPhone SE m.fl., 375×667): rubriken bryts till fler
-       rader och panelen spillde 47px under vikningen. Stramas här i stället
-       för att göra ALLA skärmar trängre än de behöver vara. */
-    @media (max-width:400px),(max-height:700px){
-      .lansering{padding:14px 0 34px}
-      .lansering h1{font-size:26px;margin-bottom:8px}
-      .lansering-eyebrow{margin-bottom:8px;font-size:11px}
-      .lansering-sub{font-size:14px;margin-bottom:14px}
-      .nedrakning{gap:6px;margin-bottom:14px}
+    /* Trånga skärmar. Panelen ska rymmas UTAN skroll, och budgeten är hård:
+       667px minus 73px sticky nav = 594px på en iPhone SE. Höjdgränsen är
+       780px och inte 700px — en 1280×720-laptop är också trång när navet är
+       borträknat, och missades av den första gränsen (654+73=727 > 720).
+       Stramas här i stället för att göra alla skärmar trängre än de behöver. */
+    @media (max-width:400px),(max-height:780px){
+      .lansering{padding:12px 0 28px}
+      .lansering h1{font-size:24px;margin-bottom:8px}
+      .lansering-eyebrow{margin-bottom:6px;font-size:11px}
+      .lansering-sub{font-size:14px;margin-bottom:10px}
+      .nedrakning{gap:6px;margin-bottom:12px}
       .nedrakning-ruta{padding:8px 3px;border-radius:12px}
       .nedrakning-tal{font-size:22px}
-      .lansering-cta{margin-bottom:10px}
-      .lansering-cta .btn-primary{height:44px;font-size:14px}
+      .lansering-cta{margin-bottom:8px}
+      .lansering-cta .btn-primary,.lansering-cta .btn-secondary{height:44px;font-size:14px}
+      .lansering-hint{margin-bottom:8px;font-size:12px}
+      .vantelista-inledning{margin-bottom:4px;font-size:12px}
       .vantelista-rad input,.vantelista-rad button{height:44px}
-      .team-kort img{max-width:44px;border-radius:10px}
+      .team-kort img{max-width:38px;border-radius:10px}
       .team-namn{font-size:11px;margin-top:4px}
-      .team-remsa-label{margin-bottom:8px}
+      .team-remsa-label{margin-bottom:6px}
       .vantelista-svar{font-size:12px}
+    }
+    /* På en bred men låg skärm (1280×720) finns gott om sidoutrymme — låt
+       tvåkolumnsläget och de större porträtten leva där. */
+    @media (min-width:900px) and (max-height:780px){
+      .team-kort img{max-width:60px;border-radius:14px}
+      .lansering h1{font-size:40px}
     }
 
     /* Pilen säger att sidan fortsätter under panelen — utan den ser en
@@ -339,7 +367,7 @@
     .footer-links a{color:rgba(255,255,255,0.55)} .footer-links a:hover{color:#5eead4}
     .footer .meta{font-size:14px;color:rgba(255,255,255,0.4);margin-top:24px}
     .footer .meta a{color:rgba(255,255,255,0.4)}
-    @media (max-width:1024px){.hero-grid{grid-template-columns:1fr;gap:48px;padding:64px 0}.grid-4{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:1fr 1fr}.truth-grid{grid-template-columns:1fr;gap:40px}.section{padding:64px 0}.nav-links a:not(.btn-primary){display:none}}
+    @media (max-width:1024px){.hero-grid{grid-template-columns:1fr;gap:48px;padding-top:64px;padding-bottom:64px}.grid-4{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:1fr 1fr}.truth-grid{grid-template-columns:1fr;gap:40px}.section{padding:64px 0}.nav-links a:not(.btn-primary){display:none}}
     @media (max-width:640px){.grid-4,.grid-3,.price-grid{grid-template-columns:1fr}.section-head h2,.truth-copy h2{font-size:32px}.section-title{font-size:26px}.testimonial-text{font-size:19px}}
     @media (prefers-reduced-motion:reduce){.mission-card{animation:none}.reveal{transition:opacity .4s ease}}
   </style>
@@ -392,14 +420,17 @@
           <a href="mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20" class="btn-secondary">Boka en genomgång</a>
         </div>
 
+        <p class="lansering-hint">Åtta frågor, inga filer att ladda upp. Du får svaret direkt.</p>
+
         <div id="vantelistaBlock">
+          <p class="vantelista-inledning">Hinner du inte nu? Lämna mejlen så hör vi av oss när vi öppnar.</p>
           <div class="vantelista-rad" id="vantelistaForm">
             <input type="email" id="vantelistaEpost" placeholder="Din mejladress" autocomplete="email" inputmode="email" aria-label="Din e-postadress">
             <input type="tel" id="vantelistaTelefon" placeholder="Telefon (frivilligt)" autocomplete="tel" inputmode="tel" aria-label="Ditt telefonnummer, frivilligt">
             <button type="button" id="vantelistaKnapp" onclick="skickaVantelista()">Hör av er</button>
           </div>
           <input type="text" id="vantelistaWebsite" class="vantelista-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <p class="vantelista-svar" id="vantelistaSvar" style="color:rgba(255,255,255,0.42)">Åtta frågor i Företagskollen, inga filer att ladda upp — eller lämna mejlen så hör vi av oss när vi öppnar.</p>
+          <p class="vantelista-svar" id="vantelistaSvar"></p>
         </div>
       </div>
 

@@ -99,6 +99,10 @@
       "dest": "/integritet.html"
     },
     {
+      "src": "/support",
+      "dest": "/support.html"
+    },
+    {
       "src": "/ai-team",
       "dest": "/ai-team.html"
     },

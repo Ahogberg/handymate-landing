@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — Handymate</title>
+  <meta name="description" content="Hjälp med Handymate: kontakt, vanliga frågor om inloggning, telefonen, abonnemang och konto.">
+  <link rel="canonical" href="https://handymate.se/support">
+  <meta property="og:title" content="Support — Handymate">
+  <meta property="og:description" content="Hjälp med Handymate: kontakt, vanliga frågor om inloggning, telefonen, abonnemang och konto.">
+  <meta property="og:url" content="https://handymate.se/support">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://handymate.se/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Support — Handymate">
+  <meta name="twitter:description" content="Hjälp med Handymate: kontakt, vanliga frågor om inloggning, telefonen, abonnemang och konto.">
+  <link rel="icon" href="/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-400: #2DD4BF;
+      --teal-500: #14B8A6;
+      --teal-600: #0D9488;
+      --teal-700: #0F766E;
+      --teal-800: #115E59;
+      --teal-900: #134E4A;
+      --teal-950: #0F2A35;
+      --slate-50: #F8FAFC;
+      --slate-100: #F1F5F9;
+      --slate-200: #E2E8F0;
+      --slate-300: #CBD5E1;
+      --slate-400: #94A3B8;
+      --slate-500: #64748B;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1E293B;
+      --slate-900: #0F172A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-900);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 640px) { .container { padding: 0 24px; } }
+
+    /* ── Nav ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-icon { width: 38px; height: 38px; }
+    .nav-logo-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .nav-logo-text { font-size: 20px; font-weight: 700; color: white; }
+    .nav-links { display: none; align-items: center; gap: 28px; }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+    .nav-links a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--teal-400); }
+    .nav-cta { display: none; padding: 8px 20px; background: var(--teal-600); color: white; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background 0.2s; }
+    @media (min-width: 768px) { .nav-cta { display: inline-block; } }
+    .nav-cta:hover { background: var(--teal-700); }
+
+    /* ── Content ── */
+    .page-hero { padding: 120px 0 48px; background: linear-gradient(135deg, var(--teal-950) 0%, var(--slate-900) 100%); }
+    .page-hero h1 { font-size: 32px; font-weight: 700; color: white; margin-bottom: 8px; }
+    @media (min-width: 640px) { .page-hero h1 { font-size: 40px; } }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,0.5); }
+
+    .content-section { padding: 48px 0; }
+    @media (min-width: 640px) { .content-section { padding: 64px 0; } }
+    .content-wrapper { max-width: 800px; margin: 0 auto; }
+
+    .content-wrapper h2 {
+      font-size: 24px; font-weight: 700; color: var(--slate-900);
+      margin: 40px 0 16px; padding-bottom: 8px;
+      border-bottom: 2px solid var(--teal-400);
+    }
+    .content-wrapper h2:first-child { margin-top: 0; }
+    .content-wrapper h3 { font-size: 18px; font-weight: 600; color: var(--slate-800); margin: 24px 0 8px; }
+    .content-wrapper p { font-size: 15px; color: var(--slate-600); margin-bottom: 12px; line-height: 1.7; }
+    .content-wrapper ul { margin: 0 0 16px 20px; }
+    .content-wrapper li { font-size: 15px; color: var(--slate-600); margin-bottom: 6px; line-height: 1.7; }
+    .content-wrapper a { color: var(--teal-600); text-decoration: underline; }
+    .content-wrapper a:hover { color: var(--teal-700); }
+
+    .section-divider { border: none; border-top: 1px solid var(--slate-200); margin: 56px 0; }
+
+    .last-updated { font-size: 13px; color: var(--slate-400); margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--slate-200); }
+
+    /* ── Footer ── */
+    .footer { padding: 48px 0 32px; background: var(--teal-950); }
+    @media (min-width: 640px) { .footer { padding: 64px 0 32px; } }
+    .footer-grid { display: grid; gap: 32px; margin-bottom: 40px; }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; } }
+    .footer-brand-text { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 12px; max-width: 260px; line-height: 1.6; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .footer-logo-icon { width: 36px; height: 36px; }
+    .footer-logo-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .footer-logo-text { font-size: 20px; font-weight: 700; color: white; }
+    .footer-col-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--teal-400); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact a { color: rgba(255,255,255,0.5); }
+    .footer-contact a:hover { color: var(--teal-400); }
+  </style>
+</head>
+<body>
+
+  <!-- ════ Nav ════ -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-icon"><img src="/logo.png" alt="Handymate logo"></div>
+          <span class="nav-logo-text">Handymate</span>
+        </a>
+        <div class="nav-links">
+          <a href="/#features">Funktioner</a>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/demo">Demo</a>
+        </div>
+        <a href="https://app.handymate.se" class="nav-cta">Kom igång</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════ Hero ════ -->
+  <div class="page-hero">
+    <div class="container">
+      <h1>Support</h1>
+      <p>Vi svarar på vardagar, oftast samma dag. Mejla <a href="mailto:hej@handymate.se">hej@handymate.se</a> så hör vi av oss.</p>
+    </div>
+  </div>
+
+  <!-- ════ Content ════ -->
+  <div class="content-section">
+    <div class="container">
+      <div class="content-wrapper">
+
+        <h2>Kontakta oss</h2>
+        <p>Skriv till <a href="mailto:hej@handymate.se">hej@handymate.se</a>. Berätta vilket företag du loggar in med och vad som hände, gärna med en skärmbild. Är det bråttom, till exempel att telefonen inte kopplar samtal, skriv "Akut" i ämnesraden.</p>
+        <p>Vill du hellre boka en genomgång av din firma finns det på <a href="/demo">demosidan</a>, utan köpkrav.</p>
+
+        <h2>Vanliga frågor</h2>
+
+        <h3>Hur loggar jag in i appen?</h3>
+        <p>Med samma e-post och lösenord som på <a href="https://app.handymate.se">app.handymate.se</a>. Har du fått en inbjudan av din arbetsgivare skapar du lösenordet via länken i inbjudan, sedan loggar du in i appen med samma uppgifter.</p>
+
+        <h3>Jag har glömt mitt lösenord</h3>
+        <p>Gå till inloggningssidan på app.handymate.se och välj att återställa lösenordet. Du får ett mejl med en länk. Kommer inget mejl inom några minuter, kontrollera skräpposten och mejla oss annars.</p>
+
+        <h3>Lisa fångar inga samtal</h3>
+        <p>Lisa fångar samtal först när firmans telefonnummer är kopplat och verifierat. Det gör du under Inställningar i webbappen, och startsidan visar om telefonen är kopplad eller inte. Är telefonen kopplad men samtal ändå inte fångas, mejla oss med tidpunkt och det nummer som ringde så tittar vi i loggen.</p>
+
+        <h3>Skickar Handymate något till mina kunder utan att jag vet?</h3>
+        <p>Nej. Agenterna föreslår och du godkänner. Du kan ge ett avgränsat mandat, till exempel att SMS efter missat samtal går ut automatiskt, men det är alltid ett val du gjort själv under Inställningar. Allt som skickats syns i loggen.</p>
+
+        <h3>Hur fungerar abonnemanget?</h3>
+        <p>Ett pris för hela teamet, ingen bindningstid på månadsplanen, 30 dagars pengarna-tillbaka-garanti. Du ser din plan, byter plan och avslutar under Inställningar → Fakturering i webbappen. Ändringar gäller från nästa betalningsperiod.</p>
+
+        <h3>Hur tar jag bort mitt konto?</h3>
+        <p>I appen: Profil → Radera konto. Företagets ägare raderar hela företaget, anställda sitt eget konto. Har du inte appen, mejla oss från den adress kontot är registrerat på så raderar vi. Raderingen är permanent och beskrivs i vår <a href="/integritet">integritetspolicy</a>.</p>
+
+        <h3>Var finns mina uppgifter och vem ser dem?</h3>
+        <p>Hos vår leverantör inom EU. Vad vi sparar, varför och hur länge står i <a href="/integritet">integritetspolicyn</a>. Vill du ha ut dina uppgifter eller få dem raderade, mejla oss.</p>
+
+        <h3>Appen visar gammal information</h3>
+        <p>Dra ner för att uppdatera. Hjälper inte det, logga ut och in igen. Om problemet återkommer, mejla oss med telefonmodell och vilken skärm det gäller.</p>
+
+        <h2>Rapportera ett fel</h2>
+        <p>Det snabbaste sättet att få ett fel rättat är att skicka:</p>
+        <ul>
+          <li>Vad du försökte göra och vad som hände i stället</li>
+          <li>Ungefärlig tidpunkt</li>
+          <li>Skärmbild eller skärminspelning</li>
+          <li>Telefonmodell och om det var i appen eller på webben</li>
+        </ul>
+        <p>Vi återkopplar när felet är rättat, inte bara när det är mottaget.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ Footer ════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><img src="/logo.png" alt="Handymate logo"></div>
+            <span class="footer-logo-text">Handymate</span>
+          </div>
+          <p class="footer-brand-text">AI-administratör för hantverkare. Fångar samtalen du missar, skriver offerter, följer upp kunder — du fokuserar på hantverket.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Produkt</div>
+          <a href="/#features">Funktioner</a>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/demo">Demo</a>
+          <a href="/ai-team">AI-teamet</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Företag</div>
+          <a href="mailto:hej@handymate.se">Kontakt</a>
+          <a href="/support">Support</a>
+          <a href="/integritet">Integritet & Villkor</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Partners</div>
+          <a href="/partners">Bli partner</a>
+          <a href="https://app.handymate.se/partners/login">Partner-login</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2025 Handymate</div>
+        <div class="footer-contact">Frågor? <a href="mailto:hej@handymate.se">hej@handymate.se</a></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

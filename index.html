@@ -121,7 +121,8 @@
     .lansering::after{content:'';position:absolute;inset:auto -20% -60% 40%;height:420px;
       background:radial-gradient(closest-side,rgba(20,184,166,0.18),transparent);pointer-events:none}
     .lansering .container{position:relative;z-index:1;width:100%}
-    .lansering-grid{display:grid;gap:24px;align-items:center}
+    .lansering-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:center}
+    .lansering-grid > *{min-width:0}
     @media (min-width:900px){.lansering-grid{grid-template-columns:1.15fr 0.85fr;gap:48px}}
 
     .lansering-eyebrow{font:600 12px var(--body);letter-spacing:0.18em;color:var(--teal-400);text-transform:uppercase;margin-bottom:10px}
@@ -359,6 +360,7 @@
     .founder-strip{max-width:860px;margin:28px auto 0;display:flex;align-items:center;gap:18px;background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.25);border-radius:16px;padding:20px 26px}
     .founder-strip b{font:700 15px var(--heading);letter-spacing:0.1em;color:#5eead4;flex:0 0 auto}
     .founder-strip span{font-size:15px;line-height:1.5;color:rgba(255,255,255,0.75)}
+    @media (max-width:639px){.founder-strip{flex-direction:column;align-items:flex-start}.founder-strip span{min-width:0}}
     /* Footer */
     .footer{background:#0a231f;color:#fff;text-align:center;padding:72px 24px}
     .footer .tagline{font:700 32px var(--heading);letter-spacing:-0.01em;margin:22px 0}
@@ -464,7 +466,7 @@
         <a href="https://app.handymate.se/signup" class="btn-secondary btn-lg">Kom igång direkt</a>
       </div>
       <div class="hero-ticks">
-        <span>✓ 15 min till fullt igång</span>
+        <span>✓ Guidad start med din firma</span>
         <span>✓ Ingen bindningstid</span>
         <span>✓ 30 dagar pengarna tillbaka</span>
         <span>✓ Byggt för svenska flöden — ROT, ÄTA, Fortnox</span>
@@ -735,7 +737,7 @@
         <ul class="price-features">
           <li>Hela AI-teamet — sex medarbetare</li>
           <li>Automatiserad admin &amp; rådgivning — marginalkoll, prisförslag och pappersarbete</li>
-          <li>Missade samtal fångas 24/7</li>
+          <li>SMS-uppföljning efter aktivering av telefonkanalen</li>
           <li>Offerthantering &amp; e-signering</li>
           <li>Faktura, ROT/RUT &amp; Swish QR</li>
           <li>SMS-utskick &amp; kampanjer</li>
@@ -755,7 +757,7 @@
         <ul class="price-inherited">
           <li>Hela AI-teamet — sex medarbetare</li>
           <li>Automatiserad admin &amp; rådgivning — marginalkoll, prisförslag och pappersarbete</li>
-          <li>Missade samtal fångas 24/7</li>
+          <li>SMS-uppföljning efter aktivering av telefonkanalen</li>
           <li>Offerthantering &amp; e-signering</li>
           <li>Faktura, ROT/RUT &amp; Swish QR</li>
           <li>SMS-utskick &amp; kampanjer</li>
@@ -779,7 +781,7 @@
 
     <div class="founder-strip reveal">
       <b>GRUNDARKUNDERNA</b>
-      <span>De första 20 företagen får låst pris för alltid, direktlinje till grundaren under första året och 30 dagars pengarna-tillbaka-garanti. <a href="mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20" style="color:#5eead4;font-weight:600">Direktlinjen börjar med ett samtal — boka en genomgång.</a></span>
+      <span>Grundarkundserbjudandet gäller de första 20 betalande företagen: låst pris för alltid, direktlinje till grundaren under första året och 90 dagars pengarna-tillbaka-garanti. Aktuell tillgänglighet visas när du aktiverar abonnemanget. <a href="mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20" style="color:#5eead4;font-weight:600">Direktlinjen börjar med ett samtal — boka en genomgång.</a></span>
     </div>
   </div>
 </section>

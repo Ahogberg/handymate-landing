@@ -685,7 +685,7 @@
       } catch (e) {}
       try {
         var p = new URLSearchParams(location.search)
-        var keys = ['ref', 'entry', 'utm_source', 'utm_medium', 'utm_campaign']
+        var keys = ['ref', 'entry', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
         for (var i = 0; i < keys.length; i++) {
           var v = p.get(keys[i])
           if (v) attr[keys[i]] = String(v).slice(0, 120)

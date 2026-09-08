@@ -1,7 +1,10 @@
 /**
  * POST /api/save-lead — sparar en lead i landing_leads.
  *
- * Används av /offertgenerator (och är avsedd för fler ytor).
+ * Används av /offertgenerator, väntelistan, ROT-kalkylatorn m.fl. — och sedan
+ * 2026-09-08 av demo-offerten på startsidan (source 'demo-offert'), som är den
+ * enda ytan där e-post får saknas: besökaren har redan fått ett SMS till sitt
+ * mobilnummer och kryssat i att vi får ringa. Namn + mobil är leaden.
  *
  * FIXAT 2026-09-03: den tidigare versionen svalde varje fel —
  *
@@ -35,7 +38,9 @@ function rateLimited(ip) {
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-const TILLATNA_KALLOR = ['offertmall', 'offertgenerator', 'rot-kalkylator', 'nedrakning', 'skanner', 'jamfor', 'partners']
+const TILLATNA_KALLOR = ['offertmall', 'offertgenerator', 'rot-kalkylator', 'nedrakning', 'skanner', 'jamfor', 'partners', 'demo-offert']
+// Ytor som får spara en lead UTAN e-post — då krävs ett mobilnummer i stället.
+const KALLOR_UTAN_EPOST = ['demo-offert']
 
 function klipp(v, max) {
   if (typeof v !== 'string') return null
@@ -56,17 +61,26 @@ export default async function handler(req, res) {
   // Honeypot: låtsas lyckas så botten inte får någon signal, men rör inget.
   if (body.website) return res.status(200).json({ success: true })
 
-  const email = klipp(body.email, 200)
-  if (!email || !EMAIL_RE.test(email)) {
-    return res.status(400).json({ error: 'Ogiltig e-postadress' })
-  }
-  const company = klipp(body.company_name, 120)
-  const phone = klipp(body.phone, 40)
-
   // Källan säger vilken yta leaden kom från — den avgör hur du följer upp,
   // så en okänd sträng får inte tyst bli 'offertmall' och förorena statistiken.
   const onskadKalla = klipp(body.source, 40) || 'offertmall'
   const source = TILLATNA_KALLOR.includes(onskadKalla) ? onskadKalla : 'okand'
+
+  const email = klipp(body.email, 200)
+  const company = klipp(body.company_name, 120)
+  const phone = klipp(body.phone, 40)
+  const name = klipp(body.name, 80)
+
+  // En angiven e-post måste alltid vara giltig. Saknas den godtas leaden bara
+  // från ytor utan e-postfält, och då bara med ett mobilnummer (minst nio
+  // siffror) — annars finns ingen att följa upp.
+  if (email && !EMAIL_RE.test(email)) {
+    return res.status(400).json({ error: 'Ogiltig e-postadress' })
+  }
+  const harMobil = !!phone && phone.replace(/\D/g, '').length >= 9
+  if (!email && !(KALLOR_UTAN_EPOST.includes(source) && harMobil)) {
+    return res.status(400).json({ error: 'Ogiltig e-postadress' })
+  }
 
   const payload = body.payload && typeof body.payload === 'object' ? body.payload : null
   if (payload && JSON.stringify(payload).length > 20_000) {
@@ -93,6 +107,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         email,
+        name,
         company_name: company,
         phone,
         source,

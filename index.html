@@ -369,6 +369,70 @@
     .footer-links a{color:rgba(255,255,255,0.55)} .footer-links a:hover{color:#5eead4}
     .footer .meta{font-size:14px;color:rgba(255,255,255,0.4);margin-top:24px}
     .footer .meta a{color:rgba(255,255,255,0.4)}
+    /* ── Demo-offerten: "Skicka en offert till dig själv" (yta 9, 2026-09-08) ──
+       Blockets egen yta är Handymates (teal). Telefonen bär Ekström Byggs
+       färg (#F59E0B) — det är kundens vy av en annan firmas offert. */
+    .demo-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:72px;align-items:start}
+    .demo-copy h2{font-size:40px;line-height:1.1;text-wrap:balance;margin-top:16px}
+    .demo-lead{font-size:19px;color:var(--muted);margin:16px 0 32px;max-width:52ch}
+    .demo-form{display:flex;flex-direction:column;gap:14px;max-width:440px}
+    .demo-form[hidden],.demo-sent[hidden],.demo-events[hidden],.demo-approved[hidden],.demo-btn[hidden]{display:none}
+    .demo-field label{display:block;font-size:13px;font-weight:500;color:#334155;margin-bottom:6px}
+    .demo-field input{width:100%;height:48px;padding:0 14px;font-size:16px;font-family:inherit;border:1px solid var(--border);border-radius:11px;background:#fff;color:var(--text)}
+    .demo-field input::placeholder{color:#94a3b8}
+    .demo-field input:focus{outline:2px solid var(--teal-500);outline-offset:-1px;border-color:var(--teal-500)}
+    .demo-field input[aria-invalid="true"]{border-color:#dc2626}
+    .demo-valfri{color:var(--muted);font-weight:400}
+    .demo-fel{font-size:13px;color:#b91c1c;margin-top:6px}
+    .demo-fel:empty{display:none}
+    .demo-check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#334155;cursor:pointer}
+    .demo-check input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--teal-700);flex:none}
+    .demo-form .btn-primary{width:100%;height:52px;font-size:16px;border:0;cursor:pointer;font-family:inherit}
+    .demo-form .btn-primary:disabled{opacity:.45;cursor:default;box-shadow:none}
+    .demo-status{font-size:14px;color:var(--muted)}
+    .demo-status:empty{display:none}
+    .demo-status.fel{color:#b91c1c}
+    .demo-mikro{font-size:13px;color:var(--muted);margin:0}
+    .demo-sent{max-width:440px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px 26px}
+    .demo-sent h3{font-size:26px}
+    .demo-sent p{margin:8px 0 0;color:#334155;font-size:15px;line-height:1.55}
+    .demo-igen{font-size:14px;color:var(--muted)}
+    .demo-igen button{background:none;border:0;padding:0;font:inherit;color:var(--teal-700);cursor:pointer;text-decoration:underline}
+    .demo-igen button:disabled{color:var(--muted);text-decoration:none;cursor:default}
+    /* Telefonen — attrapp av den riktiga offertsidan (app.handymate.se/quote/…) */
+    .demo-phone-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+    .demo-phone-caption{font-size:13px;color:var(--muted);letter-spacing:.02em;text-align:center}
+    .demo-phone{width:300px;border-radius:38px;background:#0f172a;padding:12px;box-shadow:0 34px 60px -24px rgba(15,23,42,.4)}
+    .demo-screen{background:#f8fafc;border-radius:27px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0f172a;font-size:12px;line-height:1.4}
+    .demo-notch{height:24px;display:flex;justify-content:center;align-items:center}
+    .demo-notch span{width:72px;height:6px;border-radius:3px;background:#0f172a}
+    .demo-biz{padding:12px 14px;border-top:4px solid #F59E0B;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;gap:9px;align-items:center}
+    .demo-biz-mark{width:28px;height:28px;border-radius:8px;background:#F59E0B;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+    .demo-biz b{display:block;font-size:12px} .demo-biz small{color:#64748b;font-size:10px}
+    .demo-q{padding:12px 14px 14px}
+    .demo-q h4{margin:0;font-size:14px;font-weight:700;font-family:inherit;letter-spacing:0}
+    .demo-q-meta{color:#64748b;font-size:10px;margin-top:2px}
+    .demo-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;margin-top:10px}
+    .demo-k{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#64748b;font-weight:600}
+    .demo-big{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+    .demo-row{display:flex;justify-content:space-between;gap:8px;padding:3px 0;font-variant-numeric:tabular-nums;color:#334155}
+    .demo-row span:last-child{white-space:nowrap;flex:none} .demo-row span:first-child{min-width:0}
+    .demo-row.rot{color:#047857} .demo-pill{font-size:8px;border:1px solid #a7f3d0;background:#ecfdf5;border-radius:99px;padding:1px 5px;margin-left:4px;text-transform:uppercase;letter-spacing:.04em}
+    .demo-row.sum{border-top:1px solid #e2e8f0;margin-top:4px;padding-top:6px;font-weight:600;color:#0f172a}
+    .demo-btn{display:block;margin-top:10px;background:#0F172A;color:#fff;border-radius:10px;padding:11px 0;text-align:center;font-weight:600;font-size:12px}
+    .demo-approved{margin-top:10px;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;border-radius:10px;padding:10px 12px;font-weight:600}
+    /* Efteråt-vyn — det som hände hos Ekström Bygg när knappen trycktes */
+    .demo-events{background:var(--teal-950);color:#fff;border-radius:16px;padding:26px 28px;max-width:480px}
+    .demo-events .eyebrow{color:#5eead4;font-size:12px}
+    .demo-events ul{list-style:none;margin:18px 0 0;display:flex;flex-direction:column;gap:12px}
+    .demo-events li{display:grid;grid-template-columns:52px 1fr;gap:12px;font-size:15px;line-height:1.45}
+    .demo-events time{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;color:#5eead4;padding-top:2px;font-variant-numeric:tabular-nums}
+    .demo-slipper{margin:22px 0 0;font-size:15px;color:rgba(255,255,255,.78);border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
+    .demo-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .demo-ghost{display:inline-flex;align-items:center;height:48px;padding:0 20px;border-radius:12px;border:1px solid rgba(255,255,255,.3);color:#fff;font-weight:500}
+    .demo-ghost:hover{background:rgba(255,255,255,.1);color:#fff}
+    @media (max-width:1024px){.demo-grid{grid-template-columns:1fr;gap:44px}}
+    @media (max-width:640px){.demo-copy h2{font-size:32px}.demo-lead{font-size:17px}.demo-phone{width:280px}.demo-events{padding:22px 20px}.demo-ctas .btn-primary,.demo-ctas .demo-ghost{width:100%;justify-content:center}}
     @media (max-width:1024px){.hero-grid{grid-template-columns:1fr;gap:48px;padding-top:64px;padding-bottom:64px}.grid-4{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:1fr 1fr}.truth-grid{grid-template-columns:1fr;gap:40px}.section{padding:64px 0}.nav-links a:not(.btn-primary){display:none}}
     @media (max-width:640px){.grid-4,.grid-3,.price-grid{grid-template-columns:1fr}.section-head h2,.truth-copy h2{font-size:32px}.section-title{font-size:26px}.testimonial-text{font-size:19px}}
     @media (prefers-reduced-motion:reduce){.mission-card{animation:none}.reveal{transition:opacity .4s ease}}
@@ -642,6 +706,97 @@
           <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Morgonrapport — du behöver inte tänka</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ Demo-offerten — skicka en offert till dig själv (yta 9, 2026-09-08) ════
+     Blocket pratar med app.handymate.se: POST /api/public/demo-quote skapar en
+     RIKTIG offert hos demo-företaget Ekström Bygg AB och skickar SMS:et;
+     GET /api/public/demo-quote/{token}/status pollas var femte sekund i tio
+     minuter. Telefonen här är en ATTRAPP av den riktiga offertsidan — siffrorna
+     är samma som i lib/demo/demo-quote-data.ts i dashboard-repot. Ändra dem
+     där först. Leaden sparas BARA om besökaren kryssar i att vi får ringa. -->
+<section id="demo-offert" class="section">
+  <div class="container demo-grid">
+    <div class="demo-copy reveal">
+      <span class="eyebrow">Prova själv</span>
+      <h2>Skicka en offert till dig själv.</h2>
+      <p class="demo-lead">Du får den som din kund får den — i mobilen, med ROT-avdraget uträknat och en knapp.</p>
+
+      <form class="demo-form" id="demoForm" novalidate>
+        <div class="demo-field">
+          <label for="demoNamn">Ditt namn</label>
+          <input id="demoNamn" type="text" autocomplete="name" maxlength="40" placeholder="Anders Nilsson">
+          <div class="demo-fel" id="demoNamnFel"></div>
+        </div>
+        <div class="demo-field">
+          <label for="demoTelefon">Mobilnummer</label>
+          <input id="demoTelefon" type="tel" autocomplete="tel" inputmode="tel" placeholder="070-123 45 67">
+          <div class="demo-fel" id="demoTelefonFel"></div>
+        </div>
+        <div class="demo-field">
+          <label for="demoFirma">Ditt firmanamn <span class="demo-valfri">(valfritt)</span></label>
+          <input id="demoFirma" type="text" autocomplete="organization" maxlength="40" placeholder="Nilssons Bygg AB">
+          <div class="demo-fel" id="demoFirmaFel"></div>
+        </div>
+        <input type="text" id="demoWebsite" class="vantelista-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="demo-check"><input type="checkbox" id="demoRing"> Ja, ni får ringa mig om Handymate</label>
+        <button type="submit" class="btn-primary" id="demoKnapp" disabled>Skicka offerten till mig</button>
+        <div class="demo-status" id="demoStatus" aria-live="polite"></div>
+        <p class="demo-mikro">Ett SMS, ingen uppföljning. Offerten är på låtsas — knappen är på riktigt.</p>
+      </form>
+
+      <div class="demo-sent" id="demoSent" hidden>
+        <h3>Kolla mobilen.</h3>
+        <p>SMS:et kom från Ekström Bygg AB, inte från oss — det är så din kund får det.</p>
+        <p class="demo-igen">Fick du inget? <button type="button" id="demoIgen">Skicka igen</button><span id="demoKvar"></span></p>
+        <p class="demo-igen" id="demoIgenStatus" aria-live="polite"></p>
+      </div>
+
+      <div class="demo-events" id="demoEvents" hidden>
+        <span class="eyebrow">Det här hände hos Ekström Bygg</span>
+        <ul id="demoEventLista"></ul>
+        <p class="demo-slipper">Det här är vad din arbetsledare slipper göra på kvällen.</p>
+        <div class="demo-ctas">
+          <a class="btn-primary" href="mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20">Boka en genomgång</a>
+          <a class="demo-ghost" href="#pris">Se priserna</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-phone-wrap reveal reveal-d1">
+      <div class="demo-phone" aria-hidden="true">
+        <div class="demo-screen">
+          <div class="demo-notch"><span></span></div>
+          <div class="demo-biz">
+            <div class="demo-biz-mark">E</div>
+            <div><b>Ekström Bygg AB</b><small>Offert <span id="demoQNr">till dig</span> · <span id="demoQGiltig">giltig i 7 dagar</span></small></div>
+          </div>
+          <div class="demo-q">
+            <h4>Badrumsrenovering, Sjövägen 4</h4>
+            <div class="demo-q-meta">Till <span id="demoQKund">Anders Nilsson</span></div>
+            <div class="demo-card">
+              <div class="demo-k">Du betalar</div>
+              <div class="demo-big">64 000 kr</div>
+              <div class="demo-row"><span>Offertens totalsumma inkl. moms</span><span>77 500 kr</span></div>
+              <div class="demo-row rot"><span>ROT-avdrag<span class="demo-pill">preliminärt</span></span><span>−13 500 kr</span></div>
+            </div>
+            <div class="demo-card">
+              <div class="demo-row"><span>Rivning och bortforsling</span><span>8 000 kr</span></div>
+              <div class="demo-row"><span>VVS — nya rör och blandare</span><span>18 000 kr</span></div>
+              <div class="demo-row"><span>Kakel och klinker inkl. material</span><span>26 000 kr</span></div>
+              <div class="demo-row"><span>El — belysning och golvvärme</span><span>10 000 kr</span></div>
+              <div class="demo-row sum"><span>Delsumma</span><span>62 000 kr</span></div>
+              <div class="demo-row"><span>Moms 25 %</span><span>15 500 kr</span></div>
+              <div class="demo-row sum"><span>Totalt</span><span>77 500 kr</span></div>
+            </div>
+            <div class="demo-btn" id="demoQKnapp">Godkänn offert · 64 000 kr</div>
+            <div class="demo-approved" id="demoQGodkand" hidden>Tack <span id="demoQFornamn">Anders</span>. Offerten är godkänd.</div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-phone-caption" id="demoPhoneCaption">Så ser offerten ut i din kunds mobil</div>
     </div>
   </div>
 </section>
@@ -993,6 +1148,263 @@
       svar('Det gick inte att spara — försök igen om en stund.', 'fel');
     });
   };
+})();
+</script>
+<script>
+// ══ Demo-offerten — "Skicka en offert till dig själv" (yta 9, 2026-09-08) ══
+// Allt som SYNS här är på riktigt utom telefonen: offerten skapas i
+// app.handymate.se hos demo-företaget Ekström Bygg AB, SMS:et går via 46elks,
+// godkännandet sker i den riktiga kundportalen och efteråt-vyn läser
+// tidsstämplar ur databasen. Telefonen på sidan är en attrapp som visar
+// samma siffror som den riktiga offertsidan.
+//
+// KVITTOT ("Kolla mobilen") SÄTTS FÖRST NÄR SERVERN SVARAT OK — samma regel
+// som väntelistan. Leaden sparas bara om besökaren kryssat i att vi får ringa,
+// och sparandet får aldrig fälla demon: misslyckas det tyst är SMS:et ändå ute.
+(function () {
+  var sektion = document.getElementById('demo-offert');
+  if (!sektion) return;
+
+  var lokal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  var API = lokal ? 'http://localhost:3000' : 'https://app.handymate.se';
+  var POLL_MS = 5000;          // var femte sekund …
+  var POLL_MAX_MS = 600000;    // … i tio minuter, sedan slutar vi fråga
+  var TITEL = 'Badrumsrenovering, Sjövägen 4';
+  var FEL_SKICKA = 'Vi kunde inte skicka just nu. Prova igen om en stund eller Boka en genomgång.';
+
+  var form = document.getElementById('demoForm');
+  var namn = document.getElementById('demoNamn');
+  var telefon = document.getElementById('demoTelefon');
+  var firma = document.getElementById('demoFirma');
+  var ring = document.getElementById('demoRing');
+  var honeypot = document.getElementById('demoWebsite');
+  var knapp = document.getElementById('demoKnapp');
+  var status = document.getElementById('demoStatus');
+  var sent = document.getElementById('demoSent');
+  var igen = document.getElementById('demoIgen');
+  var kvar = document.getElementById('demoKvar');
+  var igenStatus = document.getElementById('demoIgenStatus');
+  var events = document.getElementById('demoEvents');
+  var eventLista = document.getElementById('demoEventLista');
+  var caption = document.getElementById('demoPhoneCaption');
+
+  var token = null;
+  var pollTimer = null;
+  var pollStart = 0;
+
+  // ── Validering — samma regler som servern, så felet syns innan SMS:et ──
+  var NAMN_RE;
+  try { NAMN_RE = new RegExp("^\\p{L}[\\p{L} '\\-]{0,39}$", 'u'); }
+  catch (e) { NAMN_RE = /^[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ '\-]{0,39}$/; }
+  function giltigtNamn(v) { return NAMN_RE.test(v.trim()); }
+  function giltigtMobil(v) { return /^(\+46|0046|0)7\d{8}$/.test(v.replace(/[\s\-()]/g, '')); }
+
+  function fel(id, text) {
+    var el = document.getElementById(id + 'Fel');
+    el.textContent = text || '';
+    document.getElementById(id).setAttribute('aria-invalid', text ? 'true' : 'false');
+  }
+  function sattStatus(text, arFel) {
+    status.textContent = text || '';
+    status.className = 'demo-status' + (arFel ? ' fel' : '');
+  }
+  function uppdateraKnapp() {
+    knapp.disabled = !(giltigtNamn(namn.value) && giltigtMobil(telefon.value) && firma.value.trim().length <= 40);
+  }
+  function fornamn(v) { return (v || '').trim().split(/\s+/)[0] || ''; }
+  function speglaNamn() {
+    var n = namn.value.trim() || 'Anders Nilsson';
+    document.getElementById('demoQKund').textContent = n;
+    document.getElementById('demoQFornamn').textContent = fornamn(n);
+  }
+
+  namn.addEventListener('input', function () { fel('demoNamn', ''); speglaNamn(); uppdateraKnapp(); });
+  telefon.addEventListener('input', function () { fel('demoTelefon', ''); uppdateraKnapp(); });
+  firma.addEventListener('input', function () { fel('demoFirma', ''); uppdateraKnapp(); });
+
+  // ── Skicka ──
+  function skicka(omskick) {
+    var data = { name: namn.value.trim(), phone: telefon.value.trim(), firm: firma.value.trim() || undefined };
+    if (!omskick) {
+      var ok = true;
+      if (!giltigtNamn(data.name)) { fel('demoNamn', 'Skriv ditt namn (bokstäver, max 40 tecken).'); ok = false; }
+      if (!giltigtMobil(data.phone)) { fel('demoTelefon', 'Skriv ett svenskt mobilnummer, t.ex. 070-123 45 67.'); ok = false; }
+      if (!ok) return;
+      knapp.disabled = true;
+      sattStatus('Skickar SMS till ' + data.phone + ' …', false);
+    } else {
+      igen.disabled = true;
+      igenStatus.textContent = 'Skickar SMS till ' + data.phone + ' …';
+    }
+
+    return fetch(API + '/api/public/demo-quote', {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (json) { return { res: res, json: json }; });
+    }).then(function (r) {
+      var json = r.json || {};
+      if (!r.res.ok || !json.ok || !json.token) {
+        // 400 pekar på ett fält, 429/503 är en mening — visa serverns text ordagrant.
+        var text = json.error || FEL_SKICKA;
+        if (omskick) {
+          igenStatus.textContent = text;
+          igen.disabled = false;
+        } else {
+          if (r.res.status === 400 && json.field === 'name') fel('demoNamn', text);
+          else if (r.res.status === 400 && json.field === 'phone') fel('demoTelefon', text);
+          else if (r.res.status === 400 && json.field === 'firm') fel('demoFirma', text);
+          else sattStatus(text, true);
+          if (r.res.status === 400 && json.field) sattStatus('', false);
+          uppdateraKnapp();
+        }
+        if (typeof json.remaining_today === 'number') visaKvar(json.remaining_today);
+        return;
+      }
+      token = json.token;
+      try {
+        sessionStorage.setItem('demoOffert', JSON.stringify({ token: token, name: data.name, phone: data.phone, firm: data.firm || '' }));
+      } catch (e) {}
+      visaSkickat();
+      visaKvar(json.remaining_today);
+      igenStatus.textContent = '';
+      if (!omskick && ring.checked) sparaLead(data);
+      startaPoll();
+    }).catch(function () {
+      if (omskick) { igenStatus.textContent = FEL_SKICKA; igen.disabled = false; }
+      else { sattStatus(FEL_SKICKA, true); uppdateraKnapp(); }
+    });
+  }
+
+  form.addEventListener('submit', function (e) { e.preventDefault(); skicka(false); });
+  igen.addEventListener('click', function () { skicka(true); });
+
+  // Leaden — bara med kryssrutan i, bara efter att SMS:et faktiskt gått ut,
+  // och aldrig som ett villkor för kvittot.
+  function sparaLead(data) {
+    try {
+      fetch('/api/save-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+          company_name: data.firm || null,
+          source: 'demo-offert',
+          website: honeypot.value
+        }),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  function visaKvar(n) {
+    if (typeof n !== 'number') return;
+    kvar.textContent = ' · ' + n + ' kvar i dag';
+    igen.disabled = n <= 0;
+  }
+  function visaSkickat() {
+    form.hidden = true;
+    events.hidden = true;
+    sent.hidden = false;
+    caption.textContent = 'Så ser offerten ut i din kunds mobil';
+  }
+
+  // ── Efteråt-vyn — bara rader som har en tidsstämpel ──
+  function klockslag(iso) {
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Stockholm' });
+  }
+  function kronor(n) { return Math.round(Number(n) || 0).toLocaleString('sv-SE') + ' kr'; }
+  function datum(iso) {
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', timeZone: 'Europe/Stockholm' }).replace('.', '');
+  }
+  function rad(iso, text) {
+    var li = document.createElement('li');
+    var t = document.createElement('time');
+    t.setAttribute('datetime', iso);
+    t.textContent = klockslag(iso);
+    var s = document.createElement('span');
+    s.textContent = text;
+    li.appendChild(t); li.appendChild(s);
+    return li;
+  }
+  function speglaOfferten(s) {
+    if (s.quote_number) document.getElementById('demoQNr').textContent = s.quote_number;
+    if (s.valid_until) document.getElementById('demoQGiltig').textContent = 'giltig till ' + datum(s.valid_until);
+    if (s.first_name) {
+      document.getElementById('demoQFornamn').textContent = s.first_name;
+      if (!namn.value.trim()) document.getElementById('demoQKund').textContent = s.first_name;
+    }
+  }
+  function visaEfterat(s) {
+    speglaOfferten(s);
+    eventLista.innerHTML = '';
+    if (s.accepted_at) eventLista.appendChild(rad(s.accepted_at, 'Offerten godkändes' + (s.first_name ? ' av ' + s.first_name : '')));
+    if (s.project_created_at) eventLista.appendChild(rad(s.project_created_at, 'Projekt "' + TITEL + '" skapades'));
+    if (s.deal_won_at) eventLista.appendChild(rad(s.deal_won_at, 'Affären flyttades till Vunnen · ' + kronor(s.total)));
+    form.hidden = true;
+    sent.hidden = true;
+    events.hidden = false;
+    document.getElementById('demoQKnapp').hidden = true;
+    document.getElementById('demoQGodkand').hidden = false;
+    caption.textContent = 'Så ser offerten ut nu';
+  }
+
+  // ── Pollning ──
+  function hamtaStatus() {
+    return fetch(API + '/api/public/demo-quote/' + encodeURIComponent(token) + '/status', { mode: 'cors', cache: 'no-store' })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .catch(function () { return null; });
+  }
+  function stoppaPoll() { if (pollTimer) { clearInterval(pollTimer); pollTimer = null; } }
+  function startaPoll() {
+    stoppaPoll();
+    pollStart = Date.now();
+    pollTimer = setInterval(function () {
+      if (Date.now() - pollStart > POLL_MAX_MS) { stoppaPoll(); return; }
+      if (document.hidden) return;
+      hamtaStatus().then(function (s) {
+        if (!s) return;
+        speglaOfferten(s);
+        if (s.accepted_at) { stoppaPoll(); visaEfterat(s); }
+      });
+    }, POLL_MS);
+  }
+
+  // ── ?demo=TOKEN i URL:en (länken i SMS 2) eller en pågående demo i fliken ──
+  var urlToken = null;
+  try { urlToken = new URLSearchParams(location.search).get('demo'); } catch (e) {}
+  var sparad = null;
+  try { sparad = JSON.parse(sessionStorage.getItem('demoOffert') || 'null'); } catch (e) {}
+  var startToken = urlToken || (sparad && sparad.token) || null;
+  if (startToken && /^[0-9a-f\-]{20,64}$/i.test(startToken)) {
+    token = startToken;
+    if (sparad && sparad.token === startToken) {
+      // Samma flik, ny sidladdning: fyll fälten så "Skicka igen" har något att skicka.
+      namn.value = sparad.name || '';
+      telefon.value = sparad.phone || '';
+      firma.value = sparad.firm || '';
+      speglaNamn();
+    }
+    hamtaStatus().then(function (s) {
+      if (!s) return;
+      if (s.accepted_at) visaEfterat(s);
+      else {
+        speglaOfferten(s);
+        visaSkickat();
+        kvar.textContent = '';
+        igen.disabled = !(giltigtNamn(namn.value) && giltigtMobil(telefon.value));
+        startaPoll();
+      }
+      if (urlToken) sektion.scrollIntoView({ behavior: 'auto', block: 'start' });
+    });
+  }
 })();
 </script>
 </body>

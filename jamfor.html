@@ -41,9 +41,34 @@
     .highlight-row { background: #F0FDFA; }
 
     /* Hero */
+    /* ── Header, 2026-09-10 ─────────────────────────────────────────
+       jamfor.html hade INGET nav alls — varken logotyp, meny eller väg in.
+       Enda vägen ut ur sidan var hero-knappen, och den pekade på
+       https://handymate.se, alltså tillbaka till startsidan. En jämförelse-
+       sida är ofta det första en hantverkare googlar fram; härifrån fanns
+       ingen väg till appen och ingen väg in för en befintlig kund.
+
+       Egna hm-prefix eftersom sidan redan har .btn-primary med annan
+       betydelse. Ligger ovanpå heroets mörka gradient (#0F2A35): #cbd5e1
+       ger 10.08:1, och vit på #0D9488 ger 3.74:1 vilket klarar AA:s
+       3.0-gräns för fet text ≥14px. Mätt i Chromium på 320-1280: noll
+       sidoskroll. Facit tests/nav-login.test.mjs. */
+    .hm-nav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
+    .hm-nav-inner { max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .hm-nav-logo { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 20px; font-weight: 700; text-decoration: none; }
+    .hm-nav-logo img { height: 34px; width: auto; display: block; }
+    .hm-nav-actions { display: flex; align-items: center; gap: 14px; }
+    .hm-nav-login { color: #cbd5e1; font-size: 14px; font-weight: 500; white-space: nowrap; text-decoration: none; }
+    .hm-nav-login:hover { color: #fff; }
+    .hm-nav-cta { padding: 8px 20px; border-radius: 8px; background: #0D9488; color: #fff; font-size: 14px; font-weight: 600; white-space: nowrap; text-decoration: none; }
+    .hm-nav-cta:hover { background: #0F766E; }
+    @media (max-width: 400px) { .hm-nav-actions { gap: 10px } .hm-nav-cta { padding: 8px 14px } .hm-nav-logo span { display: none } }
     .hero {
       background: linear-gradient(135deg, #0F2A35 0%, #134E4A 40%, #0F766E 100%);
-      padding: 48px 24px 64px;
+      /* 48px räckte inte när headern lades in ovanpå — den är ~62px hög och
+         låg över hero-badgen. Mätt i Chromium: 104px ger luft utan att heroet
+         blir högre än det var relativt sitt innehåll. */
+      padding: 104px 24px 64px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -236,6 +261,16 @@
 </head>
 <body>
 
+  <nav class="hm-nav">
+    <div class="hm-nav-inner">
+      <a href="/" class="hm-nav-logo"><img src="/logo.png" alt=""><span>Handymate</span></a>
+      <div class="hm-nav-actions">
+        <a href="https://app.handymate.se/login" class="hm-nav-login">Logga in</a>
+        <a href="https://app.handymate.se/signup" class="hm-nav-cta">Kom igång</a>
+      </div>
+    </div>
+  </nav>
+
   <!-- Hero -->
   <div class="hero">
     <div class="hero-circle-1"></div>
@@ -245,7 +280,7 @@
       <h1 class="fade-up fade-up-1">Handymate vs Easoft vs Bygglet</h1>
       <p class="fade-up fade-up-2">Vilket system passar ditt hantverksföretag bäst? Vi jämför funktioner, priser och — framför allt — vad som faktiskt sparar dig tid.</p>
       <div class="fade-up fade-up-3 hero-buttons">
-        <a href="https://handymate.se" class="btn-primary cta-pulse">Kom igång med Handymate →</a>
+        <a href="https://app.handymate.se/signup" class="btn-primary cta-pulse">Kom igång med Handymate →</a>
         <a href="#jamforelse" class="btn-secondary">Se jämförelsen</a>
       </div>
     </div>
@@ -372,7 +407,7 @@
     <p class="subtitle">Ingen bindningstid på månadsplanen. Vi hjälper dig med en guidad start. 30 dagars pengarna-tillbaka-garanti. Inga frågor.</p>
     <div class="hero-buttons">
       <a href="mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20" class="btn-white cta-pulse">Boka en genomgång — 20 minuter</a>
-      <a href="https://handymate.se" class="btn-secondary" style="border-color: rgba(255,255,255,0.35); color: #B2DFDB;">Kom igång direkt</a>
+      <a href="https://app.handymate.se/signup" class="btn-secondary" style="border-color: rgba(255,255,255,0.35); color: #B2DFDB;">Kom igång direkt</a>
     </div>
     <p class="phone">Eller ring oss: +46 708 379 552</p>
   </div>

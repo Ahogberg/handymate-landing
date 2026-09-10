@@ -118,8 +118,93 @@ if (loginregel) {
   kolla(v >= 4.5, `inloggningslänken: ${loginregel[1]} mot navets #f8fafc ger ${v.toFixed(2)}:1 — AA kräver 4.5`)
 }
 
+// ── 3. Vägen in ska finnas på VARJE sida, inte bara startsidan ────────
+//
+// 2026-09-10, andra passet. Tre olika navfamiljer, tre olika lägen:
+//
+//   demo-familjen (demo, foretagskollen, hemsida, offertgenerator,
+//     rot-kalkylator) hade redan "Logga in" — inline på desktop och i
+//     hamburgermenyn på telefon. Rörda: inte alls.
+//   ai-team-familjen (ai-team, daniel, hanna, karin, lars, lisa, matte,
+//     support, integritet) hade ingen inloggning alls, OCH på 375px var det
+//     enda synliga i navet logotypen: både .nav-links och .nav-cta är
+//     display:none under 768px och det finns ingen hamburgermeny. Noll vägar
+//     vidare från headern på telefon, på nio sidor.
+//   jamfor.html hade inget nav alls, och hero-knappen pekade tillbaka på
+//     startsidan i stället för till appen.
+//
+// Provet är avsiktligt en LISTA över alla sidor med ett nav, inte de sidor
+// som råkar ha en inloggning i dag. En ny sida utan väg in ska falla här.
+const ALLA_MED_NAV = [
+  'index.html',
+  // demo-familjen — inline + hamburgermeny
+  'demo.html', 'foretagskollen.html', 'hemsida.html', 'offertgenerator.html', 'rot-kalkylator.html',
+  // ai-team-familjen — .nav-actions med login + CTA i alla bredder
+  'ai-team.html', 'daniel.html', 'hanna.html', 'karin.html', 'lars.html',
+  'lisa.html', 'matte.html', 'support.html', 'integritet.html',
+  // egen header, egna hm-prefix
+  'jamfor.html',
+]
+
+for (const sida of ALLA_MED_NAV) {
+  const src = readFileSync(join(ROOT, sida), 'utf8')
+  kolla(
+    src.includes('https://app.handymate.se/login'),
+    `${sida}: ingen inloggningslänk — en befintlig kund som landar här har ingen väg in`,
+  )
+  kolla(/>\s*Logga in\s*</.test(src), `${sida}: inloggningslänken heter inte "Logga in"`)
+}
+
+// partners.html är medvetet utanför: dess nav vänder sig till säljpartners
+// och bär Partner-login mot /partners/login. En kundinloggning där skulle
+// vara fel målgrupp, inte en saknad väg in.
+kolla(
+  readFileSync(join(ROOT, 'partners.html'), 'utf8').includes('/partners/login'),
+  'partners.html har tappat sin Partner-login',
+)
+
+// ── 4. ai-team-familjen: både login OCH CTA måste synas på telefon ────
+// Det var inte inloggningen som saknades värst där, utan allt. Regeln som
+// gömde CTA:n under 768px är borttagen; kommer den tillbaka är headern tom
+// på telefon igen.
+const AI_FAMILJEN = ['ai-team.html', 'daniel.html', 'hanna.html', 'karin.html', 'lars.html',
+  'lisa.html', 'matte.html', 'support.html', 'integritet.html']
+for (const sida of AI_FAMILJEN) {
+  const src = readFileSync(join(ROOT, sida), 'utf8')
+  kolla(
+    !/\.nav-cta \{ display: none/.test(src),
+    `${sida}: .nav-cta är display:none igen — headern blir tom på telefon`,
+  )
+  kolla(
+    /\.nav-actions \{ display: flex/.test(src),
+    `${sida}: saknar .nav-actions-gruppen som håller login + CTA`,
+  )
+  // Ljus text på det mörka navet: #cbd5e1 mot #0f172a ger 12.02:1.
+  const m = src.match(/\.nav-login \{ color: (#[0-9a-fA-F]{6})/)
+  kolla(m !== null, `${sida}: .nav-login saknar en uttrycklig färg`)
+  if (m) {
+    const v = kontrast(m[1], '#0f172a')
+    kolla(v >= 4.5, `${sida}: .nav-login ${m[1]} mot mörka navet ger ${v.toFixed(2)}:1 — AA kräver 4.5`)
+  }
+}
+
+// ── 5. Inga länkar som leder tillbaka till sig själva ─────────────────
+// jamfors hero-knapp sa "Kom igång med Handymate" och pekade på
+// https://handymate.se — alltså tillbaka till startsidan, inte till appen.
+// En CTA utan mål är värre än ingen CTA.
+for (const sida of ALLA_MED_NAV) {
+  const src = readFileSync(join(ROOT, sida), 'utf8')
+  const doda = [...src.matchAll(/<a[^>]*href="https:\/\/handymate\.se\/?"[^>]*>([^<]*)<\/a>/g)]
+    .map(m => m[1].trim())
+    .filter(t => /kom ig|logga in|prova|skapa konto/i.test(t))
+  kolla(
+    doda.length === 0,
+    `${sida}: CTA:n "${doda[0]}" pekar på handymate.se i stället för appen`,
+  )
+}
+
 if (fel > 0) {
   console.error(`\n${fel} fel`)
   process.exit(1)
 }
-console.log('✓ nav-login: vägen in finns, syns på telefon, och knappen klarar AA')
+console.log(`✓ nav-login: vägen in finns på ${ALLA_MED_NAV.length} sidor, syns på telefon, och knappen klarar AA`)

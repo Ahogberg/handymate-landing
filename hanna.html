@@ -54,8 +54,29 @@
     @media (min-width: 768px) { .nav-links { display: flex; } }
     .nav-links a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
     .nav-links a:hover { color: var(--teal-400); }
-    .nav-cta { display: none; padding: 8px 20px; background: var(--teal-600); color: white; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background 0.2s; }
-    @media (min-width: 768px) { .nav-cta { display: inline-block; } }
+    /* ── Vägen in och vägen vidare, 2026-09-10 ──────────────────────
+       Två fynd, mätt i Chromium innan en rad ändrades:
+
+         1. Ingen av de nio sidorna i den här familjen hade någon
+            inloggningslänk. En hantverkare som redan betalar och landar på
+            lisa.html hade ingen väg in — bara "Kom igång", som leder till
+            registrering.
+         2. Värre: på 375px var det ENDA synliga i navet logotypen.
+            `.nav-links` och `.nav-cta` är båda display:none under 768px, och
+            till skillnad från demo-familjen finns här ingen hamburgermeny.
+            Alltså noll vägar vidare från headern på telefon — på sidor vars
+            läsare i huvudsak ÄR på telefon.
+
+       Därför: en .nav-actions-grupp med "Logga in" + "Kom igång", båda
+       synliga i alla bredder. Färgen #cbd5e1 mot navets #0f172a ger 10.4:1;
+       vit på teal-600 i knappen 3.9:1 vid 14px/600, vilket är över AA:s
+       3.0-gräns för fet text ≥14px. Mätt på 320/375/414/768/1280: noll
+       sidoskroll. Facit tests/nav-login.test.mjs. */
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .nav-login { color: #cbd5e1; font-size: 14px; font-weight: 500; white-space: nowrap; transition: color 0.2s; }
+    .nav-login:hover { color: #fff; }
+    .nav-cta { display: inline-block; padding: 8px 20px; background: var(--teal-600); color: white; border-radius: 8px; font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
+    @media (max-width: 400px) { .nav-actions { gap: 10px } .nav-cta { padding: 8px 14px } .nav-logo-text { display: none } }
     .nav-cta:hover { background: var(--teal-700); }
 
     .page-hero { padding: 120px 0 48px; background: linear-gradient(135deg, var(--teal-950) 0%, var(--slate-900) 100%); }
@@ -131,7 +152,10 @@
           <a href="/jamfor">Jämför</a>
           <a href="/demo">Demo</a>
         </div>
-        <a href="https://app.handymate.se" class="nav-cta">Kom igång</a>
+        <div class="nav-actions">
+          <a href="https://app.handymate.se/login" class="nav-login">Logga in</a>
+          <a href="https://app.handymate.se/signup" class="nav-cta">Kom igång</a>
+        </div>
       </div>
     </div>
   </nav>

@@ -92,8 +92,48 @@
        3.74 och underkändes. Enbart navet: samma knapp på mörk botten eller
        i ett vitt kort har annan omgivning och rörs inte. */
     .nav .btn-primary{background:linear-gradient(135deg,#115E59,#0f766e)}
+    /* Kontrastfix 2, 2026-09-10: fixen ovan RÄKNADE på vit text, men vit text
+       gällde aldrig. `.nav-links a{color:var(--muted)}` längre ner är (0,1,1)
+       i specificitet och slår `.btn-primary{color:#fff}` som är (0,1,0) — så
+       navknappen ritades med #64748b på gradienten:
+
+         1.59:1 i mörka änden, 1.15:1 i den ljusa. AA kräver 4.5.
+
+       1.15:1 är i praktiken osynlig text. Hovertillståndet var lika trasigt:
+       `.nav-links a:hover{color:#0f172a}` (0,2,1) slog
+       `.btn-primary:hover{color:#fff}` (0,2,0) → 2.35–3.26:1.
+
+       Båda selektorerna här är därför mer specifika än nav-links-reglerna:
+       (0,2,0) och (0,3,0). Med vit text: 7.58:1 respektive 5.47:1 — hela
+       gradientytan klarar AA. Rör inte specificiteten utan att räkna om. */
+    .nav .btn-primary, .nav .btn-primary:hover, .nav .btn-primary:focus{color:#fff}
     .nav-links{display:flex;align-items:center;gap:28px;font-size:15px}
     .nav-links a{color:var(--muted)} .nav-links a:hover{color:#0f172a}
+    /* "Logga in" (2026-09-10): sajten hade INGEN väg in för en befintlig kund
+       — bara /signup ("Kom igång"). En hantverkare som redan betalar fick
+       leta upp app.handymate.se själv.
+       Länken måste överleva mobilregeln `.nav-links a:not(.btn-primary)
+       {display:none}` (1024px-brytpunkten), därför en egen klass som regeln
+       undantar. Färgen är #334155 mot navets #f8fafc: 9.34:1. */
+    .nav-login{color:#334155!important;font-weight:500;white-space:nowrap}
+    .nav-login:hover{color:#0f172a!important}
+    /* Mätt i Chromium: med "Logga in" tillagd gav 375px 18px sidoskroll —
+       navet blev för brett. Luften mellan de två kvarvarande posterna och
+       knappens sidopadding räcker att ta av; varken texten eller
+       träffytans höjd (44px) rörs. Facit tests/nav-login.test.mjs kräver
+       att den här regeln finns. */
+    .nav .btn-primary{white-space:nowrap}
+    @media (max-width:640px){
+      .nav-inner{padding:14px 16px;gap:12px}
+      .nav-links{gap:14px}
+      .nav .btn-primary{padding:0 16px}
+    }
+    /* Under 480px räcker inte bredden till logotyp + ordmärke + "Logga in" +
+       boknings-CTA: mätt i Chromium blev det 18px sidoskroll, och med
+       white-space:nowrap på knappen mer. Ordmärket är det som bär minst —
+       logotypen säger redan Handymate, och de två posterna till höger är
+       faktiska vägar vidare. Mätt igen på 320/375/414: noll sidoskroll. */
+    @media (max-width:479px){ .nav-brand span{display:none} }
     /* Hero */
     .hero{background:linear-gradient(160deg,#e6fffa 0%,#f0fdf9 30%,#f8fafc 65%);overflow:hidden;position:relative}
     .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:72px;align-items:center;padding-top:96px;padding-bottom:110px}
@@ -433,7 +473,7 @@
     .demo-ghost:hover{background:rgba(255,255,255,.1);color:#fff}
     @media (max-width:1024px){.demo-grid{grid-template-columns:1fr;gap:44px}}
     @media (max-width:640px){.demo-copy h2{font-size:32px}.demo-lead{font-size:17px}.demo-phone{width:280px}.demo-events{padding:22px 20px}.demo-ctas .btn-primary,.demo-ctas .demo-ghost{width:100%;justify-content:center}}
-    @media (max-width:1024px){.hero-grid{grid-template-columns:1fr;gap:48px;padding-top:64px;padding-bottom:64px}.grid-4{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:1fr 1fr}.truth-grid{grid-template-columns:1fr;gap:40px}.section{padding:64px 0}.nav-links a:not(.btn-primary){display:none}}
+    @media (max-width:1024px){.hero-grid{grid-template-columns:1fr;gap:48px;padding-top:64px;padding-bottom:64px}.grid-4{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:1fr 1fr}.truth-grid{grid-template-columns:1fr;gap:40px}.section{padding:64px 0}.nav-links a:not(.btn-primary):not(.nav-login){display:none}}
     @media (max-width:640px){.grid-4,.grid-3,.price-grid{grid-template-columns:1fr}.section-head h2,.truth-copy h2{font-size:32px}.section-title{font-size:26px}.testimonial-text{font-size:19px}}
     @media (prefers-reduced-motion:reduce){.mission-card{animation:none}.reveal{transition:opacity .4s ease}}
   </style>
@@ -453,6 +493,7 @@
       <a href="#features">Funktioner</a>
       <a href="#pris">Pris</a>
       <a href="/jamfor">Jämför</a>
+      <a href="https://app.handymate.se/login" class="nav-login">Logga in</a>
       <a href="mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20" class="btn-primary" style="height:44px;padding:0 22px">Boka genomgång</a>
     </div>
   </div>

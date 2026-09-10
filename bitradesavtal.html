@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personuppgiftsbiträdesavtal — Handymate</title>
+  <meta name="description" content="Handymates personuppgiftsbiträdesavtal enligt artikel 28 GDPR. Vad vi får göra med dina kunders uppgifter, vilka underbiträden vi anlitar och vad som händer när avtalet upphör.">
+  <link rel="canonical" href="https://handymate.se/bitradesavtal">
+  <meta property="og:title" content="Personuppgiftsbiträdesavtal — Handymate">
+  <meta property="og:description" content="Handymates personuppgiftsbiträdesavtal enligt artikel 28 GDPR. Vad vi får göra med dina kunders uppgifter, vilka underbiträden vi anlitar och vad som händer när avtalet upphör.">
+  <meta property="og:url" content="https://handymate.se/bitradesavtal">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://handymate.se/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Personuppgiftsbiträdesavtal — Handymate">
+  <meta name="twitter:description" content="Handymates personuppgiftsbiträdesavtal enligt artikel 28 GDPR. Vad vi får göra med dina kunders uppgifter, vilka underbiträden vi anlitar och vad som händer när avtalet upphör.">
+  <link rel="icon" href="/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-400: #2DD4BF;
+      --teal-500: #14B8A6;
+      --teal-600: #0D9488;
+      --teal-700: #0F766E;
+      --teal-800: #115E59;
+      --teal-900: #134E4A;
+      --teal-950: #0F2A35;
+      --slate-50: #F8FAFC;
+      --slate-100: #F1F5F9;
+      --slate-200: #E2E8F0;
+      --slate-300: #CBD5E1;
+      --slate-400: #94A3B8;
+      --slate-500: #64748B;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1E293B;
+      --slate-900: #0F172A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-900);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 640px) { .container { padding: 0 24px; } }
+
+    /* ── Nav ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-icon { width: 38px; height: 38px; }
+    .nav-logo-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .nav-logo-text { font-size: 20px; font-weight: 700; color: white; }
+    .nav-links { display: none; align-items: center; gap: 28px; }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+    .nav-links a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--teal-400); }
+    /* ── Vägen in och vägen vidare, 2026-09-10 ──────────────────────
+       Två fynd, mätt i Chromium innan en rad ändrades:
+
+         1. Ingen av de nio sidorna i den här familjen hade någon
+            inloggningslänk. En hantverkare som redan betalar och landar på
+            lisa.html hade ingen väg in — bara "Kom igång", som leder till
+            registrering.
+         2. Värre: på 375px var det ENDA synliga i navet logotypen.
+            `.nav-links` och `.nav-cta` är båda display:none under 768px, och
+            till skillnad från demo-familjen finns här ingen hamburgermeny.
+            Alltså noll vägar vidare från headern på telefon — på sidor vars
+            läsare i huvudsak ÄR på telefon.
+
+       Därför: en .nav-actions-grupp med "Logga in" + "Kom igång", båda
+       synliga i alla bredder. Färgen #cbd5e1 mot navets #0f172a ger 10.4:1;
+       vit på teal-600 i knappen 3.9:1 vid 14px/600, vilket är över AA:s
+       3.0-gräns för fet text ≥14px. Mätt på 320/375/414/768/1280: noll
+       sidoskroll. Facit tests/nav-login.test.mjs. */
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .nav-login { color: #cbd5e1; font-size: 14px; font-weight: 500; white-space: nowrap; transition: color 0.2s; }
+    .nav-login:hover { color: #fff; }
+    .nav-cta { display: inline-block; padding: 8px 20px; background: var(--teal-600); color: white; border-radius: 8px; font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
+    @media (max-width: 400px) { .nav-actions { gap: 10px } .nav-cta { padding: 8px 14px } .nav-logo-text { display: none } }
+    .nav-cta:hover { background: var(--teal-700); }
+
+    /* ── Content ── */
+    .page-hero { padding: 120px 0 48px; background: linear-gradient(135deg, var(--teal-950) 0%, var(--slate-900) 100%); }
+    .page-hero h1 { font-size: 32px; font-weight: 700; color: white; margin-bottom: 8px; }
+    @media (min-width: 640px) { .page-hero h1 { font-size: 40px; } }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,0.5); }
+
+    .content-section { padding: 48px 0; }
+    @media (min-width: 640px) { .content-section { padding: 64px 0; } }
+    .content-wrapper { max-width: 800px; margin: 0 auto; }
+
+    .content-wrapper h2 {
+      font-size: 24px; font-weight: 700; color: var(--slate-900);
+      margin: 40px 0 16px; padding-bottom: 8px;
+      border-bottom: 2px solid var(--teal-400);
+    }
+    .content-wrapper h2:first-child { margin-top: 0; }
+    .content-wrapper h3 { font-size: 18px; font-weight: 600; color: var(--slate-800); margin: 24px 0 8px; }
+    .content-wrapper p { font-size: 15px; color: var(--slate-600); margin-bottom: 12px; line-height: 1.7; }
+    .content-wrapper ul { margin: 0 0 16px 20px; }
+    .content-wrapper li { font-size: 15px; color: var(--slate-600); margin-bottom: 6px; line-height: 1.7; }
+    .content-wrapper a { color: var(--teal-600); text-decoration: underline; }
+    .content-wrapper a:hover { color: var(--teal-700); }
+
+    .section-divider { border: none; border-top: 1px solid var(--slate-200); margin: 56px 0; }
+
+    .last-updated { font-size: 13px; color: var(--slate-400); margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--slate-200); }
+
+    /* ── Footer ── */
+    .footer { padding: 48px 0 32px; background: var(--teal-950); }
+    @media (min-width: 640px) { .footer { padding: 64px 0 32px; } }
+    .footer-grid { display: grid; gap: 32px; margin-bottom: 40px; }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; } }
+    .footer-brand-text { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 12px; max-width: 260px; line-height: 1.6; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .footer-logo-icon { width: 36px; height: 36px; }
+    .footer-logo-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .footer-logo-text { font-size: 20px; font-weight: 700; color: white; }
+    .footer-col-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--teal-400); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-contact a { color: rgba(255,255,255,0.5); }
+    .footer-contact a:hover { color: var(--teal-400); }
+    </style>
+</head>
+<body>
+  <!-- ════ Nav ════ -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-icon"><img src="/logo.png" alt="Handymate logo"></div>
+          <span class="nav-logo-text">Handymate</span>
+        </a>
+        <div class="nav-links">
+          <a href="/#features">Funktioner</a>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/demo">Demo</a>
+        </div>
+        <div class="nav-actions">
+          <a href="https://app.handymate.se/login" class="nav-login">Logga in</a>
+          <a href="https://app.handymate.se/signup" class="nav-cta">Kom igång</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════ Hero ════ -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Personuppgiftsbiträdesavtal</h1>
+      <p>Bilaga till Handymates användarvillkor · enligt artikel 28 i dataskyddsförordningen</p>
+    </div>
+  </section>
+
+  <!-- ════ Innehåll ════ -->
+  <section class="content-section">
+    <div class="container">
+      <div class="content-wrapper">
+
+        <p>När du använder Handymate lagrar du uppgifter om dina egna kunder i tjänsten: namn, telefonnummer, adresser, vad ni kommit överens om och vad ni fakturerat. Enligt dataskyddsförordningen är <strong>du</strong> ansvarig för de uppgifterna och <strong>Handymate</strong> är biträde som behandlar dem åt dig. Det här avtalet beskriver vad vi får och inte får göra med dem.</p>
+        <p>Avtalet gäller automatiskt så snart du använder tjänsten och utgör en del av <a href="/integritet">användarvillkoren</a>. Du behöver inte begära eller skriva under något separat. Vill du ändå ha ett undertecknat exemplar, mejla <a href="mailto:hej@handymate.se">hej@handymate.se</a>.</p>
+
+        <h2>Avtalet</h2>
+
+        <h3>1. Parter</h3>
+        <p><strong>Personuppgiftsansvarig:</strong> du som kund, det företag som anges på kontot.</p>
+        <p><strong>Personuppgiftsbiträde:</strong> Handymate AB, org.nr 559522-5888, Sverige.</p>
+
+        <h3>2. Vad avtalet omfattar</h3>
+        <p>Avtalet gäller all behandling av personuppgifter som Handymate utför för din räkning inom ramen för tjänsten. Det omfattar inte uppgifter om dig som användare och ditt företags avtal med oss — där är Handymate själv personuppgiftsansvarig, vilket beskrivs i <a href="/integritet">integritetspolicyn</a>.</p>
+        <p>Behandlingens föremål, varaktighet, art och ändamål samt kategorier av uppgifter och registrerade beskrivs i bilaga A.</p>
+
+        <h3>3. Våra instruktioner från dig</h3>
+        <p>Handymate behandlar personuppgifterna endast enligt dina dokumenterade instruktioner. Din användning av tjänsten och de inställningar du gör i den utgör sådana instruktioner, tillsammans med användarvillkoren och detta avtal.</p>
+        <p>Vi behandlar aldrig uppgifterna för egna ändamål, säljer dem aldrig och låter dem aldrig ingå i träning av AI-modeller åt oss eller någon annan. Undantaget är avidentifierad och aggregerad statistik enligt avsnitt 7 i integritetspolicyn, där uppgifterna först har gjorts omöjliga att koppla till en person eller en firma och därför inte längre är personuppgifter. Du kan avstå från det när som helst.</p>
+        <p>Om vi bedömer att en instruktion strider mot dataskyddsförordningen meddelar vi dig utan dröjsmål. Om lag tvingar oss att behandla uppgifterna på annat sätt informerar vi dig först, om inte lagen förbjuder det.</p>
+
+        <h3>4. Sekretess</h3>
+        <p>De personer hos oss som har åtkomst till uppgifterna omfattas av tystnadsplikt och får åtkomst bara i den utsträckning arbetet kräver. Ingen läser innehållet i ditt konto annat än när du uttryckligen ber om support, när det krävs av säkerhetsskäl eller när lagen kräver det.</p>
+
+        <h3>5. Säkerhet</h3>
+        <p>Vi vidtar lämpliga tekniska och organisatoriska åtgärder enligt artikel 32, bland annat kryptering av uppgifter under överföring och i vila, åtkomstkontroll per användare och roll, åtskillnad mellan olika kunders uppgifter, loggning av åtkomst och förändringar, säkerhetskopiering samt återkommande granskning av åtgärdernas effektivitet.</p>
+
+        <h3>6. Underbiträden</h3>
+        <p>Du ger Handymate ett allmänt förhandsgodkännande att anlita underbiträden. Aktuell förteckning finns i bilaga B nedan.</p>
+        <p>Vi ålägger varje underbiträde skriftliga skyldigheter som motsvarar dem i detta avtal, och vi ansvarar gentemot dig för underbiträdets behandling som för vår egen.</p>
+        <p>Innan vi lägger till eller byter underbiträde meddelar vi dig via e-post minst 30 dagar i förväg. Invänder du mot ändringen på saklig dataskyddsgrund inom den tiden får du säga upp tjänsten utan kostnad för återstående period.</p>
+
+        <h3>7. Överföring utanför EU/EES</h3>
+        <p>Uppgifterna lagras inom EU/EES. Vissa underbiträden är etablerade utanför EU/EES, vilket framgår av bilaga B. Sådan överföring sker med stöd av EU-kommissionens standardavtalsklausuler eller ett giltigt beslut om adekvat skyddsnivå, tillsammans med de kompletterande skyddsåtgärder som behövs.</p>
+
+        <h3>8. De registrerades rättigheter</h3>
+        <p>Tjänsten är byggd så att du själv kan söka fram, rätta, exportera och radera uppgifter om en enskild kund. Behöver du därutöver hjälp för att kunna besvara en begäran från en registrerad bistår vi dig utan onödigt dröjsmål och utan extra kostnad.</p>
+        <p>Vänder sig en registrerad direkt till oss svarar vi inte i sak utan hänvisar till dig och underrättar dig.</p>
+
+        <h3>9. Personuppgiftsincident</h3>
+        <p>Upptäcker vi en personuppgiftsincident som rör dina uppgifter underrättar vi dig utan onödigt dröjsmål och senast inom 24 timmar från det att vi fick kännedom om den. Underrättelsen beskriver vad som hänt, vilka kategorier och ungefär hur många registrerade och uppgifter som berörs, sannolika konsekvenser och vilka åtgärder vi vidtagit. Vi bistår dig med det underlag du behöver för din egen anmälan till Integritetsskyddsmyndigheten.</p>
+        <p>Vi bistår dig också, i den utsträckning vi rimligen kan, med konsekvensbedömningar och förhandssamråd enligt artiklarna 35 och 36.</p>
+
+        <h3>10. Radering och återlämnande</h3>
+        <p>När avtalet upphör kan du exportera dina uppgifter ur tjänsten under 30 dagar. Därefter raderar vi dem, inklusive kopior, om inte lag kräver att vi behåller något. Säkerhetskopior raderas enligt vår ordinarie rotation, senast inom 90 dagar.</p>
+        <p>Avidentifierad statistik enligt avsnitt 7 i integritetspolicyn omfattas inte, eftersom den inte innehåller personuppgifter och inte går att koppla till dig eller dina kunder.</p>
+
+        <h3>11. Granskning</h3>
+        <p>Vi ger dig den information du behöver för att visa att skyldigheterna i artikel 28 följs. Du har rätt att granska efterlevnaden, själv eller genom en oberoende granskare som omfattas av tystnadsplikt, högst en gång per år och därutöver efter en inträffad incident. Granskningen ska aviseras minst 30 dagar i förväg, genomföras på kontorstid och inte störa driften. Vi kan uppfylla granskningen genom att lämna ut aktuell dokumentation eller ett tredjepartsintyg om det ger dig motsvarande underlag.</p>
+
+        <h3>12. Ansvar och ändringar</h3>
+        <p>Ansvarsbegränsningen i användarvillkoren gäller även detta avtal, i den mån tvingande lag tillåter det. Vid motstridighet mellan detta avtal och användarvillkoren har detta avtal företräde i frågor som rör behandling av personuppgifter.</p>
+        <p>Väsentliga ändringar meddelas via e-post minst 30 dagar i förväg. Avtalet gäller så länge Handymate behandlar personuppgifter för din räkning. Svensk lag tillämpas.</p>
+
+        <hr class="section-divider">
+
+        <h2>Bilaga A — Behandlingen</h2>
+
+        <h3>Föremål och varaktighet</h3>
+        <p>Behandlingen sker för att leverera Handymates tjänst till dig och pågår så länge du har ett aktivt konto, med efterföljande radering enligt avsnitt 10.</p>
+
+        <h3>Art och ändamål</h3>
+        <ul>
+          <li>Lagra och visa ditt kundregister, dina projekt, offerter, fakturor och dokument</li>
+          <li>Ta emot, spela in och sammanfatta samtal och meddelanden till och från dina kunder</li>
+          <li>Skicka meddelanden, offerter, påminnelser och fakturor till dina kunder på ditt uppdrag</li>
+          <li>Ta fram förslag på åtgärder som du godkänner eller avvisar</li>
+          <li>Överföra uppgifter till de tjänster du själv väljer att koppla på, till exempel bokföring och kalender</li>
+        </ul>
+
+        <h3>Kategorier av registrerade</h3>
+        <ul>
+          <li>Dina kunder och deras kontaktpersoner</li>
+          <li>Dina anställda och medarbetare som använder tjänsten</li>
+          <li>Personer som kontaktar dig och blir förfrågningar i tjänsten</li>
+        </ul>
+
+        <h3>Kategorier av personuppgifter</h3>
+        <ul>
+          <li>Kontaktuppgifter: namn, telefonnummer, e-postadress, adress</li>
+          <li>Uppdragsuppgifter: förfrågningar, offerter, projekt, tider, material, fakturor och betalningar</li>
+          <li>Kommunikation: SMS, e-post, portalmeddelanden, samtalsinspelningar och transkript av samtal och möten</li>
+          <li>Uppgifter för skattereduktion: personnummer och fastighetsbeteckning när du använder ROT eller RUT</li>
+          <li>Uppgifter om dina medarbetare: namn, roll, behörighet, arbetad tid</li>
+        </ul>
+        <p>Tjänsten är inte avsedd för känsliga personuppgifter enligt artikel 9. Lägg inte in sådana uppgifter i fritextfält.</p>
+
+        <hr class="section-divider">
+
+        <h2>Bilaga B — Underbiträden</h2>
+        <p>Följande underbiträden anlitas för att leverera tjänsten. Listan hålls uppdaterad och ändringar aviseras enligt avsnitt 6.</p>
+
+        <h3>Alltid</h3>
+        <ul>
+          <li><strong>Supabase</strong> — databas, inloggning och fillagring. Uppgifterna lagras inom EU/EES.</li>
+          <li><strong>Vercel</strong> — drift av tjänsten. Etablerat i USA. Standardavtalsklausuler.</li>
+          <li><strong>Anthropic</strong> — AI-analys och textgenerering. Etablerat i USA. Standardavtalsklausuler. Uppgifterna används inte för att träna leverantörens modeller.</li>
+          <li><strong>OpenAI</strong> — omvandling av tal till text. Etablerat i USA. Standardavtalsklausuler. Uppgifterna används inte för att träna leverantörens modeller.</li>
+          <li><strong>46elks</strong> — telefoni och SMS. Etablerat i Sverige.</li>
+          <li><strong>Resend</strong> — utgående e-post. Etablerat i USA. Standardavtalsklausuler.</li>
+          <li><strong>Stripe</strong> — hantering av ditt abonnemang och dina betalningar. Etablerat i USA och Irland. Standardavtalsklausuler.</li>
+          <li><strong>Expo</strong> — push-notiser till mobilappen. Etablerat i USA. Standardavtalsklausuler.</li>
+        </ul>
+
+        <h3>Bara om du själv kopplar på tjänsten</h3>
+        <ul>
+          <li><strong>Google</strong> — kalender och e-post. Etablerat i USA. Standardavtalsklausuler. Se avsnitt 8 i integritetspolicyn.</li>
+          <li><strong>Fortnox</strong> — bokföring och fakturering. Etablerat i Sverige.</li>
+        </ul>
+
+        <p class="last-updated">Senast uppdaterad: 11 september 2026</p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon"><img src="/logo.png" alt="Handymate logo"></div>
+            <span class="footer-logo-text">Handymate</span>
+          </div>
+          <p class="footer-brand-text">AI-administratör för hantverkare. Fångar samtalen du missar, skriver offerter, följer upp kunder — du fokuserar på hantverket.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Produkt</div>
+          <a href="/#features">Funktioner</a>
+          <a href="/#pricing">Priser</a>
+          <a href="/jamfor">Jämför</a>
+          <a href="/demo">Demo</a>
+          <a href="/ai-team">AI-teamet</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Företag</div>
+          <a href="mailto:hej@handymate.se">Kontakt</a>
+          <a href="/support">Support</a>
+          <a href="/integritet">Integritet & Villkor</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Partners</div>
+          <a href="/partners">Bli partner</a>
+          <a href="https://app.handymate.se/partners/login">Partner-login</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2025 Handymate</div>
+        <div class="footer-contact">Frågor? <a href="mailto:hej@handymate.se">hej@handymate.se</a></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

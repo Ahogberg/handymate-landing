@@ -4,8 +4,19 @@ Bas: main 973e46d4323f73d802d1338648bddeb04d1fc4ff.
 
 Två AI-genererade, fiktiva vardagssituationer. Inte verkliga kunder eller kundbevis. Befintligt namngivet kundcitat är oförändrat; dess äkthet och tillstånd har inte granskats i denna ändring.
 
-- `img/workday-evening-{640,1200}.webp`: introduktion till jämförelsen, administration vid köksbordet efter jobbet.
-- `img/workday-onsite-{640,1200}.webp`: avslutande CTA, avstämning på arbetsplatsen. Befintliga boknings- och registreringsmål är bevarade.
+- `img/workday-evening-{640,1200}.webp`: egen sektion före jämförelsen, administration vid köksbordet efter jobbet.
+- `img/workday-onsite-{640,1200}.webp`: egen sektion före footern, avstämning på arbetsplatsen.
+
+## Revidering 2026-09-12
+
+Efter granskning:
+
+- **Footern är återställd bit för bit till `973e46d`.** Boknings- och registreringsknapparna ligger kvar i sin ursprungliga centrerade rad; ingen CTA är flyttad eller dubblerad.
+- **Scenerna är egna sektioner** (`section.workday-section`) i stället för att dela rubrikplats med blocket under. Det ger varje scen ett eget band med `clamp(80px,9vw,128px)` vertikal luft — rättar att "Känner du igen dig?" låg för tätt mot sektionerna runtom. Kvällsscenen har `--bg` som botten för en tonskillnad mot de vita sektionerna på båda sidor; arbetsplatsscenen behåller mörkt `#0a231f` och flyter ihop med footern nedanför.
+- **Jämförelsens egen rubrik är tillbaka** (`Jämförelse` / `Vad AI:n gör medan du jobbar`). Utan den stod utan/med-korten utan etikett.
+- **Båda scenerna har `reveal`** så de animeras in som allt annat på sidan.
+- **`tests/workday-images.test.mjs` ingår nu i `npm test`.** Tidigare kördes den bara manuellt.
+- Klasserna `.workday-intro`, `.workday-close` och `.workday-actions` är borta och ersatta av `.workday-scene` + `.workday-section` + `.workday-dark`.
 - Bilderna har synlig AI-märkning, beskrivande alt-text, reserverade dimensioner, responsivt srcset och lazy loading. Cirka 39 kB tillsammans i mindre storlek, 88 kB i större. Inga nya beroenden, externa bildvärdar eller spårningsanrop.
 - Hero, produktdemonstration, prissättning, formulär och kundcitat lämnas oförändrade. Ingen uppmätt konverteringsökning påstås.
 

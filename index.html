@@ -63,23 +63,23 @@
       --ease:cubic-bezier(0.2,0.8,0.2,1);
       --shadow-sm:0 2px 8px rgba(15,23,42,0.05); --shadow-brand:0 8px 24px rgba(15,118,110,0.3);
     }
-    /* Illustrative everyday scenes, kept separate from customer testimonials. */
-    .workday-intro{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:center;margin-bottom:40px}
+    /* Illustrative everyday scenes, kept separate from customer testimonials.
+       Each scene owns a full section so the eyebrow and heading get their own
+       band instead of sharing a section header slot with the block below. */
+    section.workday-section{padding-block:clamp(80px,9vw,128px)}
+    section.workday-section.workday-dark{background:#0a231f;padding-bottom:0}
+    .workday-scene{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
     .workday-photo{margin:0;min-width:0}
     .workday-photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:20px}
-    .workday-photo figcaption{margin-top:8px;font-size:.8125rem;line-height:1.5;color:var(--slate-500)}
+    .workday-photo figcaption{margin-top:10px;font-size:.8125rem;line-height:1.5;color:var(--slate-500)}
     .workday-copy{min-width:0;text-align:left}
-    .workday-copy h2{font-size:clamp(1.875rem,3.2vw,2.75rem);line-height:1.15;margin:12px 0 20px}
+    .workday-copy .eyebrow{display:block;margin-bottom:14px}
+    .workday-copy h2{font-size:clamp(1.875rem,3.2vw,2.75rem);line-height:1.15;margin:0 0 20px}
     .workday-copy p{font-size:1.125rem;line-height:1.7;color:var(--slate-600);margin:0}
-    .workday-close{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:center;margin-bottom:48px}
-    .workday-close .workday-copy h2{color:white}
-    .workday-close .workday-copy p{color:var(--slate-300)}
-    .workday-close .workday-photo figcaption{color:var(--slate-300)}
-    .workday-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
-    .workday-actions a{height:auto;min-height:48px;padding:14px 24px;text-align:center}
-    .workday-actions .btn-secondary{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:white}
-    .workday-actions a:focus-visible{outline:3px solid var(--teal-400);outline-offset:4px}
-    @media(max-width:760px){.workday-intro,.workday-close{grid-template-columns:1fr;gap:24px}.workday-close .workday-copy{grid-row:1}.workday-photo img{border-radius:16px}.workday-actions a{flex:1 1 200px}}
+    .workday-dark .workday-copy h2{color:#fff}
+    .workday-dark .workday-copy p{color:var(--slate-300)}
+    .workday-dark .workday-photo figcaption{color:var(--slate-300)}
+    @media(max-width:760px){.workday-scene{grid-template-columns:1fr;gap:26px}.workday-photo img{border-radius:16px}}
     *{box-sizing:border-box} html{scroll-behavior:smooth}
     body{margin:0;background:var(--bg);font-family:var(--body);color:var(--text);line-height:1.5;overflow-x:hidden}
     a{color:var(--teal-700);text-decoration:none} a:hover{color:var(--teal-900)}
@@ -734,10 +734,10 @@
   </div>
 </section>
 
-<!-- ════ Comparison ════ -->
-<section class="section" style="background: white;">
+<!-- ════ Vardagsscen: kvällen ════ -->
+<section class="section workday-section" style="background:var(--bg)">
   <div class="container">
-    <div class="workday-intro">
+    <div class="workday-scene reveal">
       <figure class="workday-photo">
         <img src="/img/workday-evening-1200.webp" srcset="/img/workday-evening-640.webp 640w, /img/workday-evening-1200.webp 1200w" sizes="(max-width:760px) calc(100vw - 48px), (max-width:1280px) calc((100vw - 112px) / 2), 584px" width="1200" height="800" loading="lazy" decoding="async" alt="Hantverkare går igenom papper vid köksbordet efter arbetsdagen.">
         <figcaption>AI-genererad illustration av en vardagssituation.</figcaption>
@@ -747,6 +747,16 @@
         <h2>Jobbet är klart.<br>Men inte pappersarbetet.</h2>
         <p>Offerter att skriva. Kunder att återkomma till. Underlag som ligger kvar i bilen. Handymate hjälper dig att samla nästa steg och förbereda arbetet — så att du kan granska och gå vidare.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ Comparison ════ -->
+<section class="section" style="background: white;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Jämförelse</div>
+      <h2 class="section-title">Vad AI:n gör medan du jobbar</h2>
     </div>
     <div class="compare-grid">
       <div class="compare-card compare-without reveal reveal-d1">
@@ -1006,23 +1016,29 @@
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container workday-close">
-    <figure class="workday-photo">
-      <img src="/img/workday-onsite-1200.webp" srcset="/img/workday-onsite-640.webp 640w, /img/workday-onsite-1200.webp 1200w" sizes="(max-width:760px) calc(100vw - 48px), (max-width:1280px) calc((100vw - 112px) / 2), 584px" width="1200" height="800" loading="lazy" decoding="async" alt="Hantverkare stämmer av mobilen under en paus på arbetsplatsen.">
-      <figcaption>AI-genererad illustration av en vardagssituation.</figcaption>
-    </figure>
-    <div class="workday-copy">
-      <h2>Mer tid för hantverket.<br>Mindre att ta med hem.</h2>
-      <p>Se hur teamet kan avlasta just din firma. Vi går igenom dina arbetsflöden, vad som kan förberedas och vilka beslut du behåller.</p>
-      <div class="workday-actions">
-    <a href="mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20" class="btn-primary btn-lg">Boka en genomgång</a>
-    <a href="https://app.handymate.se/signup" class="btn-secondary btn-lg" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff">Kom igång direkt</a>
+<!-- ════ Vardagsscen: arbetsplatsen ════ -->
+<section class="section workday-section workday-dark">
+  <div class="container">
+    <div class="workday-scene reveal">
+      <figure class="workday-photo">
+        <img src="/img/workday-onsite-1200.webp" srcset="/img/workday-onsite-640.webp 640w, /img/workday-onsite-1200.webp 1200w" sizes="(max-width:760px) calc(100vw - 48px), (max-width:1280px) calc((100vw - 112px) / 2), 584px" width="1200" height="800" loading="lazy" decoding="async" alt="Hantverkare stämmer av mobilen under en paus på arbetsplatsen.">
+        <figcaption>AI-genererad illustration av en vardagssituation.</figcaption>
+      </figure>
+      <div class="workday-copy">
+        <h2>Mer tid för hantverket.<br>Mindre att ta med hem.</h2>
+        <p>Se hur teamet kan avlasta just din firma. Vi går igenom dina arbetsflöden, vad som kan förberedas och vilka beslut du behåller.</p>
       </div>
     </div>
   </div>
+</section>
+
+<footer class="footer">
   <img src="/logo.png" alt="" style="height:56px;filter:brightness(0) invert(1)">
   <div class="tagline">Hantverkaren sköter hantverket.<br><span class="accent">Handymate sköter resten.</span></div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+    <a href="mailto:andreas@handymate.se?subject=Boka%20en%20genomg%C3%A5ng%20av%20Handymate&body=Hej!%0D%0A%0D%0AJag%20vill%20boka%20en%2020-minuters%20genomg%C3%A5ng.%0D%0A%0D%0AF%C3%B6retag%3A%20%0D%0ATelefon%3A%20%0D%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20" class="btn-primary btn-lg">Boka en genomgång</a>
+    <a href="https://app.handymate.se/signup" class="btn-secondary btn-lg" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff">Kom igång direkt</a>
+  </div>
   <div class="footer-links">
     <a href="/demo">Demo</a>
     <a href="/jamfor">Jämför</a>

@@ -22,9 +22,24 @@ for (const [image] of images) {
   }
 }
 assert.equal((html.match(/<figcaption>AI-genererad illustration av en vardagssituation\.<\/figcaption>/g) || []).length, 2)
+// RÖTT PÅ MAIN SEDAN 2026-09-12, rättat 2026-09-17.
+//
+// Raden krävde `assert.ok(testimonial, 'Existing testimonial remains')` — att
+// kundcitatet FANNS. Sedan tog 8b6603e bort det, med motiveringen "det var
+// inte en kunds röst": citatet var påhittat och tillskrivet en namngiven
+// person på ett riktigt företag. Borttagningen var rätt; testet hade
+// därefter fel, och main har varit röd i fem dagar utan att någon läste det.
+//
+// Avsikten bevaras och skärps. Den var "generated people must not
+// impersonate the customer". Nu: inget påhittat kundcitat ska finnas, och
+// om ett ÄKTA citat läggs in får det aldrig illustreras med våra genererade
+// personbilder.
 const testimonial = html.match(/<div class="testimonial reveal">[\s\S]*?<\/section>/)?.[0]
-assert.ok(testimonial, 'Existing testimonial remains')
-assert.doesNotMatch(testimonial, /workday-|<img/, 'Generated people must not impersonate the customer')
+assert.ok(!testimonial || !/Christoffer Lindqvist|Bee Service/.test(testimonial),
+  'Det borttagna, påhittade kundcitatet är tillbaka (se 8b6603e)')
+if (testimonial) {
+  assert.doesNotMatch(testimonial, /workday-|<img/, 'Generated people must not impersonate the customer')
+}
 assert.match(html, /@media\(max-width:760px\)/)
 for (const [, attrs, content] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
   if (attrs.includes('application/ld+json')) JSON.parse(content)

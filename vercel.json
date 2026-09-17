@@ -99,6 +99,15 @@
       "dest": "/integritet.html"
     },
     {
+      "src": "/bitr(?:ä|%C3%A4|%c3%a4)desavtal",
+      "status": 301,
+      "headers": { "Location": "/bitradesavtal" }
+    },
+    {
+      "src": "/bitradesavtal",
+      "dest": "/bitradesavtal.html"
+    },
+    {
       "src": "/support",
       "dest": "/support.html"
     },

@@ -13,6 +13,10 @@
  */
 
 const TILLATNA_EVENT = new Set([
+  // Sidvisning på hela sajten (2026-09-17, sidmatning.js). Utan den gick en
+  // tom lead-tabell inte att tolka: "ingen besöker" och "ingen fyller i" såg
+  // exakt likadana ut.
+  'page_viewed',
   'assessment_viewed',
   'assessment_started',
   'question_completed',
@@ -58,10 +62,23 @@ export default async function handler(req, res) {
 
   const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
   const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY
-  if (!SUPABASE_URL || !SUPABASE_KEY) return res.status(200).end()
+
+  // TYSTNADEN ÄR STÄNGD (2026-09-17). Raden här var tidigare
+  // `if (!URL || !KEY) return res.status(200).end()` — en felkonfigurerad
+  // deploy tappade alltså VARJE händelse och rapporterade 200 tillbaka.
+  // Ingenting, någonstans, sa till. Tabellen var tom i en månad och vi läste
+  // det som "ingen besöker sajten".
+  //
+  // Klienten bryr sig inte om statuskoden (sendBeacon läser inget svar), så
+  // en felkod kostar ingenting i upplevelsen men syns i Vercels felstatistik
+  // och i funktionsloggen. Ett mätfel ska vara högt, inte tyst.
+  if (!SUPABASE_URL || !SUPABASE_KEY) {
+    console.error('[event] MÄTNINGEN ÄR NERE: NEXT_PUBLIC_SUPABASE_URL eller SUPABASE_SERVICE_KEY saknas i denna deploy. Varje landningshändelse tappas.')
+    return res.status(503).end()
+  }
 
   try {
-    await fetch(`${SUPABASE_URL}/rest/v1/landing_events`, {
+    const svar = await fetch(`${SUPABASE_URL}/rest/v1/landing_events`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +88,16 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({ event, session_id: sessionId, payload }),
     })
-  } catch { /* mätfel får aldrig påverka klienten */ }
+    if (!svar.ok) {
+      const text = await svar.text().catch(() => '')
+      console.error('[event] landing_events avvisade skrivningen:', svar.status, text.slice(0, 300))
+      return res.status(502).end()
+    }
+  } catch (err) {
+    // Nätfel mot Supabase. Får inte påverka klienten, men ska synas.
+    console.error('[event] kunde inte nå landing_events:', err && err.message ? err.message : err)
+    return res.status(502).end()
+  }
 
   return res.status(200).end()
 }
